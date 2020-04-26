@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 
-import DenseTable from '../components/teamATable';
+import TeamATable from '../components/teamATable';
 
 export class home extends Component {
     state = {
@@ -23,9 +23,18 @@ export class home extends Component {
         ) : <p>Loading...</p>
         return (
             <div>
-                <Grid container spacing={10}>
+                <Grid container justify="center" spacing={5}>
                     <Grid item>
-                        {DenseTable()}
+                        <TeamATable/>
+                    </Grid>
+                    <Grid item>
+                        <TeamATable/>
+                    </Grid>
+                    <Grid item>
+                        <TeamATable/>
+                    </Grid>
+                    <Grid item>
+                        <TeamATable/>
                     </Grid>
                 </Grid>
             </div>
