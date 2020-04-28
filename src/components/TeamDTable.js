@@ -42,7 +42,7 @@ const styles = {
     }
 }
 
-export class TeamATable extends Component {
+export class TeamDTable extends Component {
     render() {
         const {classes} = this.props;
         this.props.valueFromParent.map((user) => {rows.push(createData(user.name, user.present, user.status))})
@@ -54,9 +54,9 @@ export class TeamATable extends Component {
                 <TableHead>
                     <TableRow>
                             <TableCell>
-                                <Typography component="div" style={{ color: '#1565c0' }}>
+                                <Typography component="div" style={{ color: '#00695c' }}>
                                     <Box fontWeight="fontWeightBold" m={1}>
-                                        Team Blue
+                                        Team Green
                                     </Box>
                                 </Typography>
                             </TableCell>
@@ -102,8 +102,8 @@ export class TeamATable extends Component {
     }
 }
 
-TeamATable.propTypes = {
+TeamDTable.propTypes = {
     classes: PropTypes.object.isRequired
   };
 
-export default withStyles(styles)(TeamATable)
+export default withStyles(styles)(TeamDTable)

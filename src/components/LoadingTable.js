@@ -15,12 +15,6 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function createData(name, present, status) {
-    return { name, present, status };
-}
-
-const rows = [];
-
 const styles = {
     container: {
         display: 'flex',
@@ -42,10 +36,9 @@ const styles = {
     }
 }
 
-export class TeamATable extends Component {
+export class LoadingTable extends Component {
     render() {
         const {classes} = this.props;
-        this.props.valueFromParent.map((user) => {rows.push(createData(user.name, user.present, user.status))})
         return (
             <div>
                 <Paper elevation={3}>
@@ -54,9 +47,9 @@ export class TeamATable extends Component {
                 <TableHead>
                     <TableRow>
                             <TableCell>
-                                <Typography component="div" style={{ color: '#1565c0' }}>
+                                <Typography component="div" style={{ color: '#000000' }}>
                                     <Box fontWeight="fontWeightBold" m={1}>
-                                        Team Blue
+                                        Team White
                                     </Box>
                                 </Typography>
                             </TableCell>
@@ -76,23 +69,21 @@ export class TeamATable extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.name}>
+                            <TableRow>
                                 <TableCell className={classes.tableCell}>
                                     <IconButton size="small">
                                         <AccountCircleIcon/>
                                     </IconButton>
-                                    {" "}{row.name}
+                                    {" "}Loading...
                                 </TableCell>
                                 <TableCell align="center">
-                                    <input type="checkbox" class="onoffswitch-checkbox" id="inline" checked></input>
+                                    <input type="checkbox" checked="false"/>
                                 </TableCell>
                                 <TableCell>
                                     <TextField InputProps={{classes: {input: classes.resize}}}
-                                    className={classes.textField} defaultValue={row.status}/>
+                                    className={classes.textField} defaultValue="Loading..."/>
                                 </TableCell>
                             </TableRow>
-                        ))}
                     </TableBody>
                 </Table>
                 </TableContainer>
@@ -102,8 +93,8 @@ export class TeamATable extends Component {
     }
 }
 
-TeamATable.propTypes = {
+LoadingTable.propTypes = {
     classes: PropTypes.object.isRequired
   };
 
-export default withStyles(styles)(TeamATable)
+export default withStyles(styles)(LoadingTable)
