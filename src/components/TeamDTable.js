@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+
+// MUI components
+import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,9 +13,12 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Checkbox from '@material-ui/core/Checkbox';
 
 function createData(name, present, status) {
     return { name, present, status };
@@ -26,23 +31,35 @@ const styles = {
         display: 'flex',
         flexWrap: 'wrap',
     },
-    textField: {
-        width: 170
+    statusCell: {
+        width: 180,
+        flexWrap: 'wrap',
+        fontSize: 12
     },
     //style for font size
     resize:{
-      fontSize: 13
+      fontSize: 12
     },
     tableCell: {
-        width: 140,
+        width: 130,
         fontSize: 13
     },
-    tableRow: {
-        height: 15
+    tableCell2: {
+        width: 15
+    },
+    checkbox: {
+        width: 10,
+        height: 10
+    },
+    box: {
+        maxWidth: 100
+    },
+    status: {
+        maxWidth: 150
     }
 }
 
-export class TeamDTable extends Component {
+export class TeamATable extends Component {
     render() {
         const {classes} = this.props;
         this.props.valueFromParent.map((user) => {rows.push(createData(user.name, user.present, user.status))})
@@ -79,17 +96,31 @@ export class TeamDTable extends Component {
                         {rows.map((row) => (
                             <TableRow key={row.name}>
                                 <TableCell className={classes.tableCell}>
-                                    <IconButton size="small">
-                                        <AccountCircleIcon/>
-                                    </IconButton>
-                                    {" "}{row.name}
+                                    <Grid container alignItems="center" justify="left" spacing={1}>
+                                        <Grid item >
+                                            <IconButton size="small">
+                                                <AccountCircleIcon/>
+                                            </IconButton>
+                                        </Grid>
+                                        <Grid item className={classes.box}>
+                                            {row.name}
+                                        </Grid>
+                                    </Grid>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <input type="checkbox" class="onoffswitch-checkbox" id="inline" checked></input>
+                                    <Checkbox className={classes.checkbox} color="secondary"></Checkbox>
                                 </TableCell>
-                                <TableCell>
-                                    <TextField InputProps={{classes: {input: classes.resize}}}
-                                    className={classes.textField} defaultValue={row.status}/>
+                                <TableCell className={classes.statusCell}>
+                                    <Grid container alignItems="center" justify="space-between" spacing={1}>
+                                        <Grid item className={classes.status}>
+                                            {row.status}
+                                        </Grid>
+                                        <Grid item >
+                                            <IconButton size="small">
+                                                <EditIcon/>
+                                            </IconButton>
+                                        </Grid>
+                                    </Grid>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -102,8 +133,8 @@ export class TeamDTable extends Component {
     }
 }
 
-TeamDTable.propTypes = {
+TeamATable.propTypes = {
     classes: PropTypes.object.isRequired
   };
 
-export default withStyles(styles)(TeamDTable)
+export default withStyles(styles)(TeamATable)

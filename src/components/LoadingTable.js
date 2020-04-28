@@ -49,7 +49,7 @@ export class LoadingTable extends Component {
                             <TableCell>
                                 <Typography component="div" style={{ color: '#000000' }}>
                                     <Box fontWeight="fontWeightBold" m={1}>
-                                        Team White
+                                        Loading Team
                                     </Box>
                                 </Typography>
                             </TableCell>

@@ -10,6 +10,13 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import IconButton from '@material-ui/core/IconButton';
 
 export class Navbar extends Component {
+/*     constructor(props) {
+        super(props);
+        this.state = {}
+
+        this.handleClick = this.handleClick.bind(this);
+    } */
+
     render() {
         return (
             <AppBar>
