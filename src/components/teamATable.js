@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // MUI components
 import { withStyles } from '@material-ui/core/styles';
@@ -10,7 +11,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
@@ -41,7 +41,7 @@ const styles = {
       fontSize: 12
     },
     tableCell: {
-        width: 130,
+        width: 140,
         fontSize: 13
     },
     tableCell2: {
@@ -52,7 +52,7 @@ const styles = {
         height: 10
     },
     box: {
-        maxWidth: 100
+        maxWidth: 110
     },
     status: {
         maxWidth: 150
@@ -61,8 +61,8 @@ const styles = {
 
 export class TeamATable extends Component {
     render() {
-        const {classes} = this.props;
-        this.props.valueFromParent.map((user) => {rows.push(createData(user.name, user.present, user.status))})
+        const { classes, teamBlue } = this.props;
+        this.props.teamBlue.map((user) => {rows.push(createData(user.name, user.present, user.status))})
         return (
             <div>
                 <Paper elevation={3}>
@@ -133,8 +133,13 @@ export class TeamATable extends Component {
     }
 }
 
-TeamATable.propTypes = {
-    classes: PropTypes.object.isRequired
-  };
+const mapStateToProps = (state) => ({
+    teamBlue: state.teamBlue
+})
 
-export default withStyles(styles)(TeamATable)
+TeamATable.propTypes = {
+    teamBlue: PropTypes.array.isRequired,
+    classes: PropTypes.object.isRequired
+};
+
+export default (withStyles(styles)(TeamATable))

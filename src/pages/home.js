@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 
 import TeamATable from '../components/TeamATable';
 import TeamBTable from '../components/TeamBTable';
@@ -8,11 +9,17 @@ import TeamCTable from '../components/TeamCTable';
 import TeamDTable from '../components/TeamDTable';
 import LoadingTable from '../components/LoadingTable';
 
+import {connect} from 'react-redux';
+//import {getScream} from ''
 
 export class home extends Component {
 
     state = {
-        users: null
+        users: null,
+        teamBlue: [],
+        teamRed: [],
+        teamWhite: [],
+        teamGreen: []
     };
 
     componentDidMount(){
@@ -25,12 +32,12 @@ export class home extends Component {
     };
 
     render() {
-        let teamBlue = [];
+        let teamBlue = this.state.teamBlue;
         let teamRed = [];
         let teamWhite = [];
         let teamGreen = [];
         let usersmarkup = this.state.users ? this.state.users.map((user) => {
-            if (user.team === "blue") { teamBlue.push(user) 
+            if (user.team === "blue") { this.state.teamBlue.push(user) 
             } else if (user.team === "red") { teamRed.push(user) 
             } else if (user.team === "white") { teamWhite.push(user) 
             } else if (user.team === "green") { teamGreen.push(user) };
@@ -40,7 +47,7 @@ export class home extends Component {
             <div>
                 <Grid container justify="center" spacing={4}>
                     <Grid item>
-                        {(teamBlue.length === 0) ? <LoadingTable/> : <TeamATable valueFromParent={teamBlue}/>}
+                        {(teamBlue.length === 0) ? <LoadingTable/> : <LoadingTable/>}
                     </Grid>
                     <Grid item>
                         {(teamRed.length === 0) ? <LoadingTable/> : <TeamBTable valueFromParent={teamRed}/>}

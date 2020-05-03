@@ -10,7 +10,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
@@ -24,7 +23,7 @@ function createData(name, present, status) {
     return { name, present, status };
 }
 
-const rows = [];
+// const rows = [];
 
 const styles = {
     container: {
@@ -41,7 +40,7 @@ const styles = {
       fontSize: 12
     },
     tableCell: {
-        width: 130,
+        width: 140,
         fontSize: 13
     },
     tableCell2: {
@@ -52,7 +51,7 @@ const styles = {
         height: 10
     },
     box: {
-        maxWidth: 100
+        maxWidth: 110
     },
     status: {
         maxWidth: 150
@@ -61,7 +60,8 @@ const styles = {
 
 export class TeamBTable extends Component {
     render() {
-        const {classes} = this.props;
+        let rows = [];
+        let { classes } = this.props;
         this.props.valueFromParent.map((user) => {rows.push(createData(user.name, user.present, user.status))})
         return (
             <div>
@@ -135,6 +135,6 @@ export class TeamBTable extends Component {
 
 TeamBTable.propTypes = {
     classes: PropTypes.object.isRequired
-  };
+};
 
 export default withStyles(styles)(TeamBTable)
