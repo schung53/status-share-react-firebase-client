@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // MUI components
 import { withStyles } from '@material-ui/core/styles';
@@ -22,8 +23,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 function createData(name, present, status) {
     return { name, present, status };
 }
-
-// const rows = [];
 
 const styles = {
     container: {
@@ -58,11 +57,43 @@ const styles = {
     }
 }
 
-export class TeamCTable extends Component {
+
+
+export class TeamATable extends Component {
+    constructor(){
+        super();
+        this.state = {
+            tableColor: {}
+        };
+    };
+
+    componentDidMount(){
+        switch (this.props.teamName) {
+            case "Team Blue":
+                this.setState({ tableColor: { color: '#1565c0' } });
+                break;
+            case "Team Red":
+                this.setState({ tableColor: { color: '#c62828' } });
+                break;
+            case "Team White":
+                this.setState({ tableColor: { color: '#000000' } });
+                break;
+            case "Team Green":
+                this.setState({ tableColor: { color: '#00695c' } });
+                break;
+            default:
+                this.setState({ tableColor: { color: '#000000' } });
+        };
+    }
+
+    setTableColor = (teamName) => {
+        
+    };
+
     render() {
-        let rows = [];
-        let { classes } = this.props;
-        this.props.valueFromParent.map((user) => {rows.push(createData(user.name, user.present, user.status))})
+        let rows= [];
+        const { classes } = this.props;
+        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status))})
         return (
             <div>
                 <Paper elevation={3}>
@@ -71,9 +102,9 @@ export class TeamCTable extends Component {
                 <TableHead>
                     <TableRow>
                             <TableCell>
-                                <Typography component="div" style={{ color: '#000000' }}>
+                                <Typography component="div" style={this.state.tableColor}>
                                     <Box fontWeight="fontWeightBold" m={1}>
-                                        Team White
+                                        {this.props.teamName}
                                     </Box>
                                 </Typography>
                             </TableCell>
@@ -133,8 +164,14 @@ export class TeamCTable extends Component {
     }
 }
 
-TeamCTable.propTypes = {
+const mapStateToProps = (state) => ({
+
+})
+
+TeamATable.propTypes = {
+    teamMembers: PropTypes.array.isRequired,
+    teamName: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TeamCTable)
+export default (withStyles(styles)(TeamATable))
