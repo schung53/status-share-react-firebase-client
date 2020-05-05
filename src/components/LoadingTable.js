@@ -70,9 +70,6 @@ export class TeamCTable extends Component {
                             </TableCell>
                             <TableCell></TableCell>
                             <TableCell align="right">
-                                <IconButton size="small" aria-label="add">
-                                    <AddIcon />
-                                </IconButton>
                             </TableCell>
                         </TableRow>
                     </TableHead>

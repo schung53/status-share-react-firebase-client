@@ -81,7 +81,7 @@ export class login extends Component {
             <Grid container className={classes.form} justify="center">
                 <Grid item sm/>
                 <Grid item sm> 
-                <Paper elevation={3} /* className={classes.paper} */>
+                <Paper elevation={3}>
                     <Grid container alignItems="center" justify="center">
                     <Grid item>
                     <img src={AppIcon} className={classes.image}/>

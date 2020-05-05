@@ -1,9 +1,9 @@
-import { LOADING_DATA, SET_USER, STOP_LOADING_UI, CLEAR_ERRORS } from '../types';
+import { LOADING_UI, SET_USER, STOP_LOADING_UI, CLEAR_ERRORS } from '../types';
 import axios from 'axios';
 
 
 export const getUser = (userId) => (dispatch) => {
-    dispatch({ type: LOADING_DATA });
+    dispatch({ type: LOADING_UI });
     axios
     .get(`/user/${userId}`)
     .then((res) => {

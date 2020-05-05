@@ -1,7 +1,8 @@
-import { SET_ACCOUNT, SET_AUTHENTICATED, SET_UNAUTHENTICATED } from '../types';
+import { SET_ACCOUNT, SET_AUTHENTICATED, SET_UNAUTHENTICATED, ADMIN_ACCOUNT } from '../types';
 
 const initialState ={
     authenticated: false,
+    admin: false
 }
 
 export default function (state = initialState, action) {
@@ -17,6 +18,11 @@ export default function (state = initialState, action) {
             return {
                 authenticated: true,
                 ...action.payload
+            };
+        case ADMIN_ACCOUNT:
+            return {
+                ...state,
+                admin: true
             };
         default: 
         return state;

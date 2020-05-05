@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import ProfileButton from './ProfileButton';
 import ProfileDialog from './ProfileDialog';
@@ -17,11 +16,13 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
+
+// Redux stuff
+import { connect } from 'react-redux';
 
 function createData(name, present, status, userId) {
     return { name, present, status, userId };
@@ -60,7 +61,7 @@ const styles = {
     }
 }
 
-export class TeamATable extends Component {
+export class TeamTable extends Component {
     constructor(){
         super();
         this.state = {
@@ -89,7 +90,7 @@ export class TeamATable extends Component {
 
     render() {
         let rows= [];
-        const { classes } = this.props;
+        const { classes, account: { admin } } = this.props;
         this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId))})
         return (
             <div>
@@ -107,9 +108,9 @@ export class TeamATable extends Component {
                             </TableCell>
                             <TableCell></TableCell>
                             <TableCell align="right">
-                                <IconButton size="small" aria-label="add">
+                                {admin && (<IconButton size="small" aria-label="add">
                                     <AddIcon />
-                                </IconButton>
+                                </IconButton>)}
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -160,14 +161,14 @@ export class TeamATable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-
+    account: state.account
 })
 
-TeamATable.propTypes = {
+TeamTable.propTypes = {
     teamMembers: PropTypes.array.isRequired,
     teamName: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
-    openDialog: PropTypes.bool
+
 };
 
-export default (withStyles(styles)(TeamATable))
+export default connect(mapStateToProps)(withStyles(styles)(TeamTable))
