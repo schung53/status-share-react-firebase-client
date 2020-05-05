@@ -18,12 +18,6 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 
-function createData(name, present, status) {
-    return { name, present, status };
-}
-
-const rows = [];
-
 const styles = {
     container: {
         display: 'flex',

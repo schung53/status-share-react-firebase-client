@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import ProfileButton from './ProfileButton';
+import ProfileDialog from './ProfileDialog';
+
 // MUI components
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -20,8 +23,8 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 
-function createData(name, present, status) {
-    return { name, present, status };
+function createData(name, present, status, userId) {
+    return { name, present, status, userId };
 }
 
 const styles = {
@@ -57,8 +60,6 @@ const styles = {
     }
 }
 
-
-
 export class TeamATable extends Component {
     constructor(){
         super();
@@ -86,14 +87,10 @@ export class TeamATable extends Component {
         };
     }
 
-    setTableColor = (teamName) => {
-        
-    };
-
     render() {
         let rows= [];
         const { classes } = this.props;
-        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status))})
+        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId))})
         return (
             <div>
                 <Paper elevation={3}>
@@ -129,9 +126,7 @@ export class TeamATable extends Component {
                                 <TableCell className={classes.tableCell}>
                                     <Grid container alignItems="center" spacing={1}>
                                         <Grid item >
-                                            <IconButton size="small">
-                                                <AccountCircleIcon/>
-                                            </IconButton>
+                                            <ProfileDialog userId={row.userId}/>
                                         </Grid>
                                         <Grid item className={classes.box}>
                                             {row.name}
@@ -171,7 +166,8 @@ const mapStateToProps = (state) => ({
 TeamATable.propTypes = {
     teamMembers: PropTypes.array.isRequired,
     teamName: PropTypes.string.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 };
 
 export default (withStyles(styles)(TeamATable))

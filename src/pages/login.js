@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper'
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/actions/userActions';
+import { loginUser } from '../redux/actions/accountActions';
 
 const styles = {
     form: {
