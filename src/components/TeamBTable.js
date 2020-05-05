@@ -96,7 +96,7 @@ export class TeamBTable extends Component {
                         {rows.map((row) => (
                             <TableRow key={row.name}>
                                 <TableCell className={classes.tableCell}>
-                                    <Grid container alignItems="center" justify="left" spacing={1}>
+                                    <Grid container alignItems="center" spacing={1}>
                                         <Grid item >
                                             <IconButton size="small">
                                                 <AccountCircleIcon/>

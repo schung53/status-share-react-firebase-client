@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import AppIcon from '../images/icon.png';
 
 // MUI components
 import Grid from '@material-ui/core/Grid';
@@ -31,6 +31,11 @@ const styles = {
     customError: {
         color: 'red',
         fonstSize: '0.8rem'
+    },
+    image: {
+        width: 50,
+        height: 50,
+        margin: 'auto 15px auto auto'
     }
 }
 
@@ -42,6 +47,12 @@ export class login extends Component {
             password: "",
             loading: false,
             errors: {}
+        };
+    };
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.UI.errors) {
+            this.setState({ errors: nextProps.UI.errors });
         };
     };
 
@@ -67,9 +78,16 @@ export class login extends Component {
             <Grid container className={classes.form}>
                 <Grid item sm/>
                 <Grid item sm> 
+                    <Grid container alignItems="center" justify="center">
+                    <Grid item>
+                    <img src={AppIcon} className={classes.image}/>
+                    </Grid>
+                    <Grid item>
                     <Typography variant='h3' className={classes.pageTitle}>
-                        Login
+                        Sign In
                     </Typography>
+                    </Grid>
+                    </Grid>
                     <form noValidate onSubmit={this.handleSubmit}>
                             <TextField
                                 id="email"
