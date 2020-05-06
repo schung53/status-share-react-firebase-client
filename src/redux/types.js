@@ -13,4 +13,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 // Data reducer types
 export const SET_USER = 'SET_USER';
-export const LOADING_DATA = 'LOADING_DATA'
+export const SET_USERS = 'SET_USERS';
+export const LOADING_DATA = 'LOADING_DATA';
+export const MARK_PRESENT ='MARK_PRESENT';
+export const MARK_NOT_PRESENT = 'MARK_NOT_PRESENT';

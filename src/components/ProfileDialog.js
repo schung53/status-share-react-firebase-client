@@ -113,17 +113,17 @@ export class ProfileDialog extends Component {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid container fullWidth aligntItems="center">
+            <Grid container fullWidth>
                 <Grid item>
                     <Typography className={classes.statusText}>
                         <Box fontWeight="fontWeightBold" m={1}>Status: </Box>
                     </Typography>
                 </Grid>
                 <Grid item>
-                    <Typography className={classes.statusText}>{status}</Typography>
+                    <Typography className={classes.statusText} noWrap>{status}</Typography>
                 </Grid>
             </Grid>
-            <Grid container fullWidth aligntItems="center">
+            <Grid container fullWidth>
                 <Grid item>
                     <Typography className={classes.text2}>
                         <Box fontWeight="fontWeightBold" m={1}>Since: </Box>
@@ -133,7 +133,7 @@ export class ProfileDialog extends Component {
                     <Typography className={classes.text2}>{dayjs(statusTime).format('h:mm a, MMMM DD YYYY')}</Typography>
                 </Grid>
             </Grid>
-            <Grid container fullWidth aligntItems="center">
+            <Grid container fullWidth>
                 <Grid item>
                     <Typography className={classes.text2}>
                         <Box fontWeight="fontWeightBold" m={1}>Memo: </Box>
@@ -149,7 +149,7 @@ export class ProfileDialog extends Component {
 
         return (
             <Fragment>
-                <ProfileButton onClick={this.handleOpen} />
+                <ProfileButton onClick={this.handleOpen} tip={this.props.userMemo} />
                 <Dialog open={this.state.open} onClose={this.handleClose} fullWidth maxWidth="sm">
                     <IconButton onClick={this.handleClose} className={classes.closeButton} size="small">
                         <CloseIcon />

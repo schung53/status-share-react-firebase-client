@@ -10,13 +10,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import Checkbox from '@material-ui/core/Checkbox';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 const styles = {
     container: {
@@ -95,7 +94,9 @@ export class TeamCTable extends Component {
                                     </Grid>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <Checkbox className={classes.checkbox} color="secondary"></Checkbox>
+                                    <IconButton size="small">
+                                        <RadioButtonUncheckedIcon color="secondary"/>
+                                    </IconButton>
                                 </TableCell>
                                 <TableCell className={classes.statusCell}>
                                     <Grid container alignItems="center" justify="space-between" spacing={1}>

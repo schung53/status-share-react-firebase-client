@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ProfileButton from './ProfileButton';
 import ProfileDialog from './ProfileDialog';
+import PresenceButton from './PresenceButton';
+import EditStatus from './EditStatus';
 
 // MUI components
 import { withStyles } from '@material-ui/core/styles';
@@ -19,7 +20,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import Checkbox from '@material-ui/core/Checkbox';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -127,7 +127,7 @@ export class TeamTable extends Component {
                                 <TableCell className={classes.tableCell}>
                                     <Grid container alignItems="center" spacing={1}>
                                         <Grid item >
-                                            <ProfileDialog userId={row.userId}/>
+                                            <ProfileDialog userId={row.userId} userMemo={row.status}/>
                                         </Grid>
                                         <Grid item className={classes.box}>
                                             {row.name}
@@ -135,7 +135,7 @@ export class TeamTable extends Component {
                                     </Grid>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <Checkbox className={classes.checkbox} color="secondary"></Checkbox>
+                                    <PresenceButton present={row.present} userId={row.userId}/>
                                 </TableCell>
                                 <TableCell className={classes.statusCell}>
                                     <Grid container alignItems="center" justify="space-between" spacing={1}>
@@ -143,9 +143,7 @@ export class TeamTable extends Component {
                                             {row.status}
                                         </Grid>
                                         <Grid item >
-                                            <IconButton size="small">
-                                                <EditIcon/>
-                                            </IconButton>
+                                            <EditStatus userId={row.userId}/>
                                         </Grid>
                                     </Grid>
                                 </TableCell>
