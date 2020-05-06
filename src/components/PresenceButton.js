@@ -34,7 +34,11 @@ export class PresenceButton extends Component {
     }; */
     
 
-    
+    /* componentDidMount(){
+        this.setState({
+            users: this.props.users
+        });
+    } */
 
     render() {
         const { classes, user: { userId, present } } = this.props;
@@ -43,7 +47,7 @@ export class PresenceButton extends Component {
         );
 
         const isPresent = () => {
-            if (this.props.users[index].present) {
+            if (present) {
                 return true;
             } else {
                 return false;

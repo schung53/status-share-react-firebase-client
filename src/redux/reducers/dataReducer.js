@@ -39,7 +39,9 @@ export default function(state = initialState, action) {
             };
             return {
                 ...state,
-                loading: false
+                users: [
+                    ...state.users
+                ]
             };
         case MARK_NOT_PRESENT:
             let index1 = state.users.findIndex(
@@ -51,7 +53,9 @@ export default function(state = initialState, action) {
             };
             return {
                 ...state,
-                loading: false
+                users: [
+                    ...state.users
+                ]
             };
         case UPDATE_STATUS:
             let index2 = state.users.findIndex(
@@ -63,7 +67,9 @@ export default function(state = initialState, action) {
                 state.user.status = action.payload.status;
                 state.user.statusTime = action.payload.statusTime;
             };
-            return state;
+            return {
+                ...state
+            };
         default:
             return state;
     }

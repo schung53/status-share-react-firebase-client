@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import TeamTable from '../components/TeamTable';
 import LoadingTable from '../components/LoadingTable';
 import { withStyles } from '@material-ui/core/styles';
+import PresenceButton from '../components/PresenceButton';
 
 // Redux stuff
 import {connect} from 'react-redux';
@@ -35,17 +36,19 @@ export class home extends Component {
 
     render() {
         const { users, loading } = this.props.data;
-        let teamA = [];
-        let teamB = [];
-        let teamC = [];
-        let teamD = [];
-        let usersMarkup = !loading ? users.map((user) => {
+        const teamA = [];
+        const teamB = [];
+        const teamC = [];
+        const teamD = [];
+        const usersMarkup = !loading ? users.map((user) => {
             if (user.team === "blue") { teamA.push(user) 
             } else if (user.team === "red") { teamB.push(user) 
             } else if (user.team === "white") { teamC.push(user) 
             } else if (user.team === "green") { teamD.push(user) };
         }) : []
         
+        
+
         return (
                 <Grid container justify="center"  spacing={4} >
                     <Grid item>
@@ -59,10 +62,7 @@ export class home extends Component {
                     </Grid>
                     <Grid item>
                         {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'}/>}
-                    </Grid>
-                    <Grid item>
-                        {JSON.stringify(users)}
-                    </Grid>                    
+                    </Grid>               
                 </Grid>
         )
     }

@@ -144,12 +144,10 @@ export class login extends Component {
 login.propTypes = {
     classes: PropTypes.object.isRequired,
     loginUser: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
     UI: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    user: state.user,
     UI: state.UI
 });
 

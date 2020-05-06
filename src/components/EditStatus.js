@@ -81,6 +81,7 @@ export class EditStatus extends Component {
     };
 
     handleClose = () => {
+        //this.props.getUsers();
         this.setState({ open: false });
     };
 

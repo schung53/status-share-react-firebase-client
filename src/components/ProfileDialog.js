@@ -113,7 +113,7 @@ export class ProfileDialog extends Component {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid container fullWidth>
+            <Grid container>
                 <Grid item>
                     <Typography className={classes.statusText}>
                         <Box fontWeight="fontWeightBold" m={1}>Status: </Box>
@@ -123,7 +123,7 @@ export class ProfileDialog extends Component {
                     <Typography className={classes.statusText} noWrap>{status}</Typography>
                 </Grid>
             </Grid>
-            <Grid container fullWidth>
+            <Grid container>
                 <Grid item>
                     <Typography className={classes.text2}>
                         <Box fontWeight="fontWeightBold" m={1}>Since: </Box>
@@ -133,7 +133,7 @@ export class ProfileDialog extends Component {
                     <Typography className={classes.text2}>{dayjs(statusTime).format('h:mm a, MMMM DD YYYY')}</Typography>
                 </Grid>
             </Grid>
-            <Grid container fullWidth>
+            <Grid container>
                 <Grid item>
                     <Typography className={classes.text2}>
                         <Box fontWeight="fontWeightBold" m={1}>Memo: </Box>
@@ -158,10 +158,10 @@ export class ProfileDialog extends Component {
                     <DialogActions>
                         {admin && (
                             <Button style={{ color: '#ef5350' }} variant="outlined">
-                                <DeleteIcon/>
+                                <DeleteIcon/>delete
                             </Button>)}
                         <Button variant="outlined" color="secondary">
-                            <EditIcon/>
+                            <EditIcon/>edit
                         </Button>
                     </DialogActions>
                 </Dialog>

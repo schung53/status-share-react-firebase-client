@@ -59,7 +59,6 @@ export const updateStatus = (userId, statusData) => (dispatch) => {
             type: UPDATE_STATUS,
             payload: res.data
         });
-        //dispatch(clearErrors());
     })
     .catch((err) => {
         dispatch({
@@ -78,7 +77,6 @@ export const deleteStatus = (userId) => (dispatch) => {
             type: UPDATE_STATUS,
             payload: res.data
         });
-        //dispatch(clearErrors());
     })
     .catch((err) => {
         dispatch({
