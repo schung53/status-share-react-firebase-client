@@ -6,7 +6,7 @@ body{
   background-color: rgb(245, 245, 245);
 }
 .container{
-  margin: 60px 0px 0px 0px;
+  margin: 60px auto 0px auto;
 }
 .nav-container{
   margin: auto;

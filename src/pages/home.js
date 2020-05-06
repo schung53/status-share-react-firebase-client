@@ -16,9 +16,22 @@ const styles = {
 
 export class home extends Component {
 
+    /* constructor(){
+        super();
+        this.state = {
+            users: []
+        };
+    };
+
+    mapUsersToState = (listOfUsers) => {
+        this.setState({
+            users: listOfUsers
+        });
+    }*/
+
     componentDidMount(){
         this.props.getUsers()
-    };
+    }; 
 
     render() {
         const { users, loading } = this.props.data;
@@ -46,6 +59,9 @@ export class home extends Component {
                     </Grid>
                     <Grid item>
                         {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'}/>}
+                    </Grid>
+                    <Grid item>
+                        {JSON.stringify(users)}
                     </Grid>                    
                 </Grid>
         )
@@ -58,7 +74,8 @@ home.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    data: state.data
+    data: state.data,
+    users: state.data.users
 });
 
 const mapActionsToProps = {

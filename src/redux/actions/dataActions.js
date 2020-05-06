@@ -6,7 +6,9 @@ import {
     CLEAR_ERRORS, 
     LOADING_DATA,
     MARK_PRESENT,
-    MARK_NOT_PRESENT } from '../types';
+    MARK_NOT_PRESENT,
+    SET_ERRORS,
+    UPDATE_STATUS } from '../types';
 import axios from 'axios';
 
 // Fetch one user
@@ -48,13 +50,64 @@ export const getUsers = () => (dispatch) => {
     });
 };
 
-// Mark a user as present
-export const markPresent = (userId, presence) => (dispatch) => {
+// Update user status
+export const updateStatus = (userId, statusData) => (dispatch) => {
     axios
-    .post(`/user/presence/${userId}`, presence)
+    .post(`/user/status/${userId}`, statusData)
+    .then((res) => {
+        dispatch({
+            type: UPDATE_STATUS,
+            payload: res.data
+        });
+        //dispatch(clearErrors());
+    })
+    .catch((err) => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
+    });
+};
+
+// Delete user status
+export const deleteStatus = (userId) => (dispatch) => {
+    axios
+    .post(`/user/status/${userId}`, { status: "" })
+    .then((res) => {
+        dispatch({
+            type: UPDATE_STATUS,
+            payload: res.data
+        });
+        //dispatch(clearErrors());
+    })
+    .catch((err) => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
+    });
+};
+
+// Mark a user as present
+export const markPresent = (userId) => (dispatch) => {
+    axios
+    .post(`/user/presence/${userId}`, { present: true })
     .then((res) => {
         dispatch({
             type: MARK_PRESENT,
+            payload: res.data
+        });
+    })
+    .catch((err) => console.log(err));
+};
+
+// Mark a user as not present
+export const markNotPresent = (userId) => (dispatch) => {
+    axios
+    .post(`/user/presence/${userId}`, { present: false })
+    .then((res) => {
+        dispatch({
+            type: MARK_NOT_PRESENT,
             payload: res.data
         });
     })

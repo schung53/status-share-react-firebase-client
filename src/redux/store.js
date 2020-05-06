@@ -14,7 +14,6 @@ const reducers = combineReducers({
     data: dataReducer,
     UI: uiReducer
 });
-  
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

@@ -16,16 +16,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
 // Redux stuff
 import { connect } from 'react-redux';
+import {getUsers} from '../redux/actions/dataActions'
 
-function createData(name, present, status, userId, memo) {
-    return { name, present, status, userId, memo };
+function createData(name, present, status, userId, memo, user) {
+    return { name, present, status, userId, memo, user };
 }
 
 const styles = {
@@ -65,7 +65,8 @@ export class TeamTable extends Component {
     constructor(){
         super();
         this.state = {
-            tableColor: {}
+            tableColor: {},
+            users: []
         };
     };
 
@@ -86,12 +87,16 @@ export class TeamTable extends Component {
             default:
                 this.setState({ tableColor: { color: '#000000' } });
         };
+        /* this.props.getUsers(); */
+        this.setState({
+            users: this.props.users
+        });
     }
 
     render() {
-        let rows= [];
-        const { classes, account: { admin } } = this.props;
-        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo))})
+        const rows = [];
+        const { classes, account: { admin }, data } = this.props;
+        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo, user))})
         return (
             <div>
                 <Paper elevation={3}>
@@ -135,7 +140,7 @@ export class TeamTable extends Component {
                                     </Grid>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <PresenceButton present={row.present} userId={row.userId}/>
+                                    <PresenceButton user={row.user}/>
                                 </TableCell>
                                 <TableCell className={classes.statusCell}>
                                     <Grid container alignItems="center" justify="space-between" spacing={1}>
@@ -159,7 +164,9 @@ export class TeamTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    account: state.account
+    account: state.account,
+    data: state.data,
+    users: state.data.users
 })
 
 TeamTable.propTypes = {
@@ -169,4 +176,8 @@ TeamTable.propTypes = {
 
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(TeamTable))
+const mapActionsToProps = {
+    getUsers
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(TeamTable))

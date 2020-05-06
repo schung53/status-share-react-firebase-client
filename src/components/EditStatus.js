@@ -24,7 +24,7 @@ import SendIcon from '@material-ui/icons/Send';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser } from '../redux/actions/dataActions';
+import { getUser, updateStatus, deleteStatus } from '../redux/actions/dataActions';
 
 const styles = {
     spinnerDiv: {
@@ -56,18 +56,62 @@ const styles = {
 }
 
 export class EditStatus extends Component {
+
     state = {
+        status: "",
         open: false
     };
+
+    mapUserDetailsToState = (user) => {
+        this.setState({
+            status: this.checkUser(user)
+        });
+    }
+
+    checkUser = (user) => {
+        if (this.props.userId === user.userId) {
+            return user.status;
+        }
+    }
     
     handleOpen = () => {
         this.setState({ open: true });
         this.props.getUser(this.props.userId);
+        this.mapUserDetailsToState(this.props.user);
     };
 
     handleClose = () => {
         this.setState({ open: false });
     };
+
+    componentDidMount() {
+        const { user } = this.props;
+        this.mapUserDetailsToState(user);
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const statusData = {
+            status: this.state.status
+        };
+        this.props.updateStatus(this.props.userId, statusData);
+        this.handleClose();
+    };
+    
+    handleDelete = (event) => {
+        event.preventDefault();
+        const statusData = {
+            status: ""
+        };
+        this.props.updateStatus(this.props.userId, statusData);
+        this.handleClose();
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
 
     render() {
         const { classes, user: { name, status }, UI: { loading } } = this.props;
@@ -84,9 +128,30 @@ export class EditStatus extends Component {
         ) : (
             <>
             <DialogTitle>Edit {name}'s status</DialogTitle>
+            <form>
             <DialogContent className={classes.dialogContent}>
-                <TextField variant="filled" size="small" defaultValue={status} fullWidth className={classes.textField}/>
+                
+                <TextField 
+                    id="status"
+                    name="status"
+                    type="status"
+                    variant="filled" 
+                    size="small" 
+                    fullWidth 
+                    placeholder={status}
+                    value={this.state.status}
+                    onChange={this.handleChange}
+                    className={classes.textField}/>
             </DialogContent>
+            <DialogActions>
+                <Button style={{ color: '#ef5350' }} variant="outlined" onClick={this.handleDelete}>
+                        <DeleteIcon/>clear
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={this.handleSubmit} type="submit">
+                    <SendIcon/>submit
+                </Button>
+            </DialogActions>
+            </form>
             </>
         )
 
@@ -100,14 +165,6 @@ export class EditStatus extends Component {
                         <CloseIcon />
                     </IconButton>
                     {dialogMarkup}
-                    <DialogActions>
-                        <Button style={{ color: '#ef5350' }} variant="outlined">
-                                <DeleteIcon/>
-                        </Button>
-                        <Button variant="outlined" color="secondary">
-                            <SendIcon/>
-                        </Button>
-                    </DialogActions>
                 </Dialog>
             </Fragment>
         )
@@ -116,11 +173,14 @@ export class EditStatus extends Component {
 
 const mapStateToProps = (state) => ({
     UI: state.UI,
-    user: state.data.user
+    user: state.data.user,
+    users: state.data.users
 });
 
 const mapActionsToProps = {
-    getUser
+    getUser,
+    updateStatus,
+    deleteStatus
 }
 
 EditStatus.propTypes = {

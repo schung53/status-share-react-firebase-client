@@ -8,7 +8,7 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { markPresent } from '../redux/actions/dataActions'
+import { markPresent, markNotPresent } from '../redux/actions/dataActions';
 
 const styles = {
     checkbox: {
@@ -18,7 +18,6 @@ const styles = {
 }
 
 
-// Gonna need to pass in userId as well as team name
 export class PresenceButton extends Component {
     /* constructor(){
         super();
@@ -38,9 +37,13 @@ export class PresenceButton extends Component {
     
 
     render() {
-        const { classes, present, userId } = this.props;
+        const { classes, user: { userId, present } } = this.props;
+        const index = this.props.users.findIndex(
+            (user) => user.userId === userId
+        );
+
         const isPresent = () => {
-            if (present) {
+            if (this.props.users[index].present) {
                 return true;
             } else {
                 return false;
@@ -48,11 +51,11 @@ export class PresenceButton extends Component {
         };
 
         const uncheckButton = () => {
-            this.props.markNotPresent(userId, { present: false });
+            this.props.markNotPresent(userId);
         };
 
         const checkButton = () => {
-            this.props.markPresent(userId, { present: true });
+            this.props.markPresent(userId);
         };
 
        
@@ -72,15 +75,17 @@ export class PresenceButton extends Component {
 }
 
 PresenceButton.propTypes = {
-    present: PropTypes.bool.isRequired,
-    markPresent: PropTypes.func.isRequired
+    user: PropTypes.object.isRequired,
+    markPresent: PropTypes.func.isRequired,
+    markNotPresent: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
+    users: state.data.users
 });
 
 const mapActionsToProps = {
-    /* markNotpresent, */
+    markNotPresent,
     markPresent
 }
 
