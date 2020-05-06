@@ -24,8 +24,8 @@ import Grid from '@material-ui/core/Grid';
 // Redux stuff
 import { connect } from 'react-redux';
 
-function createData(name, present, status, userId) {
-    return { name, present, status, userId };
+function createData(name, present, status, userId, memo) {
+    return { name, present, status, userId, memo };
 }
 
 const styles = {
@@ -91,7 +91,7 @@ export class TeamTable extends Component {
     render() {
         let rows= [];
         const { classes, account: { admin } } = this.props;
-        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId))})
+        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo))})
         return (
             <div>
                 <Paper elevation={3}>
@@ -127,7 +127,7 @@ export class TeamTable extends Component {
                                 <TableCell className={classes.tableCell}>
                                     <Grid container alignItems="center" spacing={1}>
                                         <Grid item >
-                                            <ProfileDialog userId={row.userId} userMemo={row.status}/>
+                                            <ProfileDialog userId={row.userId} userMemo={row.memo}/>
                                         </Grid>
                                         <Grid item className={classes.box}>
                                             {row.name}

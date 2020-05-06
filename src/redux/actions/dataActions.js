@@ -59,8 +59,9 @@ export const markPresent = (userId, presence) => (dispatch) => {
         });
     })
     .catch((err) => console.log(err));
-}
+};
 
+// Clear all errors
 export const clearErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
-}
+};

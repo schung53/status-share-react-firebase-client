@@ -72,7 +72,7 @@ export class ProfileDialog extends Component {
     };
 
     render() {
-        const { classes, user: { userId, name, status, statusTime, phone, email, team }, UI: { loading }, account: { admin } } = this.props;
+        const { classes, user: { userId, name, status, statusTime, phone, email, team, memo }, UI: { loading }, account: { admin } } = this.props;
 
         const dialogMarkup = loading ? (
             <>
@@ -140,7 +140,7 @@ export class ProfileDialog extends Component {
                     </Typography>
                 </Grid>
                 <Grid item>
-                    <Typography className={classes.text2}>Will be gone at the end of month</Typography>
+        <Typography className={classes.text2}>{memo}</Typography>
                 </Grid>
             </Grid>
             </DialogContent>

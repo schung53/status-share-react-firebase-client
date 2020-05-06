@@ -48,7 +48,7 @@ const styles = {
         margin: '10px auto 0px 10px'
     },
     dialogContent: {
-        height: 120
+        height: 80
     },
     textField: {
         marginTop: 10
@@ -73,19 +73,21 @@ export class EditStatus extends Component {
         const { classes, user: { name, status }, UI: { loading } } = this.props;
 
         const dialogMarkup = loading ? (
-        <>
+            <>
+            <DialogTitle>Loading...</DialogTitle>
             <DialogContent className={classes.dialogContent}>
-            <Typography variant="h6">Loading...</Typography>
             <div className={classes.spinnerDiv}>
                 <CircularProgress size={40} thickness={2} />
             </div>
             </DialogContent>
             </>
         ) : (
+            <>
+            <DialogTitle>Edit {name}'s status</DialogTitle>
             <DialogContent className={classes.dialogContent}>
-                <Typography variant="h6">Edit {name}'s status</Typography>
                 <TextField variant="filled" size="small" defaultValue={status} fullWidth className={classes.textField}/>
             </DialogContent>
+            </>
         )
 
         return (
