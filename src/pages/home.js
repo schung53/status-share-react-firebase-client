@@ -35,7 +35,7 @@ export class home extends Component {
         
 
         return (
-                <Grid container justify="center"  spacing={4} >
+                <Grid container justify="center" spacing={4}>
                     <Grid item>
                         {loading ? <LoadingTable/> : <TeamTable teamMembers={teamA} teamName={'Team Blue'}/>}
                     </Grid>

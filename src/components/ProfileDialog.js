@@ -19,7 +19,6 @@ import Typography from '@material-ui/core/Typography';
 import GroupIcon from '@material-ui/icons/Group';
 import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 
 import ProfileButton from './ProfileButton';
 import EditProfile from './EditProfile';
@@ -52,7 +51,7 @@ const styles = {
     dialogContent: {
         height: 250
     },
-    icon: {
+    buttonIcon: {
         margin: 'auto 5px auto auto'
     }
 }
@@ -163,7 +162,7 @@ export class ProfileDialog extends Component {
                     <DialogActions>
                         {admin && (
                             <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
-                                <DeleteIcon className={classes.icon}/>delete
+                                <DeleteIcon className={classes.buttonIcon}/>delete
                             </Button>)}
                         <EditProfile/>
                     </DialogActions>
