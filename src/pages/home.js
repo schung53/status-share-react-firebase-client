@@ -37,16 +37,16 @@ export class home extends Component {
         return (
                 <Grid container justify="center" spacing={4}>
                     <Grid item>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamA} teamName={'Team Blue'}/>}
+                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamA} teamName={'Team Blue'} teamCode={'blue'}/>}
                     </Grid>
                     <Grid item>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamB} teamName={'Team Red'}/>}
+                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamB} teamName={'Team Red'} teamCode={'red'}/>}
                     </Grid>
                     <Grid item>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamC} teamName={'Team White'}/>}
+                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamC} teamName={'Team White'} teamCode={'white'}/>}
                     </Grid>
                     <Grid item>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'}/>}
+                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'} teamCode={'green'}/>}
                     </Grid>               
                 </Grid>
         )

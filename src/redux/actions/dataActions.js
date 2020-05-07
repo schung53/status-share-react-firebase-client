@@ -10,7 +10,8 @@ import {
     SET_ERRORS,
     UPDATE_STATUS,
     EDIT_USER,
-    DELETE_USER } from '../types';
+    DELETE_USER,
+    ADD_USER } from '../types';
 import axios from 'axios';
 
 // Fetch one user
@@ -131,10 +132,23 @@ export const editProfile = (userId, profileData) => (dispatch) => {
 export const deleteUser = (userId) => (dispatch) => {
     axios
     .delete(`/user/${userId}`)
-    .then((res) => {
+    .then(() => {
         dispatch({
             type: DELETE_USER,
             payload: userId
+        });
+    })
+    .catch((err) => console.log(err));
+}
+
+// Create a new user
+export const addUser = (newUserData) => (dispatch) => {
+    axios
+    .post('/user', newUserData)
+    .then((res) => {
+        dispatch({
+            type: ADD_USER,
+            payload: res.data
         });
     })
     .catch((err) => console.log(err));

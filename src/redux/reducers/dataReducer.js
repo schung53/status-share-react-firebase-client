@@ -5,7 +5,8 @@ import { SET_USER,
     MARK_NOT_PRESENT, 
     UPDATE_STATUS,
     EDIT_USER,
-    DELETE_USER } from '../types';
+    DELETE_USER,
+    ADD_USER } from '../types';
 
 const initialState = {
     users: [],
@@ -97,6 +98,14 @@ export default function(state = initialState, action) {
             return {
                 ...state
             };
+        case ADD_USER:
+            return {
+                ...state,
+                users: [
+                    action.payload,
+                    ...state.users
+                ]
+            }
         default:
             return state;
     }

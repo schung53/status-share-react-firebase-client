@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ProfileDialog from './ProfileDialog';
 import PresenceButton from './PresenceButton';
 import EditStatus from './EditStatus';
+import AddUserDialog from './AddUserDialog';
 
 // MUI components
 import { withStyles } from '@material-ui/core/styles';
@@ -93,7 +94,7 @@ export class TeamTable extends Component {
 
     render() {
         const rows = [];
-        const { classes, account: { admin } } = this.props;
+        const { classes, account: { admin }, teamName, teamCode } = this.props;
         this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo, user))})
         return (
             <div>
@@ -105,15 +106,13 @@ export class TeamTable extends Component {
                             <TableCell>
                                 <Typography component="div" style={this.state.tableColor}>
                                     <Box fontWeight="fontWeightBold" m={1}>
-                                        {this.props.teamName}
+                                        {teamName}
                                     </Box>
                                 </Typography>
                             </TableCell>
                             <TableCell></TableCell>
                             <TableCell align="right">
-                                {admin && (<IconButton size="small" aria-label="add">
-                                    <AddIcon />
-                                </IconButton>)}
+                                {admin && (<AddUserDialog teamName={teamName} teamCode={teamCode}/>)}
                             </TableCell>
                         </TableRow>
                     </TableHead>
