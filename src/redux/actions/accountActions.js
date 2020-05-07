@@ -1,4 +1,4 @@
-import { SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, ADMIN_ACCOUNT } from '../types';
+import { SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_AUTHENTICATED, SET_UNAUTHENTICATED, ADMIN_ACCOUNT } from '../types';
 import axios from 'axios';
 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -9,6 +9,7 @@ export const loginUser = (userData, history) => (dispatch) => {
         .then((res) => {
             setAuthorizationHeader(res.data.token);
             dispatch({ type: CLEAR_ERRORS });
+            dispatch({ type: SET_AUTHENTICATED });
             if (userData.email === 'schung53@gmail.com') {
                 dispatch({ type: ADMIN_ACCOUNT });
             };
