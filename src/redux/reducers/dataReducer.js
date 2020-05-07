@@ -3,7 +3,9 @@ import { SET_USER,
     LOADING_DATA, 
     MARK_PRESENT, 
     MARK_NOT_PRESENT, 
-    UPDATE_STATUS } from '../types';
+    UPDATE_STATUS,
+    EDIT_USER,
+    DELETE_USER } from '../types';
 
 const initialState = {
     users: [],
@@ -67,6 +69,31 @@ export default function(state = initialState, action) {
                 state.user.status = action.payload.status;
                 state.user.statusTime = action.payload.statusTime;
             };
+            return {
+                ...state
+            };
+        case EDIT_USER:
+            let index3 = state.users.findIndex(
+                (user) => user.userId === action.payload.userId
+            );
+            state.users[index3].email = action.payload.email;
+            state.users[index3].phone = action.payload.phone;
+            state.users[index3].team = action.payload.team;
+            state.users[index3].memo = action.payload.memo;
+            if (state.user.userId === action.payload.userId) {
+                state.user.email = action.payload.email;
+                state.user.phone = action.payload.phone;
+                state.user.team = action.payload.team;
+                state.user.memo = action.payload.memo;
+            };
+            return {
+                ...state
+            }
+        case DELETE_USER:
+            let index4 = state.users.findIndex(
+                (user) => user.userId === action.payload
+            )
+            state.users.splice(index4, 1)
             return {
                 ...state
             };

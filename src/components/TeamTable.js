@@ -22,7 +22,6 @@ import Grid from '@material-ui/core/Grid';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import {getUsers} from '../redux/actions/dataActions'
 
 function createData(name, present, status, userId, memo, user) {
     return { name, present, status, userId, memo, user };
@@ -87,7 +86,6 @@ export class TeamTable extends Component {
             default:
                 this.setState({ tableColor: { color: '#000000' } });
         };
-        /* this.props.getUsers(); */
         this.setState({
             users: this.props.users
         });
@@ -178,7 +176,6 @@ TeamTable.propTypes = {
 };
 
 const mapActionsToProps = {
-    getUsers
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(TeamTable))

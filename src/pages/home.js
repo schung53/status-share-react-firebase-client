@@ -1,34 +1,19 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component, Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 
 import TeamTable from '../components/TeamTable';
 import LoadingTable from '../components/LoadingTable';
 import { withStyles } from '@material-ui/core/styles';
-import PresenceButton from '../components/PresenceButton';
 
 // Redux stuff
-import {connect} from 'react-redux';
-import {getUsers} from '../redux/actions/dataActions'
+import { connect } from 'react-redux';
+import { getUsers } from '../redux/actions/dataActions'
 
 const styles = {
 }
 
 export class home extends Component {
-
-    /* constructor(){
-        super();
-        this.state = {
-            users: []
-        };
-    };
-
-    mapUsersToState = (listOfUsers) => {
-        this.setState({
-            users: listOfUsers
-        });
-    }*/
 
     componentDidMount(){
         this.props.getUsers()
@@ -41,10 +26,10 @@ export class home extends Component {
         const teamC = [];
         const teamD = [];
         const usersMarkup = !loading ? users.map((user) => {
-            if (user.team === "blue") { teamA.push(user) 
-            } else if (user.team === "red") { teamB.push(user) 
-            } else if (user.team === "white") { teamC.push(user) 
-            } else if (user.team === "green") { teamD.push(user) };
+            if (user.team.toLowerCase() === "blue") { teamA.push(user) 
+            } else if (user.team.toLowerCase() === "red") { teamB.push(user) 
+            } else if (user.team.toLowerCase() === "white") { teamC.push(user) 
+            } else if (user.team.toLowerCase() === "green") { teamD.push(user) };
         }) : []
         
         

@@ -8,7 +8,9 @@ import {
     MARK_PRESENT,
     MARK_NOT_PRESENT,
     SET_ERRORS,
-    UPDATE_STATUS } from '../types';
+    UPDATE_STATUS,
+    EDIT_USER,
+    DELETE_USER } from '../types';
 import axios from 'axios';
 
 // Fetch one user
@@ -111,6 +113,32 @@ export const markNotPresent = (userId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+// Edit a user's profile (including memo)
+export const editProfile = (userId, profileData) => (dispatch) => {
+    axios
+    .post(`/user/${userId}`, profileData)
+    .then((res) => {
+        dispatch({
+            type: EDIT_USER,
+            payload: res.data
+        });
+    })
+    .catch((err) => console.log(err));
+}
+
+// Delete a user
+export const deleteUser = (userId) => (dispatch) => {
+    axios
+    .delete(`/user/${userId}`)
+    .then((res) => {
+        dispatch({
+            type: DELETE_USER,
+            payload: userId
+        });
+    })
+    .catch((err) => console.log(err));
+}
 
 // Clear all errors
 export const clearErrors = () => (dispatch) => {

@@ -19,26 +19,6 @@ const styles = {
 
 
 export class PresenceButton extends Component {
-    /* constructor(){
-        super();
-        this.state = {
-            present: false,
-            userId: ""
-        }
-    }
-    
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.UI.errors) {
-            this.setState({ present: nextProps.UI.errors });
-        };
-    }; */
-    
-
-    /* componentDidMount(){
-        this.setState({
-            users: this.props.users
-        });
-    } */
 
     render() {
         const { classes, user: { userId, present } } = this.props;

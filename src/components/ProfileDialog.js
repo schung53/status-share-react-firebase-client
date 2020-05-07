@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 // MUI components
-import Dialog from '@material-ui/core/Dialog'
+import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -22,11 +21,12 @@ import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-import ProfileButton from './ProfileButton'
+import ProfileButton from './ProfileButton';
+import EditProfile from './EditProfile';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser, clearErrors } from '../redux/actions/dataActions'
+import { getUser, deleteUser, clearErrors } from '../redux/actions/dataActions'
 
 const styles = {
     spinnerDiv: {
@@ -51,15 +51,15 @@ const styles = {
     },
     dialogContent: {
         height: 250
+    },
+    icon: {
+        margin: 'auto 5px auto auto'
     }
 }
 
 export class ProfileDialog extends Component {
     state = {
         open: false
-    };
-
-    componentDidMount() {
     };
 
     handleOpen = () => {
@@ -69,6 +69,11 @@ export class ProfileDialog extends Component {
 
     handleClose = () => {
         this.setState({ open: false });
+    };
+
+    handleDelete = () => {
+        this.props.deleteUser(this.props.userId);
+        this.handleClose();
     };
 
     render() {
@@ -157,12 +162,10 @@ export class ProfileDialog extends Component {
                     {dialogMarkup}
                     <DialogActions>
                         {admin && (
-                            <Button style={{ color: '#ef5350' }} variant="outlined">
-                                <DeleteIcon/>delete
+                            <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
+                                <DeleteIcon className={classes.icon}/>delete
                             </Button>)}
-                        <Button variant="outlined" color="secondary">
-                            <EditIcon/>edit
-                        </Button>
+                        <EditProfile/>
                     </DialogActions>
                 </Dialog>
             </Fragment>
@@ -178,6 +181,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
     getUser,
+    deleteUser,
     clearErrors
 }
 
