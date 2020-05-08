@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // MUI components
@@ -11,7 +10,14 @@ import Grid from '@material-ui/core/Grid';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import IconButton from '@material-ui/core/IconButton';
 
+// Redux stuff
+import { connect } from 'react-redux';
+import { logoutUser } from '../redux/actions/accountActions';
+
 export class Navbar extends Component {
+    handleLogout = () => {
+        this.props.logoutUser();
+    }
 
     render() {
         const { authenticated } = this.props;
@@ -27,7 +33,7 @@ export class Navbar extends Component {
                                 Status Share
                             </Button>
                         </Grid>
-                        {authenticated && (<Button color="inherit" variant="outlined" size="small" component={Link} to="/login">
+                        {authenticated && (<Button onClick={this.handleLogout} color="inherit" variant="outlined" size="small" component={Link} to="/login">
                             Sign Out
                         </Button>)}
                     </Grid>
@@ -38,11 +44,16 @@ export class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-    authenticated: PropTypes.bool.isRequired
-  };
+    authenticated: PropTypes.bool.isRequired,
+    logoutUser: PropTypes.func.isRequired
+};
   
-  const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     authenticated: state.account.authenticated
-  });
+});
 
-export default connect(mapStateToProps)(Navbar);
+const mapActionsToProps = {
+    logoutUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Navbar);

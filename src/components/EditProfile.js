@@ -99,7 +99,7 @@ export class EditProfile extends Component {
                         <CloseIcon />
                     </IconButton>
                     <DialogTitle>
-                        Edit {name}'s Profile
+                        Edit {name}'s profile
                     </DialogTitle>
                     <form>
                     <DialogContent className={classes.dialogContent}>
