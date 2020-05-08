@@ -76,7 +76,8 @@ export class ProfileDialog extends Component {
     };
 
     render() {
-        const { classes, user: { userId, name, status, statusTime, phone, email, team, memo }, UI: { loading }, account: { admin } } = this.props;
+        const adminAcc = localStorage.admin;
+        const { classes, user: { userId, name, status, statusTime, phone, email, team, memo }, UI: { loading }, /* account: { admin } */ } = this.props;
 
         const dialogMarkup = loading ? (
             <>
@@ -160,7 +161,7 @@ export class ProfileDialog extends Component {
                     </IconButton>
                     {dialogMarkup}
                     <DialogActions>
-                        {admin && (
+                        {Boolean(parseInt(localStorage.admin)) && (
                             <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
                                 <DeleteIcon className={classes.buttonIcon}/>delete
                             </Button>)}
@@ -173,7 +174,7 @@ export class ProfileDialog extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    account: state.account,
+    /* account: state.account, */
     user: state.data.user,
     UI: state.UI
 });

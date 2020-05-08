@@ -96,7 +96,10 @@ export default function(state = initialState, action) {
             )
             state.users.splice(index4, 1)
             return {
-                ...state
+                ...state,
+                users: [
+                    ...state.users
+                ]
             };
         case ADD_USER:
             return {

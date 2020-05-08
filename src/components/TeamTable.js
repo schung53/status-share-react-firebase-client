@@ -91,8 +91,9 @@ export class TeamTable extends Component {
     }
 
     render() {
+        const adminAcc = localStorage.admin;
         const rows = [];
-        const { classes, account: { admin }, teamName, teamCode } = this.props;
+        const { classes, /* account: { admin },  */teamName, teamCode } = this.props;
         this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo, user))})
         return (
             <div>
@@ -110,7 +111,7 @@ export class TeamTable extends Component {
                             </TableCell>
                             <TableCell></TableCell>
                             <TableCell align="right">
-                                {admin && (<AddUserDialog teamName={teamName} teamCode={teamCode}/>)}
+                                {Boolean(parseInt(localStorage.admin)) && (<AddUserDialog teamName={teamName} teamCode={teamCode}/>)}
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -159,7 +160,7 @@ export class TeamTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    account: state.account,
+    /* account: state.account, */
     UI: state.UI,
     user: state.data.user,
     users: state.data.users

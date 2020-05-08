@@ -25,6 +25,7 @@ export const loginUser = (userData, history) => (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('FBIdToken');
+    localStorage.removeItem('admin')
     delete axios.defaults.headers.common['Authorization'];
     dispatch({ type: SET_UNAUTHENTICATED });
 };
@@ -32,5 +33,6 @@ export const logoutUser = () => (dispatch) => {
 const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
             localStorage.setItem('FBIdToken', FBIdToken);
+            localStorage.setItem('admin', 0);
             axios.defaults.headers.common['Authorization'] = FBIdToken;
 };

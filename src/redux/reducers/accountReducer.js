@@ -20,6 +20,7 @@ export default function (state = initialState, action) {
                 ...action.payload
             };
         case ADMIN_ACCOUNT:
+            localStorage.setItem('admin', 1);
             return {
                 ...state,
                 admin: true
