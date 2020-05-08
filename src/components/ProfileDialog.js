@@ -76,8 +76,7 @@ export class ProfileDialog extends Component {
     };
 
     render() {
-        const adminAcc = localStorage.admin;
-        const { classes, user: { userId, name, status, statusTime, phone, email, team, memo }, UI: { loading }, /* account: { admin } */ } = this.props;
+        const { classes, user: { userId, name, status, statusTime, phone, email, team, memo }, UI: { loading } } = this.props;
 
         const dialogMarkup = loading ? (
             <>
@@ -174,7 +173,6 @@ export class ProfileDialog extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    /* account: state.account, */
     user: state.data.user,
     UI: state.UI
 });
