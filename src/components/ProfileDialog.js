@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import dayjs from 'dayjs';
 
+// Components
+import ProfileButton from './ProfileButton';
+import EditProfile from './EditProfile';
+
 // MUI components
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -19,9 +23,6 @@ import Typography from '@material-ui/core/Typography';
 import GroupIcon from '@material-ui/icons/Group';
 import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
-
-import ProfileButton from './ProfileButton';
-import EditProfile from './EditProfile';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -79,16 +80,16 @@ export class ProfileDialog extends Component {
         const { classes, user: { userId, name, status, statusTime, phone, email, team, memo }, UI: { loading } } = this.props;
 
         const dialogMarkup = loading ? (
-            <>
+            <div>
             <DialogTitle>Loading...</DialogTitle>
             <DialogContent className={classes.dialogContent}>
             <div className={classes.spinnerDiv}>
                 <CircularProgress size={80} thickness={2} />
             </div>
             </DialogContent>
-            </>
+            </div>
         ) : (
-            <>
+            <div>
             <DialogTitle>{name}</DialogTitle>
             <DialogContent className={classes.dialogContent}>
             <Grid container justify="flex-start">
@@ -148,7 +149,7 @@ export class ProfileDialog extends Component {
                 </Grid>
             </Grid>
             </DialogContent>
-            </>
+            </div>
         )
 
         return (

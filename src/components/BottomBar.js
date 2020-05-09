@@ -22,7 +22,7 @@ export class Navbar extends Component {
             <AppBar className={classes.appBar} color="transparent">
                 <Toolbar variant="dense">
                     <Grid justify="flex-start" container>
-                        <Grid justify="flex-start" item>
+                        <Grid item>
                             <Typography variant="overline">
                             © 2020 Lower Mainland Biomedical Engineering. All rights reserved.
                             </Typography>

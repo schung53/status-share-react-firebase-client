@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types';
+
+// Components
 import AppIcon from '../images/icon.png';
 import BottomBar from '../components/BottomBar';
+import Navbar from '../components/Navbar';
 
 // MUI components
 import Grid from '@material-ui/core/Grid';
@@ -53,6 +56,10 @@ export class login extends Component {
         };
     };
 
+    componentDidMount(){
+        localStorage.setItem('admin', 0)
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.UI.errors) {
             this.setState({ errors: nextProps.UI.errors });
@@ -80,6 +87,7 @@ export class login extends Component {
         return (
             
             <Grid container className={classes.form} justify="center">
+                <Navbar/>
                 <Grid item sm/>
                 <Grid item sm> 
                 <Paper elevation={3}>

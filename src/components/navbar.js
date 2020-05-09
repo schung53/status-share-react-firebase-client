@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+// Components
 import EditAppName from './EditAppName';
 
 // MUI components
@@ -32,18 +33,19 @@ export class Navbar extends Component {
             <AppBar>
                 <Toolbar variant="dense">
                     <Grid justify="space-between" container>
-                        <Grid>
+                        <Grid item>
                             <IconButton size="small">
                                 <CheckCircleOutlineIcon style={{ color: '#ffffff' }}/>
                             </IconButton>
                             <Button color="inherit">
                                 {appName}
                             </Button>
-                            {Boolean(parseInt(localStorage.admin)) && (<EditAppName/>)}
+                            {(Boolean(parseInt(localStorage.admin)) || admin) && (<EditAppName/>)}
                         </Grid>
-                        {authenticated && (<Button onClick={this.handleLogout} color="inherit" variant="outlined" size="small" component={Link} to="/login">
-                            Sign Out
-                        </Button>)}
+                        {authenticated && (
+                                <Button onClick={this.handleLogout} color="inherit" variant="outlined" size="small" component={Link} to="/login">
+                                    Sign Out
+                                </Button>)}
                     </Grid>
                 </Toolbar>
             </AppBar>
@@ -53,10 +55,10 @@ export class Navbar extends Component {
 
 Navbar.propTypes = {
     authenticated: PropTypes.bool.isRequired,
-    admin: PropTypes.bool.isRequired,
     logoutUser: PropTypes.func.isRequired,
     getAppName: PropTypes.func.isRequired,
-    appName: PropTypes.string.isRequired
+    appName: PropTypes.string.isRequired,
+    admin: PropTypes.bool.isRequired
 };
   
 const mapStateToProps = (state) => ({

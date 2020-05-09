@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
+// Components
+import Navbar from '../components/Navbar';
 import TeamTable from '../components/TeamTable';
 import LoadingTable from '../components/LoadingTable';
-import { withStyles } from '@material-ui/core/styles';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -40,6 +42,7 @@ export class home extends Component {
 
         return (
                 <Grid container justify="center">
+                    <Navbar/>
                     <Grid item className={classes.table}>
                         {loading ? <LoadingTable/> : <TeamTable teamMembers={teamA} teamName={'Team Blue'} teamCode={'blue'} />}
                     </Grid>

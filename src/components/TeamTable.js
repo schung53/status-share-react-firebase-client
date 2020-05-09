@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+// Components
 import ProfileDialog from './ProfileDialog';
 import PresenceButton from './PresenceButton';
 import EditStatus from './EditStatus';

@@ -8,7 +8,7 @@ import {
 const initialState ={
     authenticated: false,
     admin: false,
-    appName: "Status Share"
+    appName: ""
 }
 
 export default function (state = initialState, action) {
@@ -25,7 +25,6 @@ export default function (state = initialState, action) {
                 admin: false
             };
         case ADMIN_ACCOUNT:
-            localStorage.setItem('admin', 1);
             return {
                 ...state,
                 admin: true
