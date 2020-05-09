@@ -19,7 +19,11 @@ export default function (state = initialState, action) {
                 authenticated: true
             };
         case SET_UNAUTHENTICATED:
-            return initialState;
+            return {
+                ...state,
+                authenticated: false,
+                admin: false
+            };
         case ADMIN_ACCOUNT:
             localStorage.setItem('admin', 1);
             return {
@@ -29,7 +33,7 @@ export default function (state = initialState, action) {
         case SET_APP_NAME:
             return {
                 ...state,
-                appName: action.payload
+                appName: action.payload.appName
             }
         case SET_DEFAULT_NAME:
             return {

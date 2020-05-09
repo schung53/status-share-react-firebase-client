@@ -42,7 +42,7 @@ export const logoutUser = () => (dispatch) => {
 };
 
 // Fetch name of App
-export const getAppName = () => {
+export const getAppName = () => (dispatch) => {
     axios
     .get('/appname')
     .then((res) => {
@@ -58,7 +58,7 @@ export const getAppName = () => {
 };
 
 // Set new name of app
-export const setAppName = (newAppName) => {
+export const setAppName = (newAppName) => (dispatch) => {
     axios
     .post('/appname', newAppName)
     .then((res) => {

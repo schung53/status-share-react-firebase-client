@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import EditAppName from './EditAppName';
+
 // MUI components
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,7 +27,7 @@ export class Navbar extends Component {
     }
 
     render() {
-        const { authenticated, appName } = this.props;
+        const { authenticated, appName, admin } = this.props;
         return (
             <AppBar>
                 <Toolbar variant="dense">
@@ -37,6 +39,7 @@ export class Navbar extends Component {
                             <Button color="inherit">
                                 {appName}
                             </Button>
+                            {Boolean(parseInt(localStorage.admin)) && (<EditAppName/>)}
                         </Grid>
                         {authenticated && (<Button onClick={this.handleLogout} color="inherit" variant="outlined" size="small" component={Link} to="/login">
                             Sign Out
