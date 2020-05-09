@@ -1,8 +1,14 @@
-import { SET_ACCOUNT, SET_AUTHENTICATED, SET_UNAUTHENTICATED, ADMIN_ACCOUNT } from '../types';
+import { 
+    SET_AUTHENTICATED, 
+    SET_UNAUTHENTICATED, 
+    ADMIN_ACCOUNT,
+    SET_APP_NAME,
+    SET_DEFAULT_NAME } from '../types';
 
 const initialState ={
     authenticated: false,
-    admin: false
+    admin: false,
+    appName: "Status Share"
 }
 
 export default function (state = initialState, action) {
@@ -14,18 +20,23 @@ export default function (state = initialState, action) {
             };
         case SET_UNAUTHENTICATED:
             return initialState;
-        case SET_ACCOUNT:
-            return {
-                authenticated: true,
-                ...action.payload
-            };
         case ADMIN_ACCOUNT:
             localStorage.setItem('admin', 1);
             return {
                 ...state,
                 admin: true
             };
+        case SET_APP_NAME:
+            return {
+                ...state,
+                appName: action.payload
+            }
+        case SET_DEFAULT_NAME:
+            return {
+                ...state,
+                appName: "Status Share"
+            };
         default: 
-        return state;
+            return state;
     }
 }

@@ -12,15 +12,20 @@ import IconButton from '@material-ui/core/IconButton';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { logoutUser } from '../redux/actions/accountActions';
+import { logoutUser, getAppName } from '../redux/actions/accountActions';
 
 export class Navbar extends Component {
+
+    componentDidMount() {
+        this.props.getAppName();
+    }
+
     handleLogout = () => {
         this.props.logoutUser();
     }
 
     render() {
-        const { authenticated } = this.props;
+        const { authenticated, appName } = this.props;
         return (
             <AppBar>
                 <Toolbar variant="dense">
@@ -30,7 +35,7 @@ export class Navbar extends Component {
                                 <CheckCircleOutlineIcon style={{ color: '#ffffff' }}/>
                             </IconButton>
                             <Button color="inherit">
-                                Status Share
+                                {appName}
                             </Button>
                         </Grid>
                         {authenticated && (<Button onClick={this.handleLogout} color="inherit" variant="outlined" size="small" component={Link} to="/login">
@@ -45,15 +50,21 @@ export class Navbar extends Component {
 
 Navbar.propTypes = {
     authenticated: PropTypes.bool.isRequired,
-    logoutUser: PropTypes.func.isRequired
+    admin: PropTypes.bool.isRequired,
+    logoutUser: PropTypes.func.isRequired,
+    getAppName: PropTypes.func.isRequired,
+    appName: PropTypes.string.isRequired
 };
   
 const mapStateToProps = (state) => ({
-    authenticated: state.account.authenticated
+    authenticated: state.account.authenticated,
+    admin: state.account.admin,
+    appName: state.account.appName
 });
 
 const mapActionsToProps = {
-    logoutUser
+    logoutUser,
+    getAppName
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Navbar);

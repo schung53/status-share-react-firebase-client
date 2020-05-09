@@ -10,8 +10,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
     appBar: {
         top: 'auto',
-        bottom: 0,
-        color: "#000000"
+        bottom: 0
     }
 }
 
@@ -23,7 +22,7 @@ export class Navbar extends Component {
             <AppBar className={classes.appBar} color="transparent">
                 <Toolbar variant="dense">
                     <Grid justify="flex-start" container>
-                        <Grid item>
+                        <Grid justify="flex-start" item>
                             <Typography variant="overline">
                             © 2020 Lower Mainland Biomedical Engineering. All rights reserved.
                             </Typography>

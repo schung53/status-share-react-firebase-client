@@ -1,4 +1,5 @@
-import { SET_USER, 
+import { 
+    SET_USER, 
     SET_USERS, 
     LOADING_DATA, 
     MARK_PRESENT, 

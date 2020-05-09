@@ -12,7 +12,7 @@ import { getUsers } from '../redux/actions/dataActions'
 
 const styles = {
     table: {
-        margin: 10
+        margin: 15
     }
 }
 

@@ -14,7 +14,6 @@ import { logoutUser } from './redux/actions/accountActions';
 
 // Components
 import Navbar from './components/Navbar';
-import BottomBar from './components/BottomBar';
 import AuthRoute from './util/AuthRoute';
 import UnAuthRoute from './util/UnAuthRoute';
 
@@ -67,7 +66,6 @@ function App() {
                 <AuthRoute exact path="/login" component={login} />
               </Switch>
             </div>
-           {/*  <BottomBar/> */}
         </Router>
       </Provider>
     </MuiThemeProvider>

@@ -1,9 +1,10 @@
 // Account reducer types
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
 export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';
-export const SET_ACCOUNT = 'SET_ACCOUNT';
 export const LOADING_ACCOUNT = 'LOADING_ACCOUNT';
-export const ADMIN_ACCOUNT = 'ADMIN_ACCOUNT'
+export const ADMIN_ACCOUNT = 'ADMIN_ACCOUNT';
+export const SET_APP_NAME = 'SET_APP_NAME';
+export const SET_DEFAULT_NAME = 'SET_DEFAULT_NAME';
 
 // UI reducer types
 export const SET_ERRORS = 'SET_ERRORS';

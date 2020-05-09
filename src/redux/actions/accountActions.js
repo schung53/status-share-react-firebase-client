@@ -1,6 +1,15 @@
-import { SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_AUTHENTICATED, SET_UNAUTHENTICATED, ADMIN_ACCOUNT } from '../types';
+import { 
+    SET_ERRORS, 
+    CLEAR_ERRORS, 
+    LOADING_UI, 
+    SET_AUTHENTICATED, 
+    SET_UNAUTHENTICATED, 
+    ADMIN_ACCOUNT,
+    SET_APP_NAME,
+    SET_DEFAULT_NAME } from '../types';
 import axios from 'axios';
 
+// Login 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
 
@@ -10,6 +19,7 @@ export const loginUser = (userData, history) => (dispatch) => {
             setAuthorizationHeader(res.data.token);
             dispatch({ type: CLEAR_ERRORS });
             dispatch({ type: SET_AUTHENTICATED });
+            // Set admin email here
             if (userData.email === 'schung53@gmail.com') {
                 dispatch({ type: ADMIN_ACCOUNT });
             };
@@ -23,11 +33,41 @@ export const loginUser = (userData, history) => (dispatch) => {
         });
 };
 
+// Logout
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('FBIdToken');
-    localStorage.removeItem('admin')
+    localStorage.removeItem('admin');
     delete axios.defaults.headers.common['Authorization'];
     dispatch({ type: SET_UNAUTHENTICATED });
+};
+
+// Fetch name of App
+export const getAppName = () => {
+    axios
+    .get('/appname')
+    .then((res) => {
+        dispatch({ 
+            type: SET_APP_NAME,
+            payload: res.data 
+        });
+    })
+    .catch((err) => {
+        dispatch({ type: SET_DEFAULT_NAME });
+        console.log(err)
+    });
+};
+
+// Set new name of app
+export const setAppName = (newAppName) => {
+    axios
+    .post('/appname', newAppName)
+    .then((res) => {
+        dispatch({
+            type: SET_APP_NAME,
+            payload: res.data
+        });
+    })
+    .catch((err) => console.log(err));
 };
 
 const setAuthorizationHeader = (token) => {
