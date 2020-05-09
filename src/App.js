@@ -14,6 +14,7 @@ import { logoutUser } from './redux/actions/accountActions';
 
 // Components
 import Navbar from './components/Navbar';
+import BottomBar from './components/BottomBar';
 import AuthRoute from './util/AuthRoute';
 import UnAuthRoute from './util/UnAuthRoute';
 
@@ -33,7 +34,7 @@ const theme = createMuiTheme({
       light: '#8e99f3',
       main: '#5c6bc0',
       dark: '#26418f',
-      contrastText: '#ffffff'
+      contrastText: '#000000'
     }
   },
   typography: {
@@ -66,6 +67,7 @@ function App() {
                 <AuthRoute exact path="/login" component={login} />
               </Switch>
             </div>
+           {/*  <BottomBar/> */}
         </Router>
       </Provider>
     </MuiThemeProvider>

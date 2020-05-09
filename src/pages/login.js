@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types';
 import AppIcon from '../images/icon.png';
+import BottomBar from '../components/BottomBar';
 
 // MUI components
 import Grid from '@material-ui/core/Grid';
@@ -136,7 +137,9 @@ export class login extends Component {
                     </Paper>
                 </Grid>
                 <Grid item sm/>
+                <BottomBar/>
             </Grid>
+            
         )
     }
 }

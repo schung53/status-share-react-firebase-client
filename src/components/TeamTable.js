@@ -28,8 +28,7 @@ function createData(name, present, status, userId, memo, user) {
 
 const styles = {
     container: {
-        display: 'flex',
-        flexWrap: 'wrap',
+        margin: 20
     },
     statusCell: {
         width: 180,

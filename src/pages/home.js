@@ -11,6 +11,9 @@ import { connect } from 'react-redux';
 import { getUsers } from '../redux/actions/dataActions'
 
 const styles = {
+    table: {
+        margin: 10
+    }
 }
 
 export class home extends Component {
@@ -21,6 +24,7 @@ export class home extends Component {
 
     render() {
         const { users, loading } = this.props.data;
+        const { classes } = this.props;
         const teamA = [];
         const teamB = [];
         const teamC = [];
@@ -35,18 +39,18 @@ export class home extends Component {
         
 
         return (
-                <Grid container justify="center" spacing={4}>
-                    <Grid item>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamA} teamName={'Team Blue'} teamCode={'blue'}/>}
+                <Grid container justify="center">
+                    <Grid item className={classes.table}>
+                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamA} teamName={'Team Blue'} teamCode={'blue'} />}
                     </Grid>
-                    <Grid item>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamB} teamName={'Team Red'} teamCode={'red'}/>}
+                    <Grid item className={classes.table}>
+                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamB} teamName={'Team Red'} teamCode={'red'} />}
                     </Grid>
-                    <Grid item>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamC} teamName={'Team White'} teamCode={'white'}/>}
+                    <Grid item className={classes.table}>
+                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamC} teamName={'Team White'} teamCode={'white'} />}
                     </Grid>
-                    <Grid item>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'} teamCode={'green'}/>}
+                    <Grid item className={classes.table}>
+                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'} teamCode={'green'} />}
                     </Grid>               
                 </Grid>
         )
