@@ -5,6 +5,7 @@ export const LOADING_ACCOUNT = 'LOADING_ACCOUNT';
 export const ADMIN_ACCOUNT = 'ADMIN_ACCOUNT';
 export const SET_APP_NAME = 'SET_APP_NAME';
 export const SET_DEFAULT_NAME = 'SET_DEFAULT_NAME';
+export const SET_UPDATE_TIME = 'SET_UPDATE_TIME';
 
 // UI reducer types
 export const SET_ERRORS = 'SET_ERRORS';

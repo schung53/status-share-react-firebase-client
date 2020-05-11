@@ -11,7 +11,8 @@ import {
     UPDATE_STATUS,
     EDIT_USER,
     DELETE_USER,
-    ADD_USER } from '../types';
+    ADD_USER,
+    SET_UPDATE_TIME } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
@@ -43,7 +44,6 @@ export const getUsers = () => (dispatch) => {
     .collection('users')
     .onSnapshot((snapshot) => {
         let users = [];
-        //let changes = snapshot.docChanges();
         snapshot.docs.forEach((doc) => {
             users.push({
                 userId: doc.id,
@@ -61,7 +61,7 @@ export const getUsers = () => (dispatch) => {
             type: SET_USERS,
             payload: users
         });
-        console.log(new Date());
+        dispatch({ type: SET_UPDATE_TIME })
     });
 };
 

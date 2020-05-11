@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import Navbar from '../components/Navbar';
+import UpdateBar from '../components/UpdateBar';
 import TeamTable from '../components/TeamTable';
 import LoadingTable from '../components/LoadingTable';
 
@@ -54,7 +55,8 @@ export class home extends Component {
                     </Grid>
                     <Grid item className={classes.table}>
                         {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'} teamCode={'green'} />}
-                    </Grid>               
+                    </Grid>
+                    <UpdateBar/>               
                 </Grid>
         )
     }

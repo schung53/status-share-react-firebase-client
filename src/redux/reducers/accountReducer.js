@@ -3,12 +3,14 @@ import {
     SET_UNAUTHENTICATED, 
     ADMIN_ACCOUNT,
     SET_APP_NAME,
-    SET_DEFAULT_NAME } from '../types';
+    SET_DEFAULT_NAME,
+    SET_UPDATE_TIME } from '../types';
 
 const initialState ={
     authenticated: false,
     admin: false,
-    appName: ""
+    appName: "",
+    updateTime: new Date()
 }
 
 export default function (state = initialState, action) {
@@ -39,6 +41,11 @@ export default function (state = initialState, action) {
                 ...state,
                 appName: "Status Share"
             };
+        case SET_UPDATE_TIME:
+            return {
+                ...state,
+                updateTime: new Date()
+            }
         default: 
             return state;
     }
