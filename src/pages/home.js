@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import jwtDecode from 'jwt-decode';
 
 // Components
 import Navbar from '../components/Navbar';
@@ -11,7 +12,9 @@ import LoadingTable from '../components/LoadingTable';
 
 // Redux stuff
 import { connect } from 'react-redux';
+import store from '../redux/store';
 import { getUsers } from '../redux/actions/dataActions'
+import { logoutUser } from '../redux/actions/accountActions';
 
 const styles = {
     table: {
@@ -22,8 +25,16 @@ const styles = {
 export class home extends Component {
 
     componentDidMount(){
-        this.props.getUsers()
-    }; 
+        this.props.getUsers();
+
+        const decodedToken = jwtDecode(localStorage.FBIdToken);
+        const timeUntilExpiry = decodedToken.exp * 1000 - Date.now();
+        console.log(timeUntilExpiry);
+        setTimeout(() => { 
+            store.dispatch(logoutUser());
+            window.location.href = '/login';
+        }, timeUntilExpiry);
+    };
 
     render() {
         const { users, loading } = this.props.data;

@@ -27,7 +27,7 @@ export class Navbar extends Component {
                 <Toolbar variant="dense">
                     <Grid justify="flex-start" alignItems="center" container>
                         <Grid item>
-                            <Typography variant="body2">
+                            <Typography variant="overline">
                                 Last updated at: {dayjs(updateTime).format('h:mm:ss a, MMMM DD YYYY')}
                             </Typography>
                         </Grid>
