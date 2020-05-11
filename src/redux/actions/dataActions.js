@@ -15,8 +15,6 @@ import {
 import axios from 'axios';
 import firebase from 'firebase';
 
-/* const {db} = require('../../util/admin'); */
-
 // Fetch one user
 export const getUser = (userId) => (dispatch) => {
     dispatch({ type: LOADING_UI });
@@ -40,20 +38,6 @@ export const getUser = (userId) => (dispatch) => {
 // Fetch all users
 export const getUsers = () => (dispatch) => {
     dispatch({ type: LOADING_DATA });
-    /* axios
-    .get('/users')
-    .then((res) => {
-        dispatch({
-            type: SET_USERS,
-            payload: res.data
-        });
-    })
-    .catch((err) => {
-        dispatch({
-            type: SET_USERS,
-            payload: []
-        });
-    }); */
 
     firebase.firestore()
     .collection('users')
@@ -77,32 +61,8 @@ export const getUsers = () => (dispatch) => {
             type: SET_USERS,
             payload: users
         });
+        console.log(new Date());
     });
-
-    /* firebase.firestore()
-    .collection('users')
-    .get()
-    .then((data) => {
-        let users = [];
-        data.forEach((doc) => {
-            users.push({
-                userId: doc.id,
-                email: doc.data().email,
-                name: doc.data().name,
-                phone: doc.data().phone,
-                team: doc.data().team,
-                status: doc.data().status,
-                statusTime: doc.data().statusTime,
-                present: doc.data().present,
-                memo: doc.data().memo
-            });
-        });
-        dispatch({
-            type: SET_USERS,
-            payload: users
-        })
-    })
-    .catch((err) => console.error(err)); */
 };
 
 // Update user status

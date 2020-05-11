@@ -45,12 +45,13 @@ export const logoutUser = () => (dispatch) => {
 
 // Fetch name of App
 export const getAppName = () => (dispatch) => {
-    axios
-    .get('/appname')
-    .then((res) => {
-        dispatch({ 
+    firebase.firestore()
+    .doc('/appName/name')
+    .get()
+    .then((doc) => {
+        dispatch({
             type: SET_APP_NAME,
-            payload: res.data 
+            payload: doc.data()
         });
     })
     .catch((err) => {
@@ -61,7 +62,7 @@ export const getAppName = () => (dispatch) => {
 
 // Set new name of app
 export const setAppName = (newAppName) => (dispatch) => {
-    /* axios
+    axios
     .post('/appname', newAppName)
     .then((res) => {
         dispatch({
@@ -69,18 +70,7 @@ export const setAppName = (newAppName) => (dispatch) => {
             payload: res.data
         });
     })
-    .catch((err) => console.log(err)); */
-
-    firebase.firestore()
-    .doc('/appName/name')
-    .get()
-    .then((doc) => {
-        dispatch({
-            type: SET_APP_NAME,
-            payload: doc.data()
-        });
-    })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err)); 
 };
 
 // Set token in local storage
