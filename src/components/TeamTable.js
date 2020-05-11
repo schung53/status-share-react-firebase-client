@@ -159,14 +159,13 @@ export class TeamTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    UI: state.UI,
-    user: state.data.user,
     users: state.data.users
 })
 
 TeamTable.propTypes = {
     teamMembers: PropTypes.array.isRequired,
     teamName: PropTypes.string.isRequired,
+    teamCode: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
 
 };

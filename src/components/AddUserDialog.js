@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-
 import withStyles from '@material-ui/core/styles/withStyles';
 
 // MUI components
@@ -38,7 +37,7 @@ const styles = {
     otherText: {
         marginTop: 8
     }
-}
+};
 
 export class AddUserDialog extends Component {
     state = {

@@ -18,7 +18,6 @@ const styles = {
     }
 }
 
-
 export class PresenceButton extends Component {
 
     render() {

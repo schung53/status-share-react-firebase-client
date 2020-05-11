@@ -13,6 +13,9 @@ import {
     DELETE_USER,
     ADD_USER } from '../types';
 import axios from 'axios';
+import firebase from 'firebase';
+
+/* const {db} = require('../../util/admin'); */
 
 // Fetch one user
 export const getUser = (userId) => (dispatch) => {
@@ -37,7 +40,7 @@ export const getUser = (userId) => (dispatch) => {
 // Fetch all users
 export const getUsers = () => (dispatch) => {
     dispatch({ type: LOADING_DATA });
-    axios
+    /* axios
     .get('/users')
     .then((res) => {
         dispatch({
@@ -50,7 +53,56 @@ export const getUsers = () => (dispatch) => {
             type: SET_USERS,
             payload: []
         });
+    }); */
+
+    firebase.firestore()
+    .collection('users')
+    .onSnapshot((snapshot) => {
+        let users = [];
+        //let changes = snapshot.docChanges();
+        snapshot.docs.forEach((doc) => {
+            users.push({
+                userId: doc.id,
+                email: doc.data().email,
+                name: doc.data().name,
+                phone: doc.data().phone,
+                team: doc.data().team,
+                status: doc.data().status,
+                statusTime: doc.data().statusTime,
+                present: doc.data().present,
+                memo: doc.data().memo
+            });
+        });
+        dispatch({
+            type: SET_USERS,
+            payload: users
+        });
     });
+
+    /* firebase.firestore()
+    .collection('users')
+    .get()
+    .then((data) => {
+        let users = [];
+        data.forEach((doc) => {
+            users.push({
+                userId: doc.id,
+                email: doc.data().email,
+                name: doc.data().name,
+                phone: doc.data().phone,
+                team: doc.data().team,
+                status: doc.data().status,
+                statusTime: doc.data().statusTime,
+                present: doc.data().present,
+                memo: doc.data().memo
+            });
+        });
+        dispatch({
+            type: SET_USERS,
+            payload: users
+        })
+    })
+    .catch((err) => console.error(err)); */
 };
 
 // Update user status

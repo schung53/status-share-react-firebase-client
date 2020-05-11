@@ -8,6 +8,7 @@ import {
     SET_APP_NAME,
     SET_DEFAULT_NAME } from '../types';
 import axios from 'axios';
+import firebase from 'firebase';
 
 // Login 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -60,7 +61,7 @@ export const getAppName = () => (dispatch) => {
 
 // Set new name of app
 export const setAppName = (newAppName) => (dispatch) => {
-    axios
+    /* axios
     .post('/appname', newAppName)
     .then((res) => {
         dispatch({
@@ -68,9 +69,21 @@ export const setAppName = (newAppName) => (dispatch) => {
             payload: res.data
         });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err)); */
+
+    firebase.firestore()
+    .doc('/appName/name')
+    .get()
+    .then((doc) => {
+        dispatch({
+            type: SET_APP_NAME,
+            payload: doc.data()
+        });
+    })
+    .catch((err) => console.log(err))
 };
 
+// Set token in local storage
 const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
             localStorage.setItem('FBIdToken', FBIdToken);

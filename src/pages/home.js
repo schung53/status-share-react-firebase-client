@@ -16,7 +16,7 @@ const styles = {
     table: {
         margin: 15
     }
-}
+};
 
 export class home extends Component {
 
