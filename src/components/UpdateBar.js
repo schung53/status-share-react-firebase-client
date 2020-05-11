@@ -13,8 +13,8 @@ import { connect } from 'react-redux';
 
 const styles = {
     appBar: {
-        top: 'auto',
-        bottom: 0
+        top: 42,
+        height: 40
     }
 }
 
@@ -23,12 +23,12 @@ export class Navbar extends Component {
     render() {
         const { classes, updateTime } = this.props;
         return (
-            <AppBar className={classes.appBar} color="transparent">
+            <AppBar className={classes.appBar} color="inherit">
                 <Toolbar variant="dense">
-                    <Grid justify="flex-start" container>
+                    <Grid justify="flex-start" alignItems="center" container>
                         <Grid item>
-                            <Typography>
-                            Most recently updated at: {dayjs(updateTime).format('h:mm:ss a, MMMM DD YYYY')}
+                            <Typography variant="body2">
+                                Last updated at: {dayjs(updateTime).format('h:mm:ss a, MMMM DD YYYY')}
                             </Typography>
                         </Grid>
                     </Grid>

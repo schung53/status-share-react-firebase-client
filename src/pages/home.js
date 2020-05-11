@@ -43,6 +43,7 @@ export class home extends Component {
 
         return (
                 <Grid container justify="center">
+                    <UpdateBar/> 
                     <Navbar/>
                     <Grid item className={classes.table}>
                         {loading ? <LoadingTable/> : <TeamTable teamMembers={teamA} teamName={'Team Blue'} teamCode={'blue'} />}
@@ -55,8 +56,7 @@ export class home extends Component {
                     </Grid>
                     <Grid item className={classes.table}>
                         {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'} teamCode={'green'} />}
-                    </Grid>
-                    <UpdateBar/>               
+                    </Grid>    
                 </Grid>
         )
     }
