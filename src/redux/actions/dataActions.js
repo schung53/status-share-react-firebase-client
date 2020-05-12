@@ -12,7 +12,9 @@ import {
     EDIT_USER,
     DELETE_USER,
     ADD_USER,
-    SET_UPDATE_TIME } from '../types';
+    SET_UPDATE_TIME,
+    SET_TEAMS,
+    ADD_TEAM } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
@@ -160,6 +162,41 @@ export const addUser = (newUserData) => (dispatch) => {
     .then((res) => {
         dispatch({
             type: ADD_USER,
+            payload: res.data
+        });
+    })
+    .catch((err) => console.log(err));
+}
+
+// Get all teams
+export const getTeams = () => (dispatch) => {
+    dispatch({ type: LOADING_DATA });
+
+    firebase.firestore()
+    .collection('teams')
+    .get()
+    .then((data) => {
+        let teams = [];
+        data.forEach((doc) => {
+            teams.push({
+                team: doc.data().team
+            });
+        });
+        dispatch({
+            type: SET_TEAMS,
+            payload: teams
+        });
+    })
+    .catch((err) => console.log(err));
+}
+
+// Create new team
+export const addTeam = (newTeam) => (dispatch) => {
+    axios
+    .post('/team', newTeam)
+    .then((res) => {
+        dispatch({
+            type: ADD_TEAM,
             payload: res.data
         });
     })

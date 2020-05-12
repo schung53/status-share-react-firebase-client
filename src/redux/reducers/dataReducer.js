@@ -7,12 +7,15 @@ import {
     UPDATE_STATUS,
     EDIT_USER,
     DELETE_USER,
-    ADD_USER } from '../types';
+    ADD_USER,
+    SET_TEAMS,
+    ADD_TEAM } from '../types';
 
 const initialState = {
     users: [],
     user: {},
-    loading: false
+    loading: false,
+    teams: []
 };
 
 export default function(state = initialState, action) {
@@ -90,7 +93,7 @@ export default function(state = initialState, action) {
             };
             return {
                 ...state
-            }
+            };
         case DELETE_USER:
             let index4 = state.users.findIndex(
                 (user) => user.userId === action.payload
@@ -109,7 +112,20 @@ export default function(state = initialState, action) {
                     action.payload,
                     ...state.users
                 ]
-            }
+            };
+        case SET_TEAMS:
+            return {
+                ...state,
+                teams: action.payload
+            };
+        case ADD_TEAM:
+            return {
+                ...state,
+                teams: [
+                    action.payload,
+                    ...state.teams
+                ]
+            };
         default:
             return state;
     }
