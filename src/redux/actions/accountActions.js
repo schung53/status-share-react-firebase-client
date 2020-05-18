@@ -21,7 +21,7 @@ export const loginUser = (userData, history) => (dispatch) => {
             dispatch({ type: CLEAR_ERRORS });
             dispatch({ type: SET_AUTHENTICATED });
             // Set admin email here
-            if (userData.email === 'sunhochung53@gmail.com') {
+            if (userData.email === 'don.ta@bccancer.bc.ca') {
                 localStorage.setItem('admin', 1);
                 dispatch({ type: ADMIN_ACCOUNT });
             };

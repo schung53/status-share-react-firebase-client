@@ -68,7 +68,7 @@ export class TeamTable extends Component {
         };
     };
 
-    componentDidMount(){
+    /* componentDidMount(){
         switch (this.props.teamName) {
             case "Team Blue":
                 this.setState({ tableColor: { color: '#1565c0' } });
@@ -88,7 +88,7 @@ export class TeamTable extends Component {
         this.setState({
             users: this.props.users
         });
-    }
+    }  */
 
     render() {
         const rows = [];
@@ -110,7 +110,7 @@ export class TeamTable extends Component {
                             </TableCell>
                             <TableCell></TableCell>
                             <TableCell align="right">
-                                {Boolean(parseInt(localStorage.admin)) && (<AddUserDialog teamName={teamName} teamCode={teamCode}/>)}
+                                {Boolean(parseInt(localStorage.admin)) && (<AddUserDialog teamName={teamName} teamCode={teamName}/>)}
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -165,7 +165,6 @@ const mapStateToProps = (state) => ({
 TeamTable.propTypes = {
     teamMembers: PropTypes.array.isRequired,
     teamName: PropTypes.string.isRequired,
-    teamCode: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
 
 };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet'
 
 // Components
 import AppIcon from '../images/icon.png';
@@ -82,10 +83,13 @@ export class login extends Component {
     }
 
     render() {
-        const { classes, UI: { loading } } = this.props;
+        const { classes, UI: { loading }, appName } = this.props;
         const { errors } = this.state;
         return (
-            
+            <div>
+            <Helmet>
+                <title>{appName} | Login</title>
+            </Helmet>
             <Grid container className={classes.form} justify="center">
                 <Navbar/>
                 <Grid item sm/>
@@ -147,7 +151,7 @@ export class login extends Component {
                 <Grid item sm/>
                 <BottomBar/>
             </Grid>
-            
+        </div>
         )
     }
 }
@@ -159,7 +163,8 @@ login.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    UI: state.UI
+    UI: state.UI,
+    appName: state.account.appName
 });
 
 const mapActionsToProps = {

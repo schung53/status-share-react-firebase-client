@@ -92,7 +92,8 @@ export default function(state = initialState, action) {
                 state.user.memo = action.payload.memo;
             };
             return {
-                ...state
+                ...state,
+                user: state.user
             };
         case DELETE_USER:
             let index4 = state.users.findIndex(
@@ -109,7 +110,6 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 users: [
-                    action.payload,
                     ...state.users
                 ]
             };

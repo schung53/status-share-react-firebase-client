@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import jwtDecode from 'jwt-decode';
+import { Helmet } from 'react-helmet'
 
 // Components
 import Navbar from '../components/Navbar';
@@ -13,7 +14,7 @@ import LoadingTable from '../components/LoadingTable';
 // Redux stuff
 import { connect } from 'react-redux';
 import store from '../redux/store';
-import { getUsers } from '../redux/actions/dataActions'
+import { getUsers, getTeams } from '../redux/actions/dataActions'
 import { logoutUser } from '../redux/actions/accountActions';
 
 const styles = {
@@ -23,8 +24,12 @@ const styles = {
 };
 
 export class home extends Component {
+    state = {
+        teams: {}
+    }
 
     componentDidMount(){
+        this.props.getTeams();
         this.props.getUsers();
 
         const decodedToken = jwtDecode(localStorage.FBIdToken);
@@ -36,55 +41,83 @@ export class home extends Component {
         }, timeUntilExpiry);
     };
 
+    assignTeams = () => {
+        const teamsObj = {};
+        this.props.teams.map((team) => {
+            teamsObj[team.team] = [];
+        });
+        this.setState({ teams: teamsObj });
+    }
+
     render() {
-        const { users, loading } = this.props.data;
+        const { users, teams, loading, appName } = this.props;
         const { classes } = this.props;
-        const teamA = [];
-        const teamB = [];
-        const teamC = [];
-        const teamD = [];
-        const usersMarkup = !loading ? users.map((user) => {
-            if (user.team.toLowerCase() === "blue") { teamA.push(user) 
-            } else if (user.team.toLowerCase() === "red") { teamB.push(user) 
-            } else if (user.team.toLowerCase() === "white") { teamC.push(user) 
-            } else if (user.team.toLowerCase() === "green") { teamD.push(user) };
-        }) : []
-        
-        
+
+        const teamsObj = {};
+        this.props.teams.map((team) => {
+            teamsObj[team.team] = [];
+        });
+        this.props.teams.map((team) => {
+            users.map((user) => {
+                if (user.team === team.team) {
+                    teamsObj[team.team].push(user)
+                }
+            });
+        });
 
         return (
+            <div>
+                <Helmet>
+                    <title>{appName} | Home</title>
+                </Helmet>
                 <Grid container justify="center">
                     <UpdateBar/> 
                     <Navbar/>
+                    {loading ? 
+                    <>
                     <Grid item className={classes.table}>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamA} teamName={'Team Blue'} teamCode={'blue'} />}
+                        <LoadingTable/>
                     </Grid>
                     <Grid item className={classes.table}>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamB} teamName={'Team Red'} teamCode={'red'} />}
+                        <LoadingTable/>
                     </Grid>
                     <Grid item className={classes.table}>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamC} teamName={'Team White'} teamCode={'white'} />}
+                        <LoadingTable/>
                     </Grid>
                     <Grid item className={classes.table}>
-                        {loading ? <LoadingTable/> : <TeamTable teamMembers={teamD} teamName={'Team Green'} teamCode={'green'} />}
-                    </Grid>    
+                        <LoadingTable/>
+                    </Grid>
+                    </>
+                    :  <>{teams.map((team) => {
+                            return (
+                                <Grid item key={team.team} className={classes.table}>
+                                    <TeamTable teamMembers={teamsObj[team.team]} teamName={team.team} />
+                                </Grid>)
+                        })}</>}
                 </Grid>
+            </div>
         )
     }
 }
 
 home.propTypes = {
     getUsers: PropTypes.func.isRequired,
-    data: PropTypes.object.isRequired
+    getTeams: PropTypes.func.isRequired,
+    users: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    teams: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    data: state.data,
-    users: state.data.users
+    users: state.data.users,
+    teams: state.data.teams,
+    loading: state.data.loading,
+    appName: state.account.appName
 });
 
 const mapActionsToProps = {
-    getUsers
+    getUsers,
+    getTeams
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(home));

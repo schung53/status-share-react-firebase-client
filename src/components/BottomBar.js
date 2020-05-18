@@ -24,7 +24,7 @@ export class Navbar extends Component {
                     <Grid justify="flex-start" container>
                         <Grid item>
                             <Typography variant="overline">
-                            © 2020 Lower Mainland Biomedical Engineering. All rights reserved.
+                            © 2020 BC Cancer: Medical Physics. All rights reserved.
                             </Typography>
                         </Grid>
                     </Grid>
