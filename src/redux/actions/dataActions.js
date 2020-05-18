@@ -179,7 +179,8 @@ export const getTeams = () => (dispatch) => {
         let teams = [];
         data.forEach((doc) => {
             teams.push({
-                team: doc.data().team
+                team: doc.data().team,
+                priority: doc.data().priority
             });
         });
         dispatch({

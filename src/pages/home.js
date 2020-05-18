@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import jwtDecode from 'jwt-decode';
 import { Helmet } from 'react-helmet'
+import Box from '@material-ui/core/Box';
 
 // Components
 import Navbar from '../components/Navbar';
@@ -54,8 +55,10 @@ export class home extends Component {
         const { classes } = this.props;
 
         const teamsObj = {};
+        const teamsPriority = {};
         this.props.teams.map((team) => {
             teamsObj[team.team] = [];
+            teamsPriority[team.team] = team.priority;
         });
         this.props.teams.map((team) => {
             users.map((user) => {
@@ -64,6 +67,7 @@ export class home extends Component {
                 }
             });
         });
+        console.log(teamsPriority)
 
         return (
             <div>
@@ -90,9 +94,9 @@ export class home extends Component {
                     </>
                     :  <>{teams.map((team) => {
                             return (
-                                <Grid item key={team.team} className={classes.table}>
+                                <Box order={teamsPriority[team.team]} className={classes.table}>
                                     <TeamTable teamMembers={teamsObj[team.team]} teamName={team.team} />
-                                </Grid>)
+                                </Box>)
                         })}</>}
                 </Grid>
             </div>
