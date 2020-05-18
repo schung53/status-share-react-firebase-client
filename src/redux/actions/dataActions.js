@@ -180,7 +180,8 @@ export const getTeams = () => (dispatch) => {
         data.forEach((doc) => {
             teams.push({
                 team: doc.data().team,
-                priority: doc.data().priority
+                priority: doc.data().priority,
+                color: doc.data().color
             });
         });
         dispatch({

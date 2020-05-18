@@ -56,9 +56,11 @@ export class home extends Component {
 
         const teamsObj = {};
         const teamsPriority = {};
+        const teamsColor = {};
         this.props.teams.map((team) => {
             teamsObj[team.team] = [];
             teamsPriority[team.team] = team.priority;
+            teamsColor[team.team] = team.color;
         });
         this.props.teams.map((team) => {
             users.map((user) => {
@@ -95,7 +97,7 @@ export class home extends Component {
                     :  <>{teams.map((team) => {
                             return (
                                 <Box order={teamsPriority[team.team]} className={classes.table}>
-                                    <TeamTable teamMembers={teamsObj[team.team]} teamName={team.team} />
+                                    <TeamTable teamMembers={teamsObj[team.team]} teamName={team.team} teamColor={teamsColor[team.team]}/>
                                 </Box>)
                         })}</>}
                 </Grid>

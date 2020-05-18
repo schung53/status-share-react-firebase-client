@@ -68,31 +68,9 @@ export class TeamTable extends Component {
         };
     };
 
-    /* componentDidMount(){
-        switch (this.props.teamName) {
-            case "Team Blue":
-                this.setState({ tableColor: { color: '#1565c0' } });
-                break;
-            case "Team Red":
-                this.setState({ tableColor: { color: '#c62828' } });
-                break;
-            case "Team White":
-                this.setState({ tableColor: { color: '#000000' } });
-                break;
-            case "Team Green":
-                this.setState({ tableColor: { color: '#00695c' } });
-                break;
-            default:
-                this.setState({ tableColor: { color: '#000000' } });
-        };
-        this.setState({
-            users: this.props.users
-        });
-    }  */
-
     render() {
         const rows = [];
-        const { classes, teamName, teamCode } = this.props;
+        const { classes, teamName, teamColor } = this.props;
         this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo, user))})
         return (
             <div>
@@ -103,7 +81,7 @@ export class TeamTable extends Component {
                     <TableRow>
                             <TableCell>
                                 <Typography component="div" style={this.state.tableColor}>
-                                    <Box fontWeight="fontWeightBold" m={1}>
+                                    <Box fontWeight="fontWeightBold" m={1} color={teamColor}>
                                         {teamName}
                                     </Box>
                                 </Typography>
@@ -165,6 +143,7 @@ const mapStateToProps = (state) => ({
 TeamTable.propTypes = {
     teamMembers: PropTypes.array.isRequired,
     teamName: PropTypes.string.isRequired,
+    teamColor: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
 
 };
