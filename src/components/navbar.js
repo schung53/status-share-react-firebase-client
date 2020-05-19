@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 // Components
 import EditAppName from './EditAppName';
+import AddTeamDialog from './AddTeamDialog';
 
 // MUI components
 import AppBar from '@material-ui/core/AppBar';
@@ -40,7 +41,7 @@ export class Navbar extends Component {
                             <Button color="inherit">
                                 {appName}
                             </Button>
-                            {(Boolean(parseInt(localStorage.admin)) || admin) && (<EditAppName/>)}
+                            {(Boolean(parseInt(localStorage.admin)) || admin) && (<><EditAppName/><AddTeamDialog/></>)}
                         </Grid>
                         {authenticated && (
                                 <Button onClick={this.handleLogout} color="inherit" variant="outlined" size="small" component={Link} to="/login">
