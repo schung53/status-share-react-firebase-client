@@ -1,6 +1,9 @@
 {
   "name": "status-share-client",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.16.x"
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.11",
