@@ -44,7 +44,7 @@ export class AddTeamDialog extends Component {
         open: false,
         team: "",
         priority: "",
-        color: ""
+        color: "#1a237e"
     }
     
     handleOpen = () => {

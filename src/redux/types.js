@@ -26,3 +26,4 @@ export const ADD_USER = 'ADD_USER';
 export const SET_TEAMS = 'SET_TEAMS';
 export const ADD_TEAM = 'ADD_TEAM';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
+export const DELETE_TEAM = 'DELETE_TEAM';

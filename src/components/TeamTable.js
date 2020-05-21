@@ -90,7 +90,7 @@ export class TeamTable extends Component {
                             <TableCell></TableCell>
                             <TableCell align="right">
                                 {Boolean(parseInt(localStorage.admin)) && (<>
-                                <EditTeam teamsFields={teamsFields} teamId={teamsFields.teamId}/>
+                                <EditTeam teamsFields={teamsFields} teamId={teamsFields.teamId} teamName={teamsFields.team}/>
                                 <AddUserDialog teamName={teamsFields.team}/></>)}
                             </TableCell>
                         </TableRow>

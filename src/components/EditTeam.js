@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { GithubPicker } from 'react-color';
 
 // MUI components
 import TextField from '@material-ui/core/TextField';
@@ -14,10 +15,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SendIcon from '@material-ui/icons/Send';
+import Grid from '@material-ui/core/Grid';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { updateTeam } from '../redux/actions/dataActions';
+import { updateTeam, deleteTeam } from '../redux/actions/dataActions';
 
 const styles = {
     closeButton: {
@@ -39,7 +41,7 @@ const styles = {
         height: 150
     },
     textField: {
-        marginTop: 10
+        margin: '10px 20px auto 20px'
     },
     icon: {
         margin: 'auto 5px auto auto'
@@ -80,9 +82,10 @@ export class EditTeam extends Component {
     
     handleDelete = (event) => {
         event.preventDefault();
-        const statusData = {
-            status: ""
+        const teamToDelete = {
+            team: this.props.teamName
         };
+        this.props.deleteTeam(this.props.teamId, this.props.teamName);
         this.handleClose();
     }
 
@@ -90,6 +93,12 @@ export class EditTeam extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
+    }
+
+    handleColorChange = (color) => {
+        this.setState({
+            color: color.hex
+        })
     }
 
     render() {
@@ -100,6 +109,13 @@ export class EditTeam extends Component {
             <DialogTitle>Edit {teamsFields.team}</DialogTitle>
             <form>
             <DialogContent className={classes.dialogContent}>
+                <Grid container justify="center">
+                <Grid item>
+                <GithubPicker 
+                    color={ this.state.color }
+                    onChange={this.handleColorChange}/>
+                </Grid>
+                <Grid item>
                 <TextField 
                     id="priority"
                     name="priority"
@@ -109,17 +125,9 @@ export class EditTeam extends Component {
                     value={this.state.priority}
                     onChange={this.handleChange}
                     className={classes.textField}
-                    fullWidth/>
-                <TextField 
-                    id="color"
-                    name="color"
-                    type="color"
-                    label="Color"
-                    placeholder={teamsFields.color}
-                    value={this.state.color}
-                    onChange={this.handleChange}
-                    className={classes.textField}
-                    fullWidth/>
+                    /* fullWidth *//>
+                </Grid>
+                </Grid>
             </DialogContent>
             <DialogActions>
                 <Button style={{ color: '#ef5350' }} variant="outlined" onClick={this.handleDelete}>
@@ -152,7 +160,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionsToProps = {
-    updateTeam
+    updateTeam,
+    deleteTeam
 }
 
 EditTeam.propTypes = {

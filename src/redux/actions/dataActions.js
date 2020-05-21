@@ -15,7 +15,8 @@ import {
     SET_UPDATE_TIME,
     SET_TEAMS,
     ADD_TEAM,
-    UPDATE_TEAM } from '../types';
+    UPDATE_TEAM,
+    DELETE_TEAM } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
@@ -227,3 +228,16 @@ export const updateTeam = (teamId, teamData) => (dispatch) => {
 export const clearErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
 };
+
+// Delete team
+export const deleteTeam = (teamId, teamToDelete) => (dispatch) => {
+    axios
+    .post(`/team/delete/${teamId}`, { team: teamToDelete })
+    .then(() => {
+        dispatch({
+            type: DELETE_TEAM,
+            payload: teamId
+        });
+    })
+    .catch((err) => console.log(err));
+}
