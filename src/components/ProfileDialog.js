@@ -26,7 +26,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser, deleteUser, clearErrors } from '../redux/actions/dataActions'
+import { getUser, deleteUser, clearErrors } from './src/redux/actions/dataActions'
 
 const styles = {
     spinnerDiv: {

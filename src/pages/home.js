@@ -7,17 +7,16 @@ import { Helmet } from 'react-helmet'
 import Box from '@material-ui/core/Box';
 
 // Components
-import Navbar from '../components/Navbar';
-import UpdateBar from '../components/UpdateBar';
-import TeamTable from '../components/TeamTable';
-import LoadingTable from '../components/LoadingTable';
+import Navbar from './src/components/Navbar';
+import UpdateBar from './src/components/UpdateBar';
+import TeamTable from './src/components/TeamTable';
+import LoadingTable from './src/components/LoadingTable';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import store from '../redux/store';
-import { getUsers, getTeams } from '../redux/actions/dataActions'
-import { logoutUser } from '../redux/actions/accountActions';
-import { TableSortLabel } from '@material-ui/core';
+import store from './src/redux/store';
+import { getUsers, getTeams } from './src/redux/actions/dataActions'
+import { logoutUser } from './src/redux/actions/accountActions';
 
 const styles = {
     table: {

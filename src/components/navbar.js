@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { logoutUser, getAppName } from '../redux/actions/accountActions';
+import { logoutUser, getAppName } from './src/redux/actions/accountActions';
 
 export class Navbar extends Component {
 

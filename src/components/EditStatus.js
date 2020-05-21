@@ -18,7 +18,7 @@ import SendIcon from '@material-ui/icons/Send';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser, updateStatus, deleteStatus } from '../redux/actions/dataActions';
+import { getUser, updateStatus, deleteStatus } from './src/redux/actions/dataActions';
 
 const styles = {
     spinnerDiv: {
