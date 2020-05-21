@@ -45,7 +45,8 @@ export class AddUserDialog extends Component {
         name: "",
         email: "",
         phone: "",
-        team: ""
+        team: "",
+        priority: ""
     }
     
     handleOpen = () => {
@@ -63,6 +64,7 @@ export class AddUserDialog extends Component {
             email: this.state.email.trim(),
             phone: this.state.phone.trim(),
             team: this.state.team.trim(),
+            priority: this.state.priority.trim()
         };
         this.props.addUser(newUserData);
         this.handleClose();
@@ -71,7 +73,8 @@ export class AddUserDialog extends Component {
             name: "",
             email: "",
             phone: "",
-            team: ""
+            team: "",
+            priority: ""
         });
     };
 
@@ -123,6 +126,16 @@ export class AddUserDialog extends Component {
                             type="phone"
                             label="Phone"
                             value={this.state.phone}
+                            onChange={this.handleChange}
+                            className={classes.otherText}
+                            fullWidth
+                        />
+                         <TextField
+                            id="priority"
+                            name="priority"
+                            type="priority"
+                            label="Priority (e.g. 1)"
+                            value={this.state.priority}
                             onChange={this.handleChange}
                             className={classes.otherText}
                             fullWidth

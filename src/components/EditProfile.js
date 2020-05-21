@@ -47,6 +47,7 @@ export class EditProfile extends Component {
         email: "",
         team: "",
         memo: "",
+        priority: "",
         open: false
     };
 
@@ -64,7 +65,8 @@ export class EditProfile extends Component {
             phone: this.props.user.phone,
             email: this.props.user.email,
             team: this.props.user.team,
-            memo: this.props.user.memo
+            memo: this.props.user.memo,
+            priority: this.props.user.priority
         });
     };
 
@@ -80,14 +82,15 @@ export class EditProfile extends Component {
             phone: this.state.phone,
             email: this.state.email,
             team: this.state.team.trim(),
-            memo: this.state.memo
+            memo: this.state.memo,
+            priority: this.state.priority
         };
         this.props.editProfile(this.props.user.userId, profileData);
         this.handleClose();
     }
 
     render() {
-        const { classes, user: { name, phone, email, team, memo } } = this.props;
+        const { classes, user: { name, phone, email, team, memo, priority } } = this.props;
         return (
             <Fragment>
                 <Button onClick={this.handleOpen} variant="outlined" color="secondary">
@@ -154,6 +157,19 @@ export class EditProfile extends Component {
                             fullWidth
                             className={classes.memo}
                         />
+                        {Boolean(parseInt(localStorage.admin)) && (
+                            <TextField
+                            id="priority"
+                            name="priority"
+                            type="priority"
+                            label="Priority (e.g. 1)"
+                            placeholder={priority}
+                            value={this.state.priority}
+                            onChange={this.handleChange}
+                            fullWidth
+                            className={classes.otherText}
+                            />
+                        )}
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleSubmit} variant="outlined" color="secondary" type="submit">
