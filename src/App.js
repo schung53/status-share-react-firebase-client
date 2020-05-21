@@ -7,8 +7,8 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 // Components
-import AuthRoute from './util/AuthRoute';
-import UnAuthRoute from './util/UnAuthRoute';
+import AuthRoute from './util/authRoute';
+import UnAuthRoute from './util/unAuthRoute';
 
 // Redux
 import { Provider } from 'react-redux';

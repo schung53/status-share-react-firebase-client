@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet'
 
 // Components
-import AppIcon from './src/images/icon.png';
-import BottomBar from './src/components/BottomBar';
-import Navbar from './src/components/Navbar';
+import AppIcon from '../images/icon.png';
+import BottomBar from '../components/bottomBar';
+import Navbar from '../components/navbar';
 
 // MUI components
 import Grid from '@material-ui/core/Grid';
@@ -18,7 +18,7 @@ import Paper from '@material-ui/core/Paper'
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { loginUser } from './src/redux/actions/accountActions';
+import { loginUser } from '../redux/actions/accountActions';
 
 const styles = {
     form: {

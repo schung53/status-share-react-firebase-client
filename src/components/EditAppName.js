@@ -16,7 +16,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { setAppName } from './src/redux/actions/accountActions';
+import { setAppName } from '../redux/actions/accountActions';
 
 const styles = {
     closeButton: {

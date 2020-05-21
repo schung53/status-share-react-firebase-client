@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import ProfileDialog from './ProfileDialog';
-import PresenceButton from './PresenceButton';
-import EditStatus from './EditStatus';
-import AddUserDialog from './AddUserDialog';
-import EditTeam from './EditTeam';
+import ProfileDialog from './profileDialog';
+import PresenceButton from './presenceButton';
+import EditStatus from './editStatus';
+import AddUserDialog from './addUserDialog';
+import EditTeam from './editTeam';
 
 // MUI components
 import { withStyles } from '@material-ui/core/styles';

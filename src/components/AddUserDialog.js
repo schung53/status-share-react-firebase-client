@@ -15,7 +15,7 @@ import TextField from '@material-ui/core/TextField';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { addUser } from './src/redux/actions/dataActions';
+import { addUser } from '../redux/actions/dataActions';
 
 const styles = {
     closeButton: {

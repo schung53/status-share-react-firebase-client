@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Components
-import EditAppName from './EditAppName';
-import AddTeamDialog from './AddTeamDialog';
+import EditAppName from './editAppName';
+import AddTeamDialog from './addTeamDialog';
 
 // MUI components
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { logoutUser, getAppName } from './src/redux/actions/accountActions';
+import { logoutUser, getAppName } from '../redux/actions/accountActions';
 
 export class Navbar extends Component {
 

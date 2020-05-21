@@ -4,8 +4,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import dayjs from 'dayjs';
 
 // Components
-import ProfileButton from './ProfileButton';
-import EditProfile from './EditProfile';
+import ProfileButton from './profileButton';
+import EditProfile from './editProfile';
 
 // MUI components
 import Dialog from '@material-ui/core/Dialog';
@@ -26,7 +26,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser, deleteUser, clearErrors } from './src/redux/actions/dataActions'
+import { getUser, deleteUser, clearErrors } from '../redux/actions/dataActions'
 
 const styles = {
     spinnerDiv: {
