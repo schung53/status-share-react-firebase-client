@@ -4,8 +4,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import dayjs from 'dayjs';
 
 // Components
-import ProfileButton from './profileButton';
-import EditProfile from './editProfile';
+import ProfileButton from './ProfileButton';
+import EditProfile from './EditProfile';
 
 // MUI components
 import Dialog from '@material-ui/core/Dialog';

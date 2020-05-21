@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Components
-import EditAppName from './editAppName';
-import AddTeamDialog from './addTeamDialog';
+import EditAppName from './EditAppName';
+import AddTeamDialog from './AddTeamDialog';
 
 // MUI components
 import AppBar from '@material-ui/core/AppBar';

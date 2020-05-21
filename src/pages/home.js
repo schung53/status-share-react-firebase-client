@@ -8,9 +8,9 @@ import Box from '@material-ui/core/Box';
 
 // Components
 import Navbar from '../components/navbar';
-import UpdateBar from '../components/updateBar';
-import TeamTable from '../components/teamTable';
-import LoadingTable from '../components/loadingTable';
+import UpdateBar from '../components/UpdateBar';
+import TeamTable from '../components/TeamTable';
+import LoadingTable from '../components/LoadingTable';
 
 // Redux stuff
 import { connect } from 'react-redux';

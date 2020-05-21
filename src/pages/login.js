@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 
 // Components
 import AppIcon from '../images/icon.png';
-import BottomBar from '../components/bottomBar';
+import BottomBar from '../components/BottomBar';
 import Navbar from '../components/navbar';
 
 // MUI components
