@@ -6,6 +6,7 @@ import ProfileDialog from './ProfileDialog';
 import PresenceButton from './PresenceButton';
 import EditStatus from './EditStatus';
 import AddUserDialog from './AddUserDialog';
+import EditTeam from './EditTeam';
 
 // MUI components
 import { withStyles } from '@material-ui/core/styles';
@@ -70,7 +71,7 @@ export class TeamTable extends Component {
 
     render() {
         const rows = [];
-        const { classes, teamName, teamColor } = this.props;
+        const { classes, teamsFields } = this.props;
         this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo, user))})
         return (
             <div>
@@ -81,14 +82,16 @@ export class TeamTable extends Component {
                     <TableRow>
                             <TableCell>
                                 <Typography component="div" style={this.state.tableColor}>
-                                    <Box fontWeight="fontWeightBold" m={1} color={teamColor}>
-                                        {teamName}
+                                    <Box fontWeight="fontWeightBold" m={1} color={teamsFields.color}>
+                                        {teamsFields.team} 
                                     </Box>
                                 </Typography>
                             </TableCell>
                             <TableCell></TableCell>
                             <TableCell align="right">
-                                {Boolean(parseInt(localStorage.admin)) && (<AddUserDialog teamName={teamName} teamCode={teamName}/>)}
+                                {Boolean(parseInt(localStorage.admin)) && (<>
+                                <EditTeam teamsFields={teamsFields}/>
+                                <AddUserDialog teamName={teamsFields.team}/></>)}
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -142,9 +145,8 @@ const mapStateToProps = (state) => ({
 
 TeamTable.propTypes = {
     teamMembers: PropTypes.array.isRequired,
-    teamName: PropTypes.string.isRequired,
-    teamColor: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
+    teamsFields: PropTypes.object.isRequired
 
 };
 

@@ -39,7 +39,7 @@ const styles = {
     }
 };
 
-export class AddUserDialog extends Component {
+export class AddTeamDialog extends Component {
     state = {
         open: false,
         team: "",
@@ -108,8 +108,8 @@ export class AddUserDialog extends Component {
                             id="priority"
                             name="priority"
                             type="priority"
-                            label="Priority"
-                            value={this.state.email}
+                            label="Priority (e.g. 1)"
+                            value={this.state.priority}
                             onChange={this.handleChange}
                             className={classes.otherText}
                             fullWidth
@@ -117,9 +117,9 @@ export class AddUserDialog extends Component {
                         <TextField
                             id="color"
                             name="color"
-                            /* type="color" */
-                            label="Hex Color (e.g. #FF00FF)"
-                            value={this.state.phone}
+                            type="color"
+                            label="Color"
+                            value={this.state.color}
                             onChange={this.handleChange}
                             className={classes.otherText}
                             fullWidth
@@ -144,10 +144,10 @@ const mapActionsToProps = {
     addTeam
 }
 
-AddUserDialog.propTypes = {
+AddTeamDialog.propTypes = {
     addUser: PropTypes.func.isRequired,
     teamName: PropTypes.string.isRequired,
     teamCode: PropTypes.string.isRequired
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(AddUserDialog));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(AddTeamDialog));

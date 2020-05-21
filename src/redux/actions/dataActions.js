@@ -44,6 +44,7 @@ export const getUsers = () => (dispatch) => {
 
     firebase.firestore()
     .collection('users')
+    .orderBy('priority')
     .onSnapshot((snapshot) => {
         let users = [];
         snapshot.docs.forEach((doc) => {
@@ -56,7 +57,8 @@ export const getUsers = () => (dispatch) => {
                 status: doc.data().status,
                 statusTime: doc.data().statusTime,
                 present: doc.data().present,
-                memo: doc.data().memo
+                memo: doc.data().memo,
+                /* priority: doc.data().priority */
             });
         });
         dispatch({
@@ -200,6 +202,29 @@ export const addTeam = (newTeam) => (dispatch) => {
         dispatch({
             type: ADD_TEAM,
             payload: res.data
+        });
+    })
+    .catch((err) => console.log(err));
+}
+
+// Update team
+export const updateTeam = (teamName, teamData) => (dispatch) => {
+    
+    firebase.firestore()
+    .collection('teams')
+    .get()
+    .then((data) => {
+        let teams = [];
+        data.forEach((doc) => {
+            teams.push({
+                team: doc.data().team,
+                priority: doc.data().priority,
+                color: doc.data().color
+            });
+        });
+        dispatch({
+            type: SET_TEAMS,
+            payload: teams
         });
     })
     .catch((err) => console.log(err));

@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import store from '../redux/store';
 import { getUsers, getTeams } from '../redux/actions/dataActions'
 import { logoutUser } from '../redux/actions/accountActions';
+import { TableSortLabel } from '@material-ui/core';
 
 const styles = {
     table: {
@@ -48,19 +49,30 @@ export class home extends Component {
             teamsObj[team.team] = [];
         });
         this.setState({ teams: teamsObj });
-    }
+    };
+
+    /* compare = (a, b) => {
+        const priorityA = parseInt(a.priority, 10);
+        const priorityB = parseInt(b.priority, 10);
+
+        let comparison = 0;
+        if (priorityA > priorityB) {
+            comparison = 1;
+        } else if (priorityA < priorityB) {
+            comparison = -1;
+        }
+        return comparison;
+    } */
 
     render() {
         const { users, teams, loading, appName } = this.props;
         const { classes } = this.props;
 
         const teamsObj = {};
-        const teamsPriority = {};
-        const teamsColor = {};
+        const teamsFields = {};
         this.props.teams.map((team) => {
             teamsObj[team.team] = [];
-            teamsPriority[team.team] = team.priority;
-            teamsColor[team.team] = team.color;
+            teamsFields[team.team] = team;
         });
         this.props.teams.map((team) => {
             users.map((user) => {
@@ -69,8 +81,8 @@ export class home extends Component {
                 }
             });
         });
-        console.log(teamsPriority)
-
+        /* teamsObj["Physicists"].sort(this.compare) */
+        
         return (
             <div>
                 <Helmet>
@@ -96,8 +108,8 @@ export class home extends Component {
                     </>
                     :  <>{teams.map((team) => {
                             return (
-                                <Box order={teamsPriority[team.team]} className={classes.table}>
-                                    <TeamTable teamMembers={teamsObj[team.team]} teamName={team.team} teamColor={teamsColor[team.team]}/>
+                                <Box order={teamsFields[team.team].priority} className={classes.table}>
+                                    <TeamTable teamMembers={teamsObj[team.team]} teamsFields={teamsFields[team.team]}/>
                                 </Box>)
                         })}</>}
                 </Grid>
