@@ -176,6 +176,7 @@ export const getTeams = () => (dispatch) => {
 
     firebase.firestore()
     .collection('teams')
+    .orderBy('priority')
     .get()
     .then((data) => {
         let teams = [];

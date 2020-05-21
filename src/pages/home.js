@@ -81,7 +81,6 @@ export class home extends Component {
                 }
             });
         });
-        /* teamsObj["Physicists"].sort(this.compare) */
         
         return (
             <div>
@@ -108,7 +107,7 @@ export class home extends Component {
                     </>
                     :  <>{teams.map((team) => {
                             return (
-                                <Box order={teamsFields[team.team].priority} className={classes.table}>
+                                <Box className={classes.table}>
                                     <TeamTable teamMembers={teamsObj[team.team]} teamsFields={teamsFields[team.team]}/>
                                 </Box>)
                         })}</>}
