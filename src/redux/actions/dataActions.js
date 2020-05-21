@@ -14,7 +14,8 @@ import {
     ADD_USER,
     SET_UPDATE_TIME,
     SET_TEAMS,
-    ADD_TEAM } from '../types';
+    ADD_TEAM,
+    UPDATE_TEAM } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
@@ -58,7 +59,7 @@ export const getUsers = () => (dispatch) => {
                 statusTime: doc.data().statusTime,
                 present: doc.data().present,
                 memo: doc.data().memo,
-                /* priority: doc.data().priority */
+                priority: doc.data().priority
             });
         });
         dispatch({
@@ -184,7 +185,8 @@ export const getTeams = () => (dispatch) => {
             teams.push({
                 team: doc.data().team,
                 priority: doc.data().priority,
-                color: doc.data().color
+                color: doc.data().color,
+                teamId: doc.data().teamId
             });
         });
         dispatch({
@@ -209,23 +211,13 @@ export const addTeam = (newTeam) => (dispatch) => {
 }
 
 // Update team
-export const updateTeam = (teamName, teamData) => (dispatch) => {
-    
-    firebase.firestore()
-    .collection('teams')
-    .get()
-    .then((data) => {
-        let teams = [];
-        data.forEach((doc) => {
-            teams.push({
-                team: doc.data().team,
-                priority: doc.data().priority,
-                color: doc.data().color
-            });
-        });
+export const updateTeam = (teamId, teamData) => (dispatch) => {
+    axios
+    .post(`/team/${teamId}`, teamData)
+    .then((res) => {
         dispatch({
-            type: SET_TEAMS,
-            payload: teams
+            type: UPDATE_TEAM,
+            payload: res.data
         });
     })
     .catch((err) => console.log(err));

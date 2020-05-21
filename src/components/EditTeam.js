@@ -58,7 +58,9 @@ export class EditTeam extends Component {
     handleOpen = () => {
         this.setState({ 
             open: true,
-            team: this.props.teamsFields.team
+            team: this.props.teamsFields.team,
+            priority: this.props.teamsFields.priority,
+            color: this.props.teamsFields.color
         });
     };
 
@@ -72,7 +74,7 @@ export class EditTeam extends Component {
             priority: this.state.priority,
             color: this.state.color
         };
-        this.props.updateTeam(this.props.teamsFields.team, teamData);
+        this.props.updateTeam(this.props.teamId, teamData);
         this.handleClose();
     };
     
@@ -81,7 +83,6 @@ export class EditTeam extends Component {
         const statusData = {
             status: ""
         };
-        /* this.props.updateStatus(this.props.userId, statusData); */
         this.handleClose();
     }
 

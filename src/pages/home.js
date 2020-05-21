@@ -107,7 +107,7 @@ export class home extends Component {
                     </>
                     :  <>{teams.map((team) => {
                             return (
-                                <Box className={classes.table}>
+                                <Box order={teamsFields[team.team].priority} className={classes.table}>
                                     <TeamTable teamMembers={teamsObj[team.team]} teamsFields={teamsFields[team.team]}/>
                                 </Box>)
                         })}</>}

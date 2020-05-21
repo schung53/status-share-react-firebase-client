@@ -9,7 +9,8 @@ import {
     DELETE_USER,
     ADD_USER,
     SET_TEAMS,
-    ADD_TEAM } from '../types';
+    ADD_TEAM,
+    UPDATE_TEAM } from '../types';
 
 const initialState = {
     users: [],
@@ -124,6 +125,18 @@ export default function(state = initialState, action) {
                 ...state,
                 teams: [
                     action.payload,
+                    ...state.teams
+                ]
+            };
+        case UPDATE_TEAM:
+            let index5 = state.teams.findIndex(
+                (team) => team.teamId === action.payload.teamId
+            );
+            state.teams[index5].priority = action.payload.priority;
+            state.teams[index5].color = action.payload.color;
+            return {
+                ...state,
+                teams: [
                     ...state.teams
                 ]
             };
