@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { GithubPicker } from 'react-color';
 
 // MUI components
 import Dialog from '@material-ui/core/Dialog';
@@ -12,6 +13,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -36,6 +38,9 @@ const styles = {
     },
     otherText: {
         marginTop: 8
+    },
+    colorPicker: {
+        marginTop: 20
     }
 };
 
@@ -78,6 +83,12 @@ export class AddTeamDialog extends Component {
         });
     };
 
+    handleColorChange = (color) => {
+        this.setState({
+            color: color.hex
+        })
+    }
+
     render() {
         const { classes, teamName } = this.props;
         return (
@@ -104,6 +115,13 @@ export class AddTeamDialog extends Component {
                             className={classes.otherText}
                             fullWidth
                         />
+                        <Grid container justify="center" className={classes.colorPicker}>
+                        <Grid item>
+                            <GithubPicker 
+                                color={ this.state.color }
+                                onChange={this.handleColorChange}/>
+                        </Grid>
+                        </Grid>
                         <TextField
                             id="priority"
                             name="priority"
@@ -111,10 +129,10 @@ export class AddTeamDialog extends Component {
                             label="Priority (e.g. 1)"
                             value={this.state.priority}
                             onChange={this.handleChange}
-                            className={classes.otherText}
+                            /* className={classes.otherText} */
                             fullWidth
                         />
-                        <TextField
+                        {/* <TextField
                             id="color"
                             name="color"
                             type="color"
@@ -123,7 +141,7 @@ export class AddTeamDialog extends Component {
                             onChange={this.handleChange}
                             className={classes.otherText}
                             fullWidth
-                        />
+                        /> */}
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleSubmit} variant="outlined" color="secondary" type="submit">
