@@ -102,7 +102,8 @@ export default function(state = initialState, action) {
             let index4 = state.users.findIndex(
                 (user) => user.userId === action.payload
             )
-            state.users.splice(index4, 1)
+            state.users.slice(0, index4);
+            state.users.slice(index4+1);
             return {
                 ...state,
                 users: [
