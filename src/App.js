@@ -40,6 +40,8 @@ const theme = createMuiTheme({
   }
 });
 
+axios.defaults.baseURL = 'https://us-central1-statusshare-c6dfe.cloudfunctions.net/api';
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
