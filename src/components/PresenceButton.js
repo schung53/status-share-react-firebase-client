@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Backdrop from '@material-ui/core/Backdrop';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -89,14 +90,14 @@ export class PresenceButton extends Component {
             </IconButton>
         )
 
-        const loadingDynamicButton = loading ? (
+        /* const loadingDynamicButton = loading ? (
             <IconButton size="small">
                 <CircularProgress size={20} />
             </IconButton>
-        ) : (presenceButton);
+        ) : (presenceButton); */
 
         return (
-            loadingDynamicButton
+            presenceButton
         )
     }
 }

@@ -5,6 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import jwtDecode from 'jwt-decode';
 import { Helmet } from 'react-helmet'
 import Box from '@material-ui/core/Box';
+import Snackbar from '@material-ui/core/Snackbar';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from '@material-ui/core/Typography';
 
 // Components
 import Navbar from '../components/navbar';
@@ -17,10 +22,20 @@ import { connect } from 'react-redux';
 import store from '../redux/store';
 import { getUsers, getTeams } from '../redux/actions/dataActions'
 import { logoutUser } from '../redux/actions/accountActions';
+import { CircularProgress } from '@material-ui/core';
 
 const styles = {
     table: {
         margin: 15
+    },
+    spinnerdiv: {
+        margin: 'auto 10px auto 15px'
+    },
+    spinnertext: {
+        margin: 'auto auto 10px auto'
+    },
+    dialog: {
+        width: 210
     }
 };
 
@@ -50,21 +65,8 @@ export class home extends Component {
         this.setState({ teams: teamsObj });
     };
 
-    /* compare = (a, b) => {
-        const priorityA = parseInt(a.priority, 10);
-        const priorityB = parseInt(b.priority, 10);
-
-        let comparison = 0;
-        if (priorityA > priorityB) {
-            comparison = 1;
-        } else if (priorityA < priorityB) {
-            comparison = -1;
-        }
-        return comparison;
-    } */
-
     render() {
-        const { users, teams, loading, appName } = this.props;
+        const { users, teams, loading, appName, loading2 } = this.props;
         const { classes } = this.props;
 
         const teamsObj = {};
@@ -86,6 +88,14 @@ export class home extends Component {
                 <Helmet>
                     <title>{appName} | Home</title>
                 </Helmet>
+                <Dialog open={loading2}>
+                    <DialogTitle>
+                        <Grid className={classes.dialog}>
+                        <Typography variant="overline" className={classes.spinnertext}>Updating presence...</Typography>
+                        <CircularProgress size={20} className={classes.spinnerdiv} /> 
+                        </Grid>
+                    </DialogTitle>
+                </Dialog>
                 <Grid container justify="center">
                     <UpdateBar/> 
                     <Navbar/>
@@ -116,7 +126,8 @@ export class home extends Component {
                         <LoadingTable/>
                     </Grid>
                     </>
-                    :  <>{teams.map((team) => {
+                    :  <>
+                        {teams.map((team) => {
                             return (
                                 <Box order={teamsFields[team.team].priority} className={classes.table}>
                                     <TeamTable teamMembers={teamsObj[team.team]} teamsFields={teamsFields[team.team]}/>
@@ -140,7 +151,8 @@ const mapStateToProps = (state) => ({
     users: state.data.users,
     teams: state.data.teams,
     loading: state.data.loading,
-    appName: state.account.appName
+    appName: state.account.appName,
+    loading2: state.UI.loading
 });
 
 const mapActionsToProps = {
