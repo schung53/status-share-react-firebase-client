@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -20,11 +21,47 @@ const styles = {
 
 export class PresenceButton extends Component {
 
+    /* state = {
+        present: false,
+        loading: false
+    }
+
+    componentDidMount(){
+        this.setState({
+            present: this.props.user.present
+        })
+    }
+
+    isPresent = () => {
+        if (this.props.user.present) {
+            return true;
+        } else {
+            return false;
+        };
+    };
+
+    uncheckButton = () => {
+        this.setState({
+            loading: true
+        });
+        this.props.markNotPresent(this.props.user.userId);
+        this.setState({
+            loading: false
+        });
+    };
+
+    checkButton = () => {
+        this.setState({
+            loading: true
+        });
+        this.props.markPresent(this.props.user.userId);
+        this.setState({
+            loading: false
+        });
+    }; */
+
     render() {
-        const { classes, user: { userId, present } } = this.props;
-        const index = this.props.users.findIndex(
-            (user) => user.userId === userId
-        );
+        const { classes, user: { userId, present }, loading } = this.props;
 
         const isPresent = () => {
             if (present) {
@@ -41,7 +78,6 @@ export class PresenceButton extends Component {
         const checkButton = () => {
             this.props.markPresent(userId);
         };
-
        
         const presenceButton = isPresent() ? (
             <IconButton size="small" onClick={uncheckButton}>
@@ -52,8 +88,15 @@ export class PresenceButton extends Component {
                 <RadioButtonUncheckedIcon color="secondary"/>
             </IconButton>
         )
+
+        const loadingDynamicButton = loading ? (
+            <IconButton size="small">
+                <CircularProgress size={20} />
+            </IconButton>
+        ) : (presenceButton);
+
         return (
-            presenceButton
+            loadingDynamicButton
         )
     }
 }
@@ -65,7 +108,8 @@ PresenceButton.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    users: state.data.users
+    users: state.data.users,
+    loading: state.UI.loading
 });
 
 const mapActionsToProps = {

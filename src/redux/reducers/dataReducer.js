@@ -102,8 +102,10 @@ export default function(state = initialState, action) {
             let index4 = state.users.findIndex(
                 (user) => user.userId === action.payload
             )
-            state.users.slice(0, index4);
-            state.users.slice(index4+1);
+            var afterDelete = [
+                state.users.slice(0, index4),
+                state.users.slice(index4+1)
+            ];
             return {
                 ...state,
                 users: [
@@ -146,7 +148,11 @@ export default function(state = initialState, action) {
             let index6 = state.teams.findIndex(
                 (team) => team.teamId === action.payload
             );
-            state.teams.splice(index6, 1);
+            //state.teams.splice(index6, 1);
+            var afterDelete1 = [
+                state.teams.slice(0, index6),
+                state.teams.slice(index6+1)
+            ];
             return {
                 ...state,
                 teams: [

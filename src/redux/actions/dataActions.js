@@ -109,6 +109,7 @@ export const deleteStatus = (userId) => (dispatch) => {
 
 // Mark a user as present
 export const markPresent = (userId) => (dispatch) => {
+    dispatch({ type: LOADING_UI });
     axios
     .post(`/user/presence/${userId}`, { present: true })
     .then((res) => {
@@ -116,12 +117,14 @@ export const markPresent = (userId) => (dispatch) => {
             type: MARK_PRESENT,
             payload: res.data
         });
+        dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));
 };
 
 // Mark a user as not present
 export const markNotPresent = (userId) => (dispatch) => {
+    dispatch({ type: LOADING_UI });
     axios
     .post(`/user/presence/${userId}`, { present: false })
     .then((res) => {
@@ -129,6 +132,7 @@ export const markNotPresent = (userId) => (dispatch) => {
             type: MARK_NOT_PRESENT,
             payload: res.data
         });
+        dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));
 };

@@ -103,6 +103,18 @@ export class home extends Component {
                     <Grid item className={classes.table}>
                         <LoadingTable/>
                     </Grid>
+                    <Grid item className={classes.table}>
+                        <LoadingTable/>
+                    </Grid>
+                    <Grid item className={classes.table}>
+                        <LoadingTable/>
+                    </Grid>
+                    <Grid item className={classes.table}>
+                        <LoadingTable/>
+                    </Grid>
+                    <Grid item className={classes.table}>
+                        <LoadingTable/>
+                    </Grid>
                     </>
                     :  <>{teams.map((team) => {
                             return (
