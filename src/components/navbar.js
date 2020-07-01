@@ -31,14 +31,14 @@ export class Navbar extends Component {
     render() {
         const { authenticated, appName, admin } = this.props;
         return (
-            <AppBar>
+            <AppBar style={{ maxHeight: 50 }}>
                 <Toolbar variant="dense">
                     <Grid justify="space-between" container>
                         <Grid item>
                             <IconButton size="small">
                                 <CheckCircleOutlineIcon style={{ color: '#ffffff' }}/>
                             </IconButton>
-                            <Button color="inherit">
+                            <Button color="inherit" >
                                 {appName}
                             </Button>
                             {(Boolean(parseInt(localStorage.admin)) || admin) && (<><EditAppName/><AddTeamDialog/></>)}

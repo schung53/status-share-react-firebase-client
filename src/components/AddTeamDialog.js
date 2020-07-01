@@ -64,7 +64,7 @@ export class AddTeamDialog extends Component {
         event.preventDefault();
         const newTeamData = {
             team: this.state.team.trim(),
-            priority: this.state.priority.trim(),
+            priority: parseInt( this.state.priority.trim() ),
             color: this.state.color.trim()
         };
         this.props.addTeam(newTeamData);

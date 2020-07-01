@@ -64,7 +64,7 @@ export class AddUserDialog extends Component {
             email: this.state.email.trim(),
             phone: this.state.phone.trim(),
             team: this.state.team.trim(),
-            priority: this.state.priority.trim()
+            priority: parseInt( this.state.priority.trim() )
         };
         this.props.addUser(newUserData);
         this.handleClose();

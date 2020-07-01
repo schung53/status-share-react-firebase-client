@@ -70,7 +70,7 @@ export class login extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const userData = {
-            email: this.state.email,
+            email: this.state.email.trim().toLowerCase().concat("@bccancer.bc.ca"),
             password: this.state.password
         };
         this.props.loginUser(userData, this.props.history);
@@ -110,7 +110,7 @@ export class login extends Component {
                                 id="email"
                                 name="email"
                                 type="email"
-                                label="Email"
+                                label="Username"
                                 className={classes.textField}
                                 helperText={errors.email}
                                 error={errors.email ? true : false}

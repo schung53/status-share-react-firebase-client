@@ -38,7 +38,7 @@ const styles = {
         margin: '10px auto 0px 10px'
     },
     dialogContent: {
-        height: 150
+        height: 250
     },
     textField: {
         margin: '10px 20px auto 20px'
@@ -73,7 +73,9 @@ export class EditTeam extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const teamData = {
-            priority: this.state.priority,
+            prevTeam: this.props.teamsFields.team,
+            team: this.state.team,
+            priority: parseInt( this.state.priority ),
             color: this.state.color
         };
         this.props.updateTeam(this.props.teamId, teamData);
@@ -111,6 +113,18 @@ export class EditTeam extends Component {
             <DialogContent className={classes.dialogContent}>
                 <Grid container justify="center">
                 <Grid item>
+                <TextField 
+                    id="team"
+                    name="team"
+                    type="team"
+                    label="Team Name"
+                    placeholder={teamsFields.team}
+                    value={this.state.team}
+                    onChange={this.handleChange}
+                    className={classes.textField}
+                    />
+                </Grid>
+                <Grid item style={{ marginTop: 15 }}>
                 <GithubPicker 
                     color={ this.state.color }
                     onChange={this.handleColorChange}/>
@@ -125,7 +139,7 @@ export class EditTeam extends Component {
                     value={this.state.priority}
                     onChange={this.handleChange}
                     className={classes.textField}
-                    /* fullWidth *//>
+                    />
                 </Grid>
                 </Grid>
             </DialogContent>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+//import './BottomBar.css';
 
 // MUI components
 import AppBar from '@material-ui/core/AppBar';
@@ -9,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
     appBar: {
-        top: 'auto',
+        top: "auto",
         bottom: 0
     }
 }
@@ -19,7 +20,7 @@ export class Navbar extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <AppBar className={classes.appBar} color="transparent">
+            <AppBar className={classes.appBar} color="inherit" position="fixed">
                 <Toolbar variant="dense">
                     <Grid justify="flex-start" container>
                         <Grid item>

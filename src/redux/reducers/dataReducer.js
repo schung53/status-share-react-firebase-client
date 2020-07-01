@@ -83,11 +83,13 @@ export default function(state = initialState, action) {
             let index3 = state.users.findIndex(
                 (user) => user.userId === action.payload.userId
             );
+            state.users[index3].name = action.payload.name;
             state.users[index3].email = action.payload.email;
             state.users[index3].phone = action.payload.phone;
             state.users[index3].team = action.payload.team;
             state.users[index3].memo = action.payload.memo;
             if (state.user.userId === action.payload.userId) {
+                state.user.name = action.payload.name;
                 state.user.email = action.payload.email;
                 state.user.phone = action.payload.phone;
                 state.user.team = action.payload.team;
@@ -136,12 +138,16 @@ export default function(state = initialState, action) {
             let index5 = state.teams.findIndex(
                 (team) => team.teamId === action.payload.teamId
             );
+            state.teams[index5].team = action.payload.team;
             state.teams[index5].priority = action.payload.priority;
             state.teams[index5].color = action.payload.color;
             return {
                 ...state,
                 teams: [
                     ...state.teams
+                ],
+                users: [
+                    ...state.users
                 ]
             };
         case DELETE_TEAM:

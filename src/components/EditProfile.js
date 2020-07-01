@@ -31,7 +31,7 @@ const styles = {
     },
     dialogContent: {
         textAlign: 'center',
-        height: 250
+        height: 280
     },
     memo: {
         marginTop: 30
@@ -43,6 +43,7 @@ const styles = {
 
 export class EditProfile extends Component {
     state = {
+        name: "",
         phone: "",
         email: "",
         team: "",
@@ -62,6 +63,7 @@ export class EditProfile extends Component {
 
     mapUserToState = () => {
         this.setState({
+            name: this.props.user.name,
             phone: this.props.user.phone,
             email: this.props.user.email,
             team: this.props.user.team,
@@ -79,11 +81,12 @@ export class EditProfile extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const profileData = {
+            name: this.state.name,
             phone: this.state.phone,
             email: this.state.email,
             team: this.state.team.trim(),
             memo: this.state.memo,
-            priority: this.state.priority
+            priority: parseInt(this.state.priority)
         };
         this.props.editProfile(this.props.user.userId, profileData);
         this.handleClose();
@@ -158,6 +161,16 @@ export class EditProfile extends Component {
                             className={classes.memo}
                         />
                         {Boolean(parseInt(localStorage.admin)) && (
+                            <>
+                            <TextField
+                            name="name"
+                            label="Name"
+                            placeholder={name}
+                            value={this.state.name}
+                            onChange={this.handleChange}
+                            fullWidth
+                            className={classes.otherText}
+                            />
                             <TextField
                             id="priority"
                             name="priority"
@@ -169,6 +182,7 @@ export class EditProfile extends Component {
                             fullWidth
                             className={classes.otherText}
                             />
+                            </>
                         )}
                     </DialogContent>
                     <DialogActions>
