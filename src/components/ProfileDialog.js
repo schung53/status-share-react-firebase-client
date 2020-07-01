@@ -148,8 +148,15 @@ export class ProfileDialog extends Component {
         <Typography className={classes.text2}>{memo}</Typography>
                 </Grid>
             </Grid>
-            </DialogContent>
-            </div>
+        </DialogContent>
+        <DialogActions>
+            {Boolean(parseInt(localStorage.admin)) && (
+                <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
+                    <DeleteIcon className={classes.buttonIcon}/>delete
+                </Button>)}
+                <EditProfile/>
+        </DialogActions>
+        </div>
         )
 
         return (
@@ -160,13 +167,6 @@ export class ProfileDialog extends Component {
                         <CloseIcon />
                     </IconButton>
                     {dialogMarkup}
-                    <DialogActions>
-                        {Boolean(parseInt(localStorage.admin)) && (
-                            <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
-                                <DeleteIcon className={classes.buttonIcon}/>delete
-                            </Button>)}
-                        <EditProfile/>
-                    </DialogActions>
                 </Dialog>
             </Fragment>
         )
