@@ -183,10 +183,9 @@ export const getTeams = () => (dispatch) => {
     firebase.firestore()
     .collection('teams')
     .orderBy('priority')
-    .get()
-    .then((data) => {
+    .onSnapshot((snapshot) => {
         let teams = [];
-        data.forEach((doc) => {
+        snapshot.docs.forEach((doc) => {
             teams.push({
                 team: doc.data().team,
                 priority: doc.data().priority,
@@ -199,7 +198,6 @@ export const getTeams = () => (dispatch) => {
             payload: teams
         });
     })
-    .catch((err) => console.log(err));
 }
 
 // Create new team
