@@ -36,6 +36,11 @@ const styles = {
     },
     dialog: {
         width: 210
+    },
+    dummy: {
+        width: 482,
+        height: 50,
+        margin: 15
     }
 };
 
@@ -171,7 +176,9 @@ export class home extends Component {
                                 <Box order={teamsFields[team.team].priority} className={classes.table}>
                                     <TeamTable teamMembers={teamsObj[team.team]} teamsFields={teamsFields[team.team]}/>
                                 </Box>)
-                        })}</>}
+                        })}
+                        <Box order={Object.keys(teamsObj).length} className={classes.dummy}></Box>
+                        </>}
                 </Grid>
             </div>
         )
