@@ -14,7 +14,9 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Paper from '@material-ui/core/Paper'
+import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -33,7 +35,7 @@ const styles = {
         width: 300
     },
     button: {
-        margin: '20px 100px 20px 100px'
+        margin: '30px 10px 30px 10px'
     },
     customError: {
         color: 'red',
@@ -43,6 +45,9 @@ const styles = {
         width: 45,
         height: 45,
         margin: 'auto 15px auto auto'
+    },
+    checkbox: {
+        margin: '30px 20px 30px 20px'
     }
 }
 
@@ -53,6 +58,7 @@ export class login extends Component {
             email: "",
             password: "",
             loading: false,
+            rememberMe: false,
             errors: {}
         };
     };
@@ -73,12 +79,18 @@ export class login extends Component {
             email: this.state.email.trim().toLowerCase().concat("@bccancer.bc.ca"),
             password: this.state.password
         };
-        this.props.loginUser(userData, this.props.history);
+        this.props.loginUser(userData, this.props.history, this.state.rememberMe);
     };
 
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
+        });
+    }
+
+    handleCheck = (event) => {
+        this.setState({
+            [event.target.name]: event.target.checked
         });
     }
 
@@ -133,6 +145,7 @@ export class login extends Component {
                                         {errors.general}
                                     </Typography>
                                 )}
+                            <Grid className={classes.textField}>
                             <Button
                                 type="submit"
                                 variant="contained"
@@ -145,6 +158,16 @@ export class login extends Component {
                                     <CircularProgress size={30} className={classes.progress} />
                                 )}
                             </Button>
+                            <FormControlLabel
+                                control={<Checkbox 
+                                    name="rememberMe" 
+                                    checked={this.state.rememberMe} 
+                                    onChange={this.handleCheck}
+                                    color="primary"/>}
+                                label="Remember Me"
+                                className={classes.checkbox}
+                            />
+                            </Grid>
                     </form>
                     </Paper>
                 </Grid>

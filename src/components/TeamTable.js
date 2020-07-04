@@ -20,6 +20,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -76,9 +77,25 @@ export class TeamTable extends Component {
         return (
             <div>
                 <Paper elevation={3}>
+                <Toolbar>
+                    <Grid justify="space-between" container>
+                        <Grid item>
+                            <Typography>
+                                <Box fontWeight="fontWeightBold" m={1} color={teamsFields.color}>
+                                    {teamsFields.team} 
+                                </Box>
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            {Boolean(parseInt(localStorage.admin)) && (<>
+                                <EditTeam teamsFields={teamsFields} teamId={teamsFields.teamId} teamName={teamsFields.team}/>
+                                <AddUserDialog teamName={teamsFields.team}/></>)}
+                        </Grid>
+                    </Grid>
+                </Toolbar>
                 <TableContainer>
                 <Table size="small">
-                <TableHead>
+                {/* <TableHead>
                     <TableRow>
                             <TableCell>
                                 <Typography component="div" style={this.state.tableColor}>
@@ -94,8 +111,8 @@ export class TeamTable extends Component {
                                 <AddUserDialog teamName={teamsFields.team}/></>)}
                             </TableCell>
                         </TableRow>
-                    </TableHead>
-                    <TableHead>
+                    </TableHead>*/}
+                    <TableHead> 
                         <TableRow>
                             <TableCell>Name</TableCell>
                             <TableCell>Present</TableCell>

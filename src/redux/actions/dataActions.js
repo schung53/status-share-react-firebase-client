@@ -245,3 +245,8 @@ export const deleteTeam = (teamId, teamToDelete) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 }
+
+// Set state to loading
+export const setLoading = () => (dispatch) => {
+    dispatch({ type: LOADING_DATA });
+}

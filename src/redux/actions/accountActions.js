@@ -6,12 +6,13 @@ import {
     SET_UNAUTHENTICATED, 
     ADMIN_ACCOUNT,
     SET_APP_NAME,
-    SET_DEFAULT_NAME } from '../types';
+    SET_DEFAULT_NAME,
+    REMEMBER_ME } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
 // Login 
-export const loginUser = (userData, history) => (dispatch) => {
+export const loginUser = (userData, history, rememberMe) => (dispatch) => {
     dispatch({ type: LOADING_UI });
 
     axios
@@ -24,7 +25,15 @@ export const loginUser = (userData, history) => (dispatch) => {
             if (userData.email === 'don.ta@bccancer.bc.ca') {
                 localStorage.setItem('admin', 1);
                 dispatch({ type: ADMIN_ACCOUNT });
+            }
+            // Login persistence
+            if (rememberMe === true) {
+                localStorage.setItem('rememberMe', 1);
+                dispatch({ type: REMEMBER_ME });
+            } else {
+                localStorage.setItem('rememberMe', 0);
             };
+
             history.push('/');
         })
         .catch((err) => {
@@ -35,10 +44,21 @@ export const loginUser = (userData, history) => (dispatch) => {
         });
 };
 
+export const refreshToken = () => (dispatch) => {
+    axios
+    .post('/refreshlogin')
+    .then((res) => {
+        setAuthorizationHeader(res.data.token);
+        dispatch({ type: SET_AUTHENTICATED });
+    })
+    .catch((err) => console.log(err)); 
+}
+
 // Logout
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('FBIdToken');
     localStorage.removeItem('admin');
+    localStorage.removeItem('rememberMe');
     delete axios.defaults.headers.common['Authorization'];
     dispatch({ type: SET_UNAUTHENTICATED });
 };
@@ -77,6 +97,6 @@ export const setAppName = (newAppName) => (dispatch) => {
 const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
             localStorage.setItem('FBIdToken', FBIdToken);
-            localStorage.setItem('admin', 0);
+            //localStorage.setItem('admin', 0);
             axios.defaults.headers.common['Authorization'] = FBIdToken;
 };

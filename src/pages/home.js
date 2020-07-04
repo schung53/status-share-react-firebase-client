@@ -20,8 +20,8 @@ import LoadingTable from '../components/LoadingTable';
 // Redux stuff
 import { connect } from 'react-redux';
 import store from '../redux/store';
-import { getUsers, getTeams } from '../redux/actions/dataActions'
-import { logoutUser } from '../redux/actions/accountActions';
+import { getUsers, getTeams, setLoading } from '../redux/actions/dataActions'
+import { logoutUser, refreshToken } from '../redux/actions/accountActions';
 import { CircularProgress } from '@material-ui/core';
 
 const styles = {
@@ -45,7 +45,9 @@ export class home extends Component {
     }
 
     componentDidMount(){
-        this.props.getTeams();
+        //have to move these down
+        //add loading ui action
+        /* this.props.getTeams();
         this.props.getUsers();
 
         const decodedToken = jwtDecode(localStorage.FBIdToken);
@@ -54,8 +56,45 @@ export class home extends Component {
         setTimeout(() => { 
             store.dispatch(logoutUser());
             window.location.href = '/login';
-        }, timeUntilExpiry);
+        }, timeUntilExpiry); */
+
+        this.props.setLoading();
+
+        const decodedToken = jwtDecode(localStorage.FBIdToken);
+        const timeUntilExpiry = decodedToken.exp * 1000 - Date.now();
+        const rememberMe = localStorage.rememberMe;
+
+        if (rememberMe == 0) {
+            if (timeUntilExpiry <= 0) {
+                store.dispatch(logoutUser());
+                window.location.href = '/login';
+            } else {
+                setTimeout(() => { 
+                    store.dispatch(logoutUser());
+                    window.location.href = '/login';
+                }, timeUntilExpiry);
+            }
+        } else {
+            if (timeUntilExpiry <= 0) {
+                this.props.refreshToken();
+                this.countdownAndRefresh();
+            } else {
+                this.countdownAndRefresh();
+            }
+        }
+
+        this.props.getTeams();
+        this.props.getUsers();
     };
+
+    countdownAndRefresh = () => {
+        const decodedToken1 = jwtDecode(localStorage.FBIdToken);
+        const timeUntilExpiry1 = decodedToken1.exp * 1000 - Date.now();
+        setTimeout(() => {
+            this.props.refreshToken();
+            this.countdownAndRefresh();
+        }, timeUntilExpiry1);
+    }
 
     assignTeams = () => {
         const teamsObj = {};
@@ -157,7 +196,9 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
     getUsers,
-    getTeams
+    getTeams,
+    setLoading,
+    refreshToken
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(home));

@@ -4,11 +4,13 @@ import {
     ADMIN_ACCOUNT,
     SET_APP_NAME,
     SET_DEFAULT_NAME,
-    SET_UPDATE_TIME } from '../types';
+    SET_UPDATE_TIME,
+    REMEMBER_ME } from '../types';
 
 const initialState ={
     authenticated: false,
     admin: false,
+    rememberMe: false,
     appName: "",
     updateTime: new Date()
 }
@@ -24,12 +26,18 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 authenticated: false,
-                admin: false
+                admin: false,
+                rememberMe: false
             };
         case ADMIN_ACCOUNT:
             return {
                 ...state,
                 admin: true
+            };
+        case REMEMBER_ME:
+            return {
+                ...state,
+                rememberMe: true
             };
         case SET_APP_NAME:
             return {
