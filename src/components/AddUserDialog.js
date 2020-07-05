@@ -46,11 +46,12 @@ export class AddUserDialog extends Component {
         email: "",
         phone: "",
         team: "",
+        teamId: "",
         priority: ""
     }
     
     handleOpen = () => {
-        this.setState({ open: true, team: this.props.teamName });
+        this.setState({ open: true, team: this.props.teamName, teamId: this.props.teamId });
     };
 
     handleClose = () => {
@@ -64,6 +65,7 @@ export class AddUserDialog extends Component {
             email: this.state.email.trim(),
             phone: this.state.phone.trim(),
             team: this.state.team.trim(),
+            teamId: this.state.teamId.trim(),
             priority: parseInt( this.state.priority.trim() )
         };
         this.props.addUser(newUserData);
@@ -74,6 +76,7 @@ export class AddUserDialog extends Component {
             email: "",
             phone: "",
             team: "",
+            teamId: "",
             priority: ""
         });
     };

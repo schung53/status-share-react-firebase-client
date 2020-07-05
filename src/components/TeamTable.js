@@ -89,7 +89,7 @@ export class TeamTable extends Component {
                         <Grid item>
                             {Boolean(parseInt(localStorage.admin)) && (<>
                                 <EditTeam teamsFields={teamsFields} teamId={teamsFields.teamId} teamName={teamsFields.team}/>
-                                <AddUserDialog teamName={teamsFields.team}/></>)}
+                                <AddUserDialog teamName={teamsFields.team} teamId={teamsFields.teamId}/></>)}
                         </Grid>
                     </Grid>
                 </Toolbar>

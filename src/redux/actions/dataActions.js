@@ -56,6 +56,7 @@ export const getUsers = () => (dispatch) => {
                 name: doc.data().name,
                 phone: doc.data().phone,
                 team: doc.data().team,
+                teamId: doc.data().teamId,
                 status: doc.data().status,
                 statusTime: doc.data().statusTime,
                 present: doc.data().present,

@@ -38,6 +38,11 @@ const styles = {
     },
     otherText: {
         marginTop: 8
+    },
+    shortText: {
+        marginTop: 8,
+        marginRight: 15,
+        width: 250
     }
 }
 
@@ -108,7 +113,7 @@ export class EditProfile extends Component {
                     </DialogTitle>
                     <form>
                     <DialogContent className={classes.dialogContent}>
-                        <Grid container justify='space-between'>
+                        <Grid container /* justify='space-between' */>
                         <Grid item>
                         <TextField
                             id="phone"
@@ -118,7 +123,7 @@ export class EditProfile extends Component {
                             placeholder={phone}
                             value={this.state.phone}
                             onChange={this.handleChange}
-                            className={classes.otherText}
+                            className={classes.shortText}
                         />
                         </Grid>
                         <Grid item>
@@ -130,10 +135,10 @@ export class EditProfile extends Component {
                             placeholder={email}
                             value={this.state.email}
                             onChange={this.handleChange}
-                            className={classes.otherText}
+                            className={classes.shortText}
                         />
                         </Grid>
-                        <Grid item>
+                        {/* <Grid item>
                         <TextField
                             id="team"
                             name="team"
@@ -144,7 +149,7 @@ export class EditProfile extends Component {
                             onChange={this.handleChange}
                             className={classes.otherText}
                         />
-                        </Grid>
+                        </Grid> */}
                         </Grid>
                         <TextField
                             id="memo"

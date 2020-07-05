@@ -101,13 +101,13 @@ export class home extends Component {
         }, timeUntilExpiry1);
     }
 
-    assignTeams = () => {
+/*     assignTeams = () => {
         const teamsObj = {};
         this.props.teams.map((team) => {
             teamsObj[team.team] = [];
         });
         this.setState({ teams: teamsObj });
-    };
+    }; */
 
     render() {
         const { users, teams, loading, appName, loading2 } = this.props;
@@ -116,13 +116,13 @@ export class home extends Component {
         const teamsObj = {};
         const teamsFields = {};
         this.props.teams.map((team) => {
-            teamsObj[team.team] = [];
-            teamsFields[team.team] = team;
+            teamsObj[team.teamId] = [];
+            teamsFields[team.teamId] = team;
         });
         this.props.teams.map((team) => {
             users.map((user) => {
-                if (user.team === team.team) {
-                    teamsObj[team.team].push(user)
+                if (user.teamId === team.teamId) {
+                    teamsObj[team.teamId].push(user)
                 }
             });
         });
@@ -173,8 +173,8 @@ export class home extends Component {
                     :  <>
                         {teams.map((team) => {
                             return (
-                                <Box order={teamsFields[team.team].priority} className={classes.table}>
-                                    <TeamTable teamMembers={teamsObj[team.team]} teamsFields={teamsFields[team.team]}/>
+                                <Box order={teamsFields[team.teamId].priority} className={classes.table}>
+                                    <TeamTable teamMembers={teamsObj[team.teamId]} teamsFields={teamsFields[team.teamId]}/>
                                 </Box>)
                         })}
                         <Box order={Object.keys(teamsObj).length} className={classes.dummy}></Box>
