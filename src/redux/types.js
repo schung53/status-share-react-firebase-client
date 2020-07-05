@@ -7,6 +7,9 @@ export const SET_APP_NAME = 'SET_APP_NAME';
 export const SET_DEFAULT_NAME = 'SET_DEFAULT_NAME';
 export const SET_UPDATE_TIME = 'SET_UPDATE_TIME';
 export const REMEMBER_ME = 'REMEMBER_ME';
+export const TRUNCATE_APP_NAME = 'TRUNCATE_APP_NAME';
+export const DETRUNCATE_APP_NAME = 'DETRUNCATE_APP_NAME';
+
 
 // UI reducer types
 export const SET_ERRORS = 'SET_ERRORS';

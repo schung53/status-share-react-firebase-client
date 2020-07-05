@@ -7,7 +7,9 @@ import {
     ADMIN_ACCOUNT,
     SET_APP_NAME,
     SET_DEFAULT_NAME,
-    REMEMBER_ME } from '../types';
+    REMEMBER_ME,
+    TRUNCATE_APP_NAME,
+    DETRUNCATE_APP_NAME } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
@@ -92,6 +94,16 @@ export const setAppName = (newAppName) => (dispatch) => {
     })
     .catch((err) => console.log(err)); 
 };
+
+// Set shortened app name on navbar on mobile
+export const truncateAppName = () => (dispatch) => {
+    dispatch({ type: TRUNCATE_APP_NAME })
+};
+
+// Show full app name on navbar
+export const detruncateAppName = () => (dispatch) => {
+    dispatch({ type: DETRUNCATE_APP_NAME })
+}
 
 // Set token in local storage
 const setAuthorizationHeader = (token) => {

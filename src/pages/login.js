@@ -20,7 +20,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/actions/accountActions';
+import { loginUser, getAppName } from '../redux/actions/accountActions';
 
 const styles = {
     form: {
@@ -64,7 +64,8 @@ export class login extends Component {
     };
 
     componentDidMount(){
-        localStorage.setItem('admin', 0)
+        localStorage.setItem('admin', 0);
+        this.props.getAppName();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -191,7 +192,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionsToProps = {
-    loginUser
+    loginUser,
+    getAppName
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(login));

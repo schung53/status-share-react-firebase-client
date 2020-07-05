@@ -5,13 +5,16 @@ import {
     SET_APP_NAME,
     SET_DEFAULT_NAME,
     SET_UPDATE_TIME,
-    REMEMBER_ME } from '../types';
+    REMEMBER_ME,
+    TRUNCATE_APP_NAME,
+    DETRUNCATE_APP_NAME } from '../types';
 
 const initialState ={
     authenticated: false,
     admin: false,
     rememberMe: false,
     appName: "",
+    truncatedAppName: false,
     updateTime: new Date()
 }
 
@@ -53,6 +56,16 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 updateTime: new Date()
+            }
+        case TRUNCATE_APP_NAME:
+            return {
+                ...state,
+                truncatedAppName: true
+            }
+        case DETRUNCATE_APP_NAME: 
+            return {
+                ...state,
+                truncatedAppName: false
             }
         default: 
             return state;

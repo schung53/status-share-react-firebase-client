@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const styles = {
     container: {
@@ -56,22 +57,15 @@ export class TeamCTable extends Component {
         return (
             <div>
                 <Paper elevation={3}>
+                <Toolbar>
+                    <Typography>
+                        <Box fontWeight="fontWeightBold" m={1}>
+                            Loading Team
+                        </Box>
+                    </Typography>
+                </Toolbar>
                 <TableContainer>
                 <Table size="small">
-                <TableHead>
-                    <TableRow>
-                            <TableCell>
-                                <Typography component="div" style={{ color: '#000000' }}>
-                                    <Box fontWeight="fontWeightBold" m={1}>
-                                        Loading Team
-                                    </Box>
-                                </Typography>
-                            </TableCell>
-                            <TableCell></TableCell>
-                            <TableCell align="right">
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>

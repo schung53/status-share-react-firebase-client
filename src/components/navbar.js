@@ -13,15 +13,35 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { logoutUser, getAppName } from '../redux/actions/accountActions';
+import { logoutUser, getAppName, truncateAppName, detruncateAppName } from '../redux/actions/accountActions';
 
 export class Navbar extends Component {
 
+    constructor(props) {
+        super(props);
+        this.updateTitle = this.updateTitle.bind(this);
+    } 
+
     componentDidMount() {
         this.props.getAppName();
+        this.updateTitle();
+        window.addEventListener("resize", this.updateTitle);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateTitle);
+    }
+
+    updateTitle = () => {
+        if (window.innerWidth < 550 ) {
+            this.props.truncateAppName();
+        } else {
+            this.props.detruncateAppName();
+        }
     }
 
     handleLogout = () => {
@@ -29,24 +49,41 @@ export class Navbar extends Component {
     }
 
     render() {
-        const { authenticated, appName, admin } = this.props;
+        const { authenticated, appName, admin, truncatedAppName } = this.props;
+        const title = truncatedAppName ? (
+            <Typography noWrap style={{ margin: "0px 0px 0px 5px" }} variant="overline">
+                {appName.slice(0, 12).concat("...")}
+            </Typography>
+        ) : (
+            <Typography noWrap style={{ margin: "0px 0px 0px 5px" }} variant="overline">
+                {appName}
+            </Typography>
+        )
         return (
             <AppBar style={{ maxHeight: 50 }}>
                 <Toolbar variant="dense">
-                    <Grid justify="space-between" container>
+                    <Grid justify="space-between" alignItems="center" container>
+                        <Grid item>
+                        <Grid container alignItems="center">
                         <Grid item>
                             <IconButton size="small">
                                 <CheckCircleOutlineIcon style={{ color: '#ffffff' }}/>
                             </IconButton>
-                            <Button color="inherit" >
-                                {appName}
-                            </Button>
+                        </Grid>
+                        <Grid item>
+                            {title}
+                        </Grid>
+                        <Grid item>
                             {(Boolean(parseInt(localStorage.admin)) || admin) && (<><EditAppName/><AddTeamDialog/></>)}
                         </Grid>
+                        </Grid>
+                        </Grid>
                         {authenticated && (
+                                <Grid item>
                                 <Button onClick={this.handleLogout} color="inherit" variant="outlined" size="small" component={Link} to="/login">
                                     Sign Out
-                                </Button>)}
+                                </Button>
+                                </Grid>)}
                     </Grid>
                 </Toolbar>
             </AppBar>
@@ -65,12 +102,15 @@ Navbar.propTypes = {
 const mapStateToProps = (state) => ({
     authenticated: state.account.authenticated,
     admin: state.account.admin,
-    appName: state.account.appName
+    appName: state.account.appName,
+    truncatedAppName: state.account.truncatedAppName
 });
 
 const mapActionsToProps = {
     logoutUser,
-    getAppName
+    getAppName,
+    truncateAppName,
+    detruncateAppName
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Navbar);
