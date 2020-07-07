@@ -77,7 +77,7 @@ export class ProfileDialog extends Component {
     };
 
     render() {
-        const { classes, user: { userId, name, status, statusTime, phone, email, team, memo }, UI: { loading } } = this.props;
+        const { classes, user: { name, status, statusTime, phone, email, team, memo }, UI: { loading } } = this.props;
 
         const dialogMarkup = loading ? (
             <div>

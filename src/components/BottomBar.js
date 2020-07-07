@@ -8,6 +8,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import { connect } from 'react-redux';
+
 const styles = {
     appBar: {
         top: "auto",
@@ -18,15 +20,22 @@ const styles = {
 export class Navbar extends Component {
 
     render() {
-        const { classes } = this.props;
+        const { classes, truncatedAppName } = this.props;
+        const text = truncatedAppName ? (
+            <Typography variant="overline">
+                © 2020 BC Cancer: Medical Physics...
+            </Typography>
+        ) : (
+            <Typography variant="overline">
+                © 2020 BC Cancer: Medical Physics. All rights reserved.
+            </Typography>
+        )
         return (
             <AppBar className={classes.appBar} color="inherit" position="fixed">
                 <Toolbar variant="dense">
                     <Grid justify="flex-start" container>
                         <Grid item>
-                            <Typography variant="overline">
-                            © 2020 BC Cancer: Medical Physics. All rights reserved.
-                            </Typography>
+                            {text}
                         </Grid>
                     </Grid>
                 </Toolbar>
@@ -35,4 +44,11 @@ export class Navbar extends Component {
     }
 }
 
-export default withStyles(styles)(Navbar);
+const mapStateToProps = (state) => ({
+    truncatedAppName: state.account.truncatedAppName
+});
+
+const mapActionsToProps = {
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Navbar));

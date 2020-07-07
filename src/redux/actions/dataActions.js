@@ -16,7 +16,9 @@ import {
     SET_TEAMS,
     ADD_TEAM,
     UPDATE_TEAM,
-    DELETE_TEAM } from '../types';
+    DELETE_TEAM,
+    LOADING_TEAM,
+    STOP_LOADING_TEAM } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
@@ -216,15 +218,18 @@ export const addTeam = (newTeam) => (dispatch) => {
 
 // Update team
 export const updateTeam = (teamId, teamData) => (dispatch) => {
+    dispatch({ type: LOADING_TEAM });
     axios
     .post(`/team/${teamId}`, teamData)
     .then((res) => {
+        dispatch({ type: STOP_LOADING_TEAM })
         dispatch({
             type: UPDATE_TEAM,
             payload: res.data
         });
     })
     .catch((err) => console.log(err));
+    
 }
 
 // Clear all errors

@@ -10,12 +10,13 @@ export const REMEMBER_ME = 'REMEMBER_ME';
 export const TRUNCATE_APP_NAME = 'TRUNCATE_APP_NAME';
 export const DETRUNCATE_APP_NAME = 'DETRUNCATE_APP_NAME';
 
-
 // UI reducer types
 export const SET_ERRORS = 'SET_ERRORS';
 export const LOADING_UI = 'LOADING_UI';
 export const STOP_LOADING_UI = 'STOP_LOADING_UI'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const LOADING_TEAM = 'LOADING_TEAM';
+export const STOP_LOADING_TEAM = 'STOP_LOADING_TEAM'
 
 // Data reducer types
 export const SET_USER = 'SET_USER';

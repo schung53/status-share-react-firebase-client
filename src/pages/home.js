@@ -16,16 +16,17 @@ import Navbar from '../components/navbar';
 import UpdateBar from '../components/UpdateBar';
 import TeamTable from '../components/TeamTable';
 import LoadingTable from '../components/LoadingTable';
+import { CircularProgress } from '@material-ui/core';
 
 // Redux stuff
 import { connect } from 'react-redux';
 import store from '../redux/store';
 import { getUsers, getTeams, setLoading } from '../redux/actions/dataActions'
 import { logoutUser, refreshToken } from '../redux/actions/accountActions';
-import { CircularProgress } from '@material-ui/core';
 
 const styles = {
     table: {
+        width: 482,
         margin: 15
     },
     spinnerdiv: {
@@ -39,7 +40,7 @@ const styles = {
     },
     dummy: {
         width: 482,
-        height: 50,
+        height: 20,
         margin: 15
     }
 };
@@ -101,16 +102,8 @@ export class home extends Component {
         }, timeUntilExpiry1);
     }
 
-/*     assignTeams = () => {
-        const teamsObj = {};
-        this.props.teams.map((team) => {
-            teamsObj[team.team] = [];
-        });
-        this.setState({ teams: teamsObj });
-    }; */
-
     render() {
-        const { users, teams, loading, appName, loading2 } = this.props;
+        const { users, teams, loading, appName, loadingPresence, loadingTeam } = this.props;
         const { classes } = this.props;
 
         const teamsObj = {};
@@ -132,7 +125,15 @@ export class home extends Component {
                 <Helmet>
                     <title>{appName} | Home</title>
                 </Helmet>
-                <Dialog open={loading2}>
+                <Dialog open={loadingTeam}>
+                    <DialogTitle>
+                        <Grid className={classes.dialog}>
+                        <Typography variant="overline" className={classes.spinnertext}>Updating team...</Typography>
+                        <CircularProgress size={20} className={classes.spinnerdiv} /> 
+                        </Grid>
+                    </DialogTitle>
+                </Dialog>
+                <Dialog open={loadingPresence}>
                     <DialogTitle>
                         <Grid className={classes.dialog}>
                         <Typography variant="overline" className={classes.spinnertext}>Updating presence...</Typography>
@@ -177,7 +178,7 @@ export class home extends Component {
                                     <TeamTable teamMembers={teamsObj[team.teamId]} teamsFields={teamsFields[team.teamId]}/>
                                 </Box>)
                         })}
-                        <Box order={Object.keys(teamsObj).length} className={classes.dummy}></Box>
+                        <Box order={99} className={classes.dummy}></Box>
                         </>}
                 </Grid>
             </div>
@@ -198,7 +199,8 @@ const mapStateToProps = (state) => ({
     teams: state.data.teams,
     loading: state.data.loading,
     appName: state.account.appName,
-    loading2: state.UI.loading
+    loadingPresence: state.UI.loading,
+    loadingTeam: state.UI.loadingTeam
 });
 
 const mapActionsToProps = {

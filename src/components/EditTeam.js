@@ -16,6 +16,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SendIcon from '@material-ui/icons/Send';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { CircularProgress } from '@material-ui/core';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -61,7 +63,7 @@ export class EditTeam extends Component {
         this.setState({ 
             open: true,
             team: this.props.teamsFields.team,
-            priority: this.props.teamsFields.priority,
+            priority: this.props.teamsFields.priority.toString(10),
             color: this.props.teamsFields.color
         });
     };
@@ -135,7 +137,7 @@ export class EditTeam extends Component {
                     name="priority"
                     type="priority"
                     label="Priority"
-                    placeholder={teamsFields.priority}
+                    placeholder={teamsFields.priority.toString(10)}
                     value={this.state.priority}
                     onChange={this.handleChange}
                     className={classes.textField}
@@ -171,6 +173,7 @@ export class EditTeam extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    loading: state.UI.loading
 });
 
 const mapActionsToProps = {
