@@ -46,14 +46,46 @@ export const loginUser = (userData, history, rememberMe) => (dispatch) => {
         });
 };
 
+export const persistentLogin = (userData, history) => (dispatch) => {
+    dispatch({ type: LOADING_UI });
+
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(() => {
+        return firebase.auth().signInWithEmailAndPassword(userData.email, userData.password);
+    })
+    .then((data) => {
+        return data.user.getIdToken();
+    })
+    .then((token) => {
+        setAuthorizationHeader(token);
+        dispatch({ type: CLEAR_ERRORS });
+        dispatch({ type: SET_AUTHENTICATED });
+        if (userData.email === 'don.ta@bccancer.bc.ca') {
+            localStorage.setItem('admin', 1);
+            dispatch({ type: ADMIN_ACCOUNT });
+        }
+        history.push('/');
+        return token;
+    })
+    .catch((err) => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
+        console.error(err);
+    });
+};
+
+// Retrieves new token if expired or non-existent
 export const refreshToken = () => (dispatch) => {
-    axios
-    .post('/refreshlogin')
-    .then((res) => {
-        setAuthorizationHeader(res.data.token);
+    firebase.auth().currentUser.getIdToken(true)
+    .then((token) => {
+        setAuthorizationHeader(token);
         dispatch({ type: SET_AUTHENTICATED });
     })
-    .catch((err) => console.log(err)); 
+    .catch((err) => {
+        console.log(err);
+    })
 }
 
 // Logout

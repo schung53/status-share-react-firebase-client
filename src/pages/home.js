@@ -5,9 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import jwtDecode from 'jwt-decode';
 import { Helmet } from 'react-helmet'
 import Box from '@material-ui/core/Box';
-import Snackbar from '@material-ui/core/Snackbar';
 import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 
@@ -64,7 +62,7 @@ export class home extends Component {
             window.location.href = '/login';
         }, timeUntilExpiry); */
 
-        this.props.setLoading();
+        /* this.props.setLoading();
 
         const decodedToken = jwtDecode(localStorage.FBIdToken);
         const timeUntilExpiry = decodedToken.exp * 1000 - Date.now();
@@ -87,19 +85,44 @@ export class home extends Component {
             } else {
                 this.countdownAndRefresh();
             }
-        }
+        } */
+
+        const token = localStorage.FBIdToken;
+        // Token refresher – ensures token is always valid while logged in
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            // If token expired, refresh token
+            if (decodedToken.exp * 1000 < Date.now()) {
+                store.dispatch(refreshToken());
+                setTimeout(() => {
+                    this.countdownAndRefresh();
+                }, 3000)
+            // If token valid, set timer until expiry and then refresh token
+            } else {
+                this.countdownAndRefresh();
+            };
+        // If token doesn't exist for some reason, retrieves new token
+        } else {
+            store.dispatch(refreshToken());
+            setTimeout(() => {
+                this.countdownAndRefresh();
+            }, 3000)
+        };
 
         this.props.getTeams();
         this.props.getUsers();
     };
 
     countdownAndRefresh = () => {
-        const decodedToken1 = jwtDecode(localStorage.FBIdToken);
-        const timeUntilExpiry1 = decodedToken1.exp * 1000 - Date.now();
+        const currentDecodedToken = jwtDecode(localStorage.FBIdToken);
+        const currentTimeUntilExpiry = currentDecodedToken.exp * 1000 - Date.now();
+        console.log(currentTimeUntilExpiry);
         setTimeout(() => {
             this.props.refreshToken();
-            this.countdownAndRefresh();
-        }, timeUntilExpiry1);
+            setTimeout(() => {
+                this.countdownAndRefresh();
+            }, 3000)
+        }, currentTimeUntilExpiry);
     }
 
     render() {

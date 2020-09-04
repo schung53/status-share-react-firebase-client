@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const config = require('./util/config');
+/* const config = require('./util/config');
 const firebase = require('firebase');
 firebase.initializeApp(config);
-
+ */
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
