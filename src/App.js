@@ -62,7 +62,6 @@ const token = localStorage.FBIdToken;
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch({ type: SET_AUTHENTICATED });
-    axios.defaults.headers.common['Authorization'] = token;
   } else {
 
   }

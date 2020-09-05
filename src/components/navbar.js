@@ -45,6 +45,7 @@ export class Navbar extends Component {
     }
 
     handleLogout = () => {
+        localStorage.removeItem('admin');
         this.props.logoutUser();
     }
 
@@ -74,7 +75,7 @@ export class Navbar extends Component {
                             {title}
                         </Grid>
                         <Grid item>
-                            {(Boolean(parseInt(localStorage.admin)) || admin) && (<><EditAppName/><AddTeamDialog/></>)}
+                            {(Boolean(parseInt(localStorage.admin)) || admin ) && (<><EditAppName/><AddTeamDialog/></>)}
                         </Grid>
                         </Grid>
                         </Grid>

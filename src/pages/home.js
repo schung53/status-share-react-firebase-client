@@ -119,7 +119,8 @@ export class home extends Component {
         
         // If "Remember Me" not selected, logout user when token expires
         } else if (rememberMe == 0) {
-
+            store.dispatch({ type: SET_AUTHENTICATED });
+            axios.defaults.headers.common['Authorization'] = token;
             if (token) {
                 const decodedToken = jwtDecode(token);
                 const timeUntilExpiry = decodedToken.exp * 1000 - Date.now();
