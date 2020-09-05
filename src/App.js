@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 // Components
@@ -14,7 +13,6 @@ import UnAuthRoute from './util/UnAuthRoute';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { SET_AUTHENTICATED } from './redux/types';
-import { logoutUser } from './redux/actions/accountActions';
 
 // Pages
 import home from './pages/home';
@@ -66,7 +64,7 @@ firebase.auth().onAuthStateChanged((user) => {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common['Authorization'] = token;
   } else {
-    
+
   }
 });
 

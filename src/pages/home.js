@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 
 // Components
 import Navbar from '../components/navbar';
@@ -21,6 +22,7 @@ import { connect } from 'react-redux';
 import store from '../redux/store';
 import { getUsers, getTeams, setLoading } from '../redux/actions/dataActions'
 import { logoutUser, refreshToken } from '../redux/actions/accountActions';
+import { SET_AUTHENTICATED } from '../redux/types';
 
 const styles = {
     table: {
@@ -93,7 +95,8 @@ export class home extends Component {
         // If "Remember Me" is selected
         // Token refresher – ensures token is always valid while logged in
         if (rememberMe == 1) {
-
+            store.dispatch({ type: SET_AUTHENTICATED });
+            axios.defaults.headers.common['Authorization'] = token;
             if (token) {
                 const decodedToken = jwtDecode(token);
                 // If token expired, refresh token

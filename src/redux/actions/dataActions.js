@@ -122,7 +122,10 @@ export const markPresent = (userId) => (dispatch) => {
         });
         dispatch({ type: STOP_LOADING_UI });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+        console.log(err)
+        dispatch({ type: STOP_LOADING_UI });
+    });
 };
 
 // Mark a user as not present
@@ -137,7 +140,10 @@ export const markNotPresent = (userId) => (dispatch) => {
         });
         dispatch({ type: STOP_LOADING_UI });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+        console.log(err);
+        dispatch({ type: STOP_LOADING_UI });
+    });
 };
 
 // Edit a user's profile (including memo)
