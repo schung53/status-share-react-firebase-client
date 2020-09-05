@@ -14,7 +14,7 @@ import axios from 'axios';
 import firebase from 'firebase';
 
 // Login 
-export const loginUser = (userData, history, rememberMe) => (dispatch) => {
+export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
 
     axios
@@ -28,14 +28,6 @@ export const loginUser = (userData, history, rememberMe) => (dispatch) => {
                 localStorage.setItem('admin', 1);
                 dispatch({ type: ADMIN_ACCOUNT });
             }
-            // Login persistence
-            if (rememberMe === true) {
-                localStorage.setItem('rememberMe', 1);
-                dispatch({ type: REMEMBER_ME });
-            } else {
-                localStorage.setItem('rememberMe', 0);
-            };
-
             history.push('/');
         })
         .catch((err) => {

@@ -88,25 +88,30 @@ export class home extends Component {
         } */
 
         const token = localStorage.FBIdToken;
+        const rememberMe = localStorage.rememberMe;
         // Token refresher – ensures token is always valid while logged in
-        if (token) {
-            const decodedToken = jwtDecode(token);
-            // If token expired, refresh token
-            if (decodedToken.exp * 1000 < Date.now()) {
+        if (rememberMe) {
+
+            if (token) {
+                const decodedToken = jwtDecode(token);
+                // If token expired, refresh token
+                if (decodedToken.exp * 1000 < Date.now()) {
+                    store.dispatch(refreshToken());
+                    setTimeout(() => {
+                        this.countdownAndRefresh();
+                    }, 4000)
+                // If token valid, set timer until expiry and then refresh token
+                } else {
+                    this.countdownAndRefresh();
+                };
+            // If token doesn't exist for some reason, retrieves new token
+            } else {
                 store.dispatch(refreshToken());
                 setTimeout(() => {
                     this.countdownAndRefresh();
-                }, 3000)
-            // If token valid, set timer until expiry and then refresh token
-            } else {
-                this.countdownAndRefresh();
+                }, 4000)
             };
-        // If token doesn't exist for some reason, retrieves new token
-        } else {
-            store.dispatch(refreshToken());
-            setTimeout(() => {
-                this.countdownAndRefresh();
-            }, 3000)
+
         };
 
         this.props.getTeams();
@@ -121,7 +126,7 @@ export class home extends Component {
             this.props.refreshToken();
             setTimeout(() => {
                 this.countdownAndRefresh();
-            }, 3000)
+            }, 4000)
         }, currentTimeUntilExpiry);
     }
 

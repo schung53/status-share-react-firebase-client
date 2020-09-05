@@ -14,7 +14,7 @@ import UnAuthRoute from './util/UnAuthRoute';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { SET_AUTHENTICATED } from './redux/types';
-import { logoutUser, refreshToken } from './redux/actions/accountActions';
+import { logoutUser } from './redux/actions/accountActions';
 
 // Pages
 import home from './pages/home';

@@ -21,6 +21,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 // Redux stuff
 import { connect } from 'react-redux';
 import { loginUser, getAppName, persistentLogin } from '../redux/actions/accountActions';
+import store from '../redux/store';
+import { REMEMBER_ME } from '../redux/types';
 
 const styles = {
     form: {
@@ -80,8 +82,20 @@ export class login extends Component {
             email: this.state.email.trim().toLowerCase().concat("@bccancer.bc.ca"),
             password: this.state.password
         };
-        //this.props.loginUser(userData, this.props.history, this.state.rememberMe);
-        this.props.persistentLogin(userData, this.props.history)
+
+        if (this.state.rememberMe) {
+            this.props.persistentLogin(userData, this.props.history);
+        } else {
+            this.props.loginUser(userData, this.props.history);
+        };
+
+        // Login persistence
+        if (this.state.rememberMe) {
+            localStorage.setItem('rememberMe', 1);
+            store.dispatch({ type: REMEMBER_ME });
+        } else {
+            localStorage.setItem('rememberMe', 0);
+        };
     };
 
     handleChange = (event) => {
