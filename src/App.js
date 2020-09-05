@@ -66,8 +66,7 @@ firebase.auth().onAuthStateChanged((user) => {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common['Authorization'] = token;
   } else {
-    store.dispatch(logoutUser());
-    window.location.href = '/login';
+    
   }
 });
 

@@ -83,19 +83,16 @@ export class login extends Component {
             password: this.state.password
         };
 
+        // Login persistence or not
         if (this.state.rememberMe) {
             this.props.persistentLogin(userData, this.props.history);
-        } else {
-            this.props.loginUser(userData, this.props.history);
-        };
-
-        // Login persistence
-        if (this.state.rememberMe) {
             localStorage.setItem('rememberMe', 1);
             store.dispatch({ type: REMEMBER_ME });
         } else {
+            this.props.loginUser(userData, this.props.history);
             localStorage.setItem('rememberMe', 0);
         };
+
     };
 
     handleChange = (event) => {

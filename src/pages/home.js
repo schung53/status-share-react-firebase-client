@@ -89,8 +89,10 @@ export class home extends Component {
 
         const token = localStorage.FBIdToken;
         const rememberMe = localStorage.rememberMe;
+
+        // If "Remember Me" is selected
         // Token refresher – ensures token is always valid while logged in
-        if (rememberMe) {
+        if (rememberMe == 1) {
 
             if (token) {
                 const decodedToken = jwtDecode(token);
@@ -111,7 +113,28 @@ export class home extends Component {
                     this.countdownAndRefresh();
                 }, 4000)
             };
+        
+        // If "Remember Me" not selected, logout user when token expires
+        } else if (rememberMe == 0) {
 
+            if (token) {
+                const decodedToken = jwtDecode(token);
+                const timeUntilExpiry = decodedToken.exp * 1000 - Date.now();
+                if (timeUntilExpiry <= 0) {
+                    store.dispatch(logoutUser());
+                    window.location.href = '/login';
+                } else {
+                    setTimeout(() => { 
+                        store.dispatch(logoutUser());
+                        window.location.href = '/login';
+                    }, timeUntilExpiry);
+                };
+            // If token doesn't exist for some reason, logs user out
+            } else {
+                /* store.dispatch(logoutUser());
+                window.location.href = '/login'; */
+            };
+            
         };
 
         this.props.getTeams();

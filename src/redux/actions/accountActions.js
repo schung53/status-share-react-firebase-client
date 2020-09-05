@@ -12,6 +12,8 @@ import {
     DETRUNCATE_APP_NAME } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
+const { validateLoginData } = require("../../util/validators");
+
 
 // Login 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -38,8 +40,15 @@ export const loginUser = (userData, history) => (dispatch) => {
         });
 };
 
+// Login when "Remember Me" is selected
 export const persistentLogin = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
+
+    const { valid, errors } = validateLoginData(userData);
+    if (!valid) dispatch({
+        type: SET_ERRORS,
+        payload: errors
+    })
 
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(() => {
@@ -62,9 +71,8 @@ export const persistentLogin = (userData, history) => (dispatch) => {
     .catch((err) => {
         dispatch({
             type: SET_ERRORS,
-            payload: err.response.data
+            payload: {general: "Wrong credentials, please try again"}
         });
-        console.error(err);
     });
 };
 
@@ -82,10 +90,16 @@ export const refreshToken = () => (dispatch) => {
 
 // Logout
 export const logoutUser = () => (dispatch) => {
-    localStorage.removeItem('FBIdToken');
-    localStorage.removeItem('admin');
-    localStorage.removeItem('rememberMe');
-    delete axios.defaults.headers.common['Authorization'];
+    firebase.auth().signOut()
+    .then(() => {
+        localStorage.removeItem('FBIdToken');
+        localStorage.removeItem('admin');
+        localStorage.removeItem('rememberMe');
+        delete axios.defaults.headers.common['Authorization'];
+    })
+    .catch((err) => {
+        console.log(err)
+    })
     dispatch({ type: SET_UNAUTHENTICATED });
 };
 
