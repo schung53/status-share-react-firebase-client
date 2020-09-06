@@ -94,11 +94,12 @@ export const refreshToken = () => (dispatch) => {
                 setAuthorizationHeader(token);
                 dispatch({ type: SET_AUTHENTICATED });
             })
+            .catch((err) => {
+                console.log(err);
+            })
         }
     })
-    .catch((err) => {
-        console.log(err);
-    })
+    
 }
 
 // Logout
