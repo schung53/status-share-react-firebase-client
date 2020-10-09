@@ -71,11 +71,15 @@ export class PresenceButton extends Component {
         };
 
         const uncheckButton = () => {
-            this.props.markNotPresent(userId);
+            if (!Boolean(parseInt(localStorage.viewOnly))) {
+                this.props.markNotPresent(userId);
+            }
         };
 
         const checkButton = () => {
-            this.props.markPresent(userId);
+            if (!Boolean(parseInt(localStorage.viewOnly))) {
+                this.props.markPresent(userId);
+            }
         };
        
         const presenceButton = isPresent() ? (
@@ -87,12 +91,6 @@ export class PresenceButton extends Component {
                 <RadioButtonUncheckedIcon color="secondary"/>
             </IconButton>
         )
-
-        /* const loadingDynamicButton = loading ? (
-            <IconButton size="small">
-                <CircularProgress size={20} />
-            </IconButton>
-        ) : (presenceButton); */
 
         return (
             presenceButton
