@@ -95,23 +95,6 @@ export class TeamTable extends Component {
                 </Toolbar>
                 <TableContainer>
                 <Table size="small">
-                {/* <TableHead>
-                    <TableRow>
-                            <TableCell>
-                                <Typography component="div" style={this.state.tableColor}>
-                                    <Box fontWeight="fontWeightBold" m={1} color={teamsFields.color}>
-                                        {teamsFields.team} 
-                                    </Box>
-                                </Typography>
-                            </TableCell>
-                            <TableCell></TableCell>
-                            <TableCell align="right">
-                                {Boolean(parseInt(localStorage.admin)) && (<>
-                                <EditTeam teamsFields={teamsFields} teamId={teamsFields.teamId} teamName={teamsFields.team}/>
-                                <AddUserDialog teamName={teamsFields.team}/></>)}
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>*/}
                     <TableHead> 
                         <TableRow>
                             <TableCell>Name</TableCell>
