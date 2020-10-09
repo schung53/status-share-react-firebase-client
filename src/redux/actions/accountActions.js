@@ -30,6 +30,10 @@ export const loginUser = (userData, history) => (dispatch) => {
                 localStorage.setItem('admin', 1);
                 dispatch({ type: ADMIN_ACCOUNT });
             }
+            // Set view-only email here
+            if (userData.email === 'radtherapy@bccancer.bc.ca') {
+                localStorage.setItem('viewOnly', 1);
+            }
             history.push('/');
         })
         .catch((err) => {
@@ -64,6 +68,9 @@ export const persistentLogin = (userData, history) => (dispatch) => {
         if (userData.email === 'don.ta@bccancer.bc.ca') {
             localStorage.setItem('admin', 1);
             dispatch({ type: ADMIN_ACCOUNT });
+        }
+        if (userData.email === 'radtherapy@bccancer.bc.ca') {
+            localStorage.setItem('viewOnly', 1);
         }
         history.push('/');
         return token;
@@ -100,6 +107,7 @@ export const logoutUser = () => (dispatch) => {
         localStorage.removeItem('FBIdToken');
         localStorage.removeItem('admin');
         localStorage.removeItem('rememberMe');
+        localStorage.removeItem('viewOnly');
         delete axios.defaults.headers.common['Authorization'];
     })
     .catch((err) => {

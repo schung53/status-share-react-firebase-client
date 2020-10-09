@@ -67,6 +67,7 @@ export class login extends Component {
 
     componentDidMount(){
         localStorage.setItem('admin', 0);
+        localStorage.setItem('viewOnly', 0);
         this.props.getAppName();
     }
 
