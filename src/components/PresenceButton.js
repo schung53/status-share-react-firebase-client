@@ -20,45 +20,6 @@ const styles = {
 
 export class PresenceButton extends Component {
 
-    /* state = {
-        present: false,
-        loading: false
-    }
-
-    componentDidMount(){
-        this.setState({
-            present: this.props.user.present
-        })
-    }
-
-    isPresent = () => {
-        if (this.props.user.present) {
-            return true;
-        } else {
-            return false;
-        };
-    };
-
-    uncheckButton = () => {
-        this.setState({
-            loading: true
-        });
-        this.props.markNotPresent(this.props.user.userId);
-        this.setState({
-            loading: false
-        });
-    };
-
-    checkButton = () => {
-        this.setState({
-            loading: true
-        });
-        this.props.markPresent(this.props.user.userId);
-        this.setState({
-            loading: false
-        });
-    }; */
-
     render() {
         const { classes, user: { userId, present }, loading } = this.props;
 
