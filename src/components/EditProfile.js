@@ -138,18 +138,6 @@ export class EditProfile extends Component {
                             className={classes.shortText}
                         />
                         </Grid>
-                        {/* <Grid item>
-                        <TextField
-                            id="team"
-                            name="team"
-                            type="team"
-                            label="Team"
-                            placeholder={team}
-                            value={this.state.team}
-                            onChange={this.handleChange}
-                            className={classes.otherText}
-                        />
-                        </Grid> */}
                         </Grid>
                         <TextField
                             id="memo"

@@ -124,7 +124,7 @@ export class TeamTable extends Component {
                                             {row.status}
                                         </Grid>
                                         <Grid item >
-                                            <EditStatus userId={row.userId}/>
+                                            {!Boolean(parseInt(localStorage.viewOnly)) && (<EditStatus userId={row.userId}/>)}
                                         </Grid>
                                     </Grid>
                                 </TableCell>

@@ -98,9 +98,10 @@ export class TeamCTable extends Component {
                                             Loading...
                                         </Grid>
                                         <Grid item >
-                                            <IconButton size="small">
-                                                <EditIcon/>
-                                            </IconButton>
+                                            {!Boolean(parseInt(localStorage.viewOnly)) && (
+                                                <IconButton size="small">
+                                                    <EditIcon/>
+                                                </IconButton>)}
                                         </Grid>
                                     </Grid>
                                 </TableCell>

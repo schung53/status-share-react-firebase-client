@@ -154,7 +154,7 @@ export class ProfileDialog extends Component {
                 <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
                     <DeleteIcon className={classes.buttonIcon}/>delete
                 </Button>)}
-                <EditProfile/>
+            {!Boolean(parseInt(localStorage.viewOnly)) && (<EditProfile/>)}
         </DialogActions>
         </div>
         )
