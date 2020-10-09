@@ -78,15 +78,6 @@ export const persistentLogin = (userData, history) => (dispatch) => {
 
 // Retrieves new token if expired or non-existent
 export const refreshToken = () => (dispatch) => {
-    /* firebase.auth().currentUser.getIdToken(true)
-    .then((token) => {
-        setAuthorizationHeader(token);
-        dispatch({ type: SET_AUTHENTICATED });
-    })
-    .catch((err) => {
-        console.log(err);
-    }) */
-
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             user.getIdToken()
