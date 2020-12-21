@@ -39,12 +39,12 @@ export default function(state = initialState, action) {
                 loading: false
             };
         case MARK_PRESENT:
-            let index = state.users.findIndex(
-                (user) => user.userId === action.payload.userId
+            let index_1 = state.users.findIndex(
+                (user) => user.userId === action.payload
             );
-            state.users[index].present = action.payload.present;
-            if (state.user.userId === action.payload.userId) {
-                state.user.present = action.payload.present;
+            state.users[index_1].present = true;
+            if (state.user.userId === action.payload) {
+                state.user.present = true;
             };
             return {
                 ...state,
@@ -53,25 +53,25 @@ export default function(state = initialState, action) {
                 ]
             };
         case MARK_NOT_PRESENT:
-            let index1 = state.users.findIndex(
-                (user) => user.userId === action.payload.userId
+            let index_2 = state.users.findIndex(
+                (user) => user.userId === action.payload
             );
-            state.users[index1].present = action.payload.present;
+            state.users[index_2].present = false;
             if (state.user.userId === action.payload.userId) {
-                state.user.present = action.payload.present;
+                state.user.present = false;
             };
             return {
                 ...state,
                 users: [
                     ...state.users
                 ]
-            };
+            }; 
         case UPDATE_STATUS:
-            let index2 = state.users.findIndex(
+            let index_3 = state.users.findIndex(
                 (user) => user.userId === action.payload.userId
             );
-            state.users[index2].status = action.payload.status;
-            state.users[index2].statusTime = action.payload.statusTime;
+            state.users[index_3].status = action.payload.status;
+            state.users[index_3].statusTime = action.payload.statusTime;
             if (state.user.userId === action.payload.userId) {
                 state.user.status = action.payload.status;
                 state.user.statusTime = action.payload.statusTime;
@@ -80,14 +80,14 @@ export default function(state = initialState, action) {
                 ...state
             };
         case EDIT_USER:
-            let index3 = state.users.findIndex(
+            let index_4 = state.users.findIndex(
                 (user) => user.userId === action.payload.userId
             );
-            state.users[index3].name = action.payload.name;
-            state.users[index3].email = action.payload.email;
-            state.users[index3].phone = action.payload.phone;
-            state.users[index3].team = action.payload.team;
-            state.users[index3].memo = action.payload.memo;
+            state.users[index_4].name = action.payload.name;
+            state.users[index_4].email = action.payload.email;
+            state.users[index_4].phone = action.payload.phone;
+            state.users[index_4].team = action.payload.team;
+            state.users[index_4].memo = action.payload.memo;
             if (state.user.userId === action.payload.userId) {
                 state.user.name = action.payload.name;
                 state.user.email = action.payload.email;
@@ -101,12 +101,12 @@ export default function(state = initialState, action) {
                 user: state.user
             };
         case DELETE_USER:
-            let index4 = state.users.findIndex(
+            let index_5 = state.users.findIndex(
                 (user) => user.userId === action.payload
             )
             var afterDelete = [
-                state.users.slice(0, index4),
-                state.users.slice(index4+1)
+                state.users.slice(0, index_5),
+                state.users.slice(index_5+1)
             ];
             return {
                 ...state,
@@ -135,12 +135,12 @@ export default function(state = initialState, action) {
                 ]
             };
         case UPDATE_TEAM:
-            let index5 = state.teams.findIndex(
+            let index_6 = state.teams.findIndex(
                 (team) => team.teamId === action.payload.teamId
             );
-            state.teams[index5].team = action.payload.team;
-            state.teams[index5].priority = action.payload.priority;
-            state.teams[index5].color = action.payload.color;
+            state.teams[index_6].team = action.payload.team;
+            state.teams[index_6].priority = action.payload.priority;
+            state.teams[index_6].color = action.payload.color;
             return {
                 ...state,
                 teams: [
@@ -151,12 +151,12 @@ export default function(state = initialState, action) {
                 ]
             };
         case DELETE_TEAM:
-            let index6 = state.teams.findIndex(
+            let index_7 = state.teams.findIndex(
                 (team) => team.teamId === action.payload
             );
             var afterDelete1 = [
-                state.teams.slice(0, index6),
-                state.teams.slice(index6+1)
+                state.teams.slice(0, index_7),
+                state.teams.slice(index_7+1)
             ];
             return {
                 ...state,

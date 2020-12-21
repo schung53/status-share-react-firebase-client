@@ -23,14 +23,6 @@ export class PresenceButton extends Component {
     render() {
         const { classes, user: { userId, present }, loading } = this.props;
 
-        const isPresent = () => {
-            if (present) {
-                return true;
-            } else {
-                return false;
-            };
-        };
-
         const uncheckButton = () => {
             if (!Boolean(parseInt(localStorage.viewOnly))) {
                 this.props.markNotPresent(userId);
@@ -42,8 +34,8 @@ export class PresenceButton extends Component {
                 this.props.markPresent(userId);
             }
         };
-       
-        const presenceButton = isPresent() ? (
+
+        const presenceButton = present ? (
             <IconButton size="small" onClick={uncheckButton}>
                 <CheckCircleIcon color="secondary"/>
             </IconButton>

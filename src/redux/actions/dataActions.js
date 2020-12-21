@@ -112,37 +112,41 @@ export const deleteStatus = (userId) => (dispatch) => {
 
 // Mark a user as present
 export const markPresent = (userId) => (dispatch) => {
-    dispatch({ type: LOADING_UI });
+    dispatch({
+        type: MARK_PRESENT,
+        payload: userId
+    });
+
     axios
     .post(`/user/presence/${userId}`, { present: true })
-    .then((res) => {
-        dispatch({
-            type: MARK_PRESENT,
-            payload: res.data
-        });
-        dispatch({ type: STOP_LOADING_UI });
-    })
+    .then((res) => {})
     .catch((err) => {
+        // Revert presence change if error
+        dispatch({
+            type: MARK_NOT_PRESENT,
+            payload: userId
+        });
         console.log(err)
-        dispatch({ type: STOP_LOADING_UI });
     });
 };
 
 // Mark a user as not present
 export const markNotPresent = (userId) => (dispatch) => {
-    dispatch({ type: LOADING_UI });
+    dispatch({
+        type: MARK_NOT_PRESENT,
+        payload: userId
+    });
+
     axios
     .post(`/user/presence/${userId}`, { present: false })
-    .then((res) => {
-        dispatch({
-            type: MARK_NOT_PRESENT,
-            payload: res.data
-        });
-        dispatch({ type: STOP_LOADING_UI });
-    })
+    .then((res) => {})
     .catch((err) => {
+        // Revert presence change if error
+        dispatch({
+            type: MARK_PRESENT,
+            payload: userId
+        });
         console.log(err);
-        dispatch({ type: STOP_LOADING_UI });
     });
 };
 
