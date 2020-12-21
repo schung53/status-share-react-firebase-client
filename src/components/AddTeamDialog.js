@@ -129,19 +129,8 @@ export class AddTeamDialog extends Component {
                             label="Priority (e.g. 1)"
                             value={this.state.priority}
                             onChange={this.handleChange}
-                            /* className={classes.otherText} */
                             fullWidth
                         />
-                        {/* <TextField
-                            id="color"
-                            name="color"
-                            type="color"
-                            label="Color"
-                            value={this.state.color}
-                            onChange={this.handleChange}
-                            className={classes.otherText}
-                            fullWidth
-                        /> */}
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleSubmit} variant="outlined" color="secondary" type="submit">

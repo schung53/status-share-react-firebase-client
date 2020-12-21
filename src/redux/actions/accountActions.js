@@ -7,7 +7,6 @@ import {
     ADMIN_ACCOUNT,
     SET_APP_NAME,
     SET_DEFAULT_NAME,
-    REMEMBER_ME,
     TRUNCATE_APP_NAME,
     DETRUNCATE_APP_NAME } from '../types';
 import axios from 'axios';
@@ -160,6 +159,5 @@ export const detruncateAppName = () => (dispatch) => {
 const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
             localStorage.setItem('FBIdToken', FBIdToken);
-            //localStorage.setItem('admin', 0);
             axios.defaults.headers.common['Authorization'] = FBIdToken;
 };

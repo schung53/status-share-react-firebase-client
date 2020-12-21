@@ -154,7 +154,6 @@ export default function(state = initialState, action) {
             let index6 = state.teams.findIndex(
                 (team) => team.teamId === action.payload
             );
-            //state.teams.splice(index6, 1);
             var afterDelete1 = [
                 state.teams.slice(0, index6),
                 state.teams.slice(index6+1)

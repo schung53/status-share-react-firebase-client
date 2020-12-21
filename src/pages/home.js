@@ -51,44 +51,6 @@ export class home extends Component {
     }
 
     componentDidMount(){
-        //have to move these down
-        //add loading ui action
-        /* this.props.getTeams();
-        this.props.getUsers();
-
-        const decodedToken = jwtDecode(localStorage.FBIdToken);
-        const timeUntilExpiry = decodedToken.exp * 1000 - Date.now();
-        console.log(timeUntilExpiry);
-        setTimeout(() => { 
-            store.dispatch(logoutUser());
-            window.location.href = '/login';
-        }, timeUntilExpiry); */
-
-        /* this.props.setLoading();
-
-        const decodedToken = jwtDecode(localStorage.FBIdToken);
-        const timeUntilExpiry = decodedToken.exp * 1000 - Date.now();
-        const rememberMe = localStorage.rememberMe;
-
-        if (rememberMe == 0) {
-            if (timeUntilExpiry <= 0) {
-                store.dispatch(logoutUser());
-                window.location.href = '/login';
-            } else {
-                setTimeout(() => { 
-                    store.dispatch(logoutUser());
-                    window.location.href = '/login';
-                }, timeUntilExpiry);
-            }
-        } else {
-            if (timeUntilExpiry <= 0) {
-                this.props.refreshToken();
-                this.countdownAndRefresh();
-            } else {
-                this.countdownAndRefresh();
-            }
-        } */
-
         const token = localStorage.FBIdToken;
         const rememberMe = localStorage.rememberMe;
 

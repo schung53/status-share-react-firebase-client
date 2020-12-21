@@ -16,8 +16,6 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SendIcon from '@material-ui/icons/Send';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { CircularProgress } from '@material-ui/core';
 
 // Redux stuff
 import { connect } from 'react-redux';
