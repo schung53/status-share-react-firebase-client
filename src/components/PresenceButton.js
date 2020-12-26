@@ -9,7 +9,7 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { markPresent, markNotPresent } from '../redux/actions/dataActions';
+import { markPresent, markNotPresent } from '../redux/actions/usersActions';
 
 const styles = {
     checkbox: {
@@ -58,7 +58,7 @@ PresenceButton.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    users: state.data.users,
+    users: state.users.users,
     loading: state.UI.loading
 });
 

@@ -18,16 +18,19 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const LOADING_TEAM = 'LOADING_TEAM';
 export const STOP_LOADING_TEAM = 'STOP_LOADING_TEAM'
 
-// Data reducer types
+// Users reducer types
+export const LOADING_USERS_DATA = 'LOADING_USERS_DATA';
 export const SET_USER = 'SET_USER';
 export const SET_USERS = 'SET_USERS';
-export const LOADING_DATA = 'LOADING_DATA';
 export const MARK_PRESENT = 'MARK_PRESENT';
 export const MARK_NOT_PRESENT = 'MARK_NOT_PRESENT';
 export const UPDATE_STATUS = 'UPDATE_STATUS';
 export const EDIT_USER = 'EDIT_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const ADD_USER = 'ADD_USER';
+
+// Teams reducer types
+export const LOADING_TEAMS_DATA = 'LOADING_TEAMS_DATA';
 export const SET_TEAMS = 'SET_TEAMS';
 export const ADD_TEAM = 'ADD_TEAM';
 export const UPDATE_TEAM = 'UPDATE_TEAM';

@@ -26,7 +26,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser, deleteUser, clearErrors } from '../redux/actions/dataActions'
+import { getUser, deleteUser, clearErrors } from '../redux/actions/usersActions'
 
 const styles = {
     spinnerDiv: {
@@ -174,7 +174,7 @@ export class ProfileDialog extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.data.user,
+    user: state.users.user,
     UI: state.UI
 });
 

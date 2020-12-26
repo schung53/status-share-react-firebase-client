@@ -1,31 +1,26 @@
 import { 
     SET_USER, 
     SET_USERS, 
-    LOADING_DATA, 
+    LOADING_USERS_DATA, 
     MARK_PRESENT, 
     MARK_NOT_PRESENT, 
     UPDATE_STATUS,
     EDIT_USER,
     DELETE_USER,
-    ADD_USER,
-    SET_TEAMS,
-    ADD_TEAM,
-    UPDATE_TEAM,
-    DELETE_TEAM } from '../types';
+    ADD_USER } from '../types';
 
 const initialState = {
     users: [],
     user: {},
-    loading: false,
-    teams: []
+    loadingUsersData: false
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case LOADING_DATA:
+        case LOADING_USERS_DATA:
             return {
                 ...state,
-                loading: true
+                loadingUsersData: true
             };
         case SET_USER:
             return {
@@ -36,7 +31,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 users: action.payload,
-                loading: false
+                loadingUsersData: false
             };
         case MARK_PRESENT:
             let index_1 = state.users.findIndex(
@@ -121,50 +116,7 @@ export default function(state = initialState, action) {
                     ...state.users
                 ]
             };
-        case SET_TEAMS:
-            return {
-                ...state,
-                teams: action.payload
-            };
-        case ADD_TEAM:
-            return {
-                ...state,
-                teams: [
-                    action.payload,
-                    ...state.teams
-                ]
-            };
-        case UPDATE_TEAM:
-            let index_6 = state.teams.findIndex(
-                (team) => team.teamId === action.payload.teamId
-            );
-            state.teams[index_6].team = action.payload.team;
-            state.teams[index_6].priority = action.payload.priority;
-            state.teams[index_6].color = action.payload.color;
-            return {
-                ...state,
-                teams: [
-                    ...state.teams
-                ],
-                users: [
-                    ...state.users
-                ]
-            };
-        case DELETE_TEAM:
-            let index_7 = state.teams.findIndex(
-                (team) => team.teamId === action.payload
-            );
-            var afterDelete1 = [
-                state.teams.slice(0, index_7),
-                state.teams.slice(index_7+1)
-            ];
-            return {
-                ...state,
-                teams: [
-                    ...state.teams
-                ]
-            };
         default:
             return state;
     }
-}
+};

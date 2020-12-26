@@ -140,7 +140,7 @@ export class TeamTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    users: state.data.users
+    users: state.users.users
 })
 
 TeamTable.propTypes = {

@@ -2,8 +2,9 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import accountReducer from './reducers/accountReducer';
-import dataReducer from './reducers/dataReducer';
+import teamsReducer from './reducers/teamsReducer';
 import uiReducer from './reducers/uiReducer';
+import usersReducer from './reducers/usersReducer';
 
 const initialState = {};
 
@@ -11,7 +12,8 @@ const middleware = [thunk];
 
 const reducers = combineReducers({
     account: accountReducer,
-    data: dataReducer,
+    teams: teamsReducer,
+    users: usersReducer,
     UI: uiReducer
 });
 

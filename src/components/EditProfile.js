@@ -17,7 +17,7 @@ import TextField from '@material-ui/core/TextField';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { editProfile } from '../redux/actions/dataActions';
+import { editProfile } from '../redux/actions/usersActions';
 
 const styles = {
     closeButton: {
@@ -191,7 +191,7 @@ export class EditProfile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.data.user
+    user: state.users.user
 });
 
 const mapActionsToProps = {

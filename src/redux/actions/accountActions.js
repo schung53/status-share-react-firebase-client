@@ -153,7 +153,7 @@ export const truncateAppName = () => (dispatch) => {
 // Show full app name on navbar
 export const detruncateAppName = () => (dispatch) => {
     dispatch({ type: DETRUNCATE_APP_NAME })
-}
+};
 
 // Set token in local storage
 const setAuthorizationHeader = (token) => {

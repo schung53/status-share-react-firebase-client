@@ -20,7 +20,8 @@ import { CircularProgress } from '@material-ui/core';
 // Redux stuff
 import { connect } from 'react-redux';
 import store from '../redux/store';
-import { getUsers, getTeams, setLoading } from '../redux/actions/dataActions'
+import { getUsers, setLoading } from '../redux/actions/usersActions';
+import { getTeams } from '../redux/actions/teamsActions';
 import { logoutUser, refreshToken } from '../redux/actions/accountActions';
 import { SET_AUTHENTICATED } from '../redux/types';
 
@@ -120,7 +121,7 @@ export class home extends Component {
     }
 
     render() {
-        const { users, teams, loading, appName, loadingPresence, loadingTeam } = this.props;
+        const { users, teams, loadingUsersData, loadingTeamsData, appName, loadingTeam } = this.props;
         const { classes } = this.props;
 
         const teamsObj = {};
@@ -150,18 +151,10 @@ export class home extends Component {
                         </Grid>
                     </DialogTitle>
                 </Dialog>
-                <Dialog open={loadingPresence}>
-                    <DialogTitle>
-                        <Grid className={classes.dialog}>
-                        <Typography variant="overline" className={classes.spinnertext}>Updating presence...</Typography>
-                        <CircularProgress size={20} className={classes.spinnerdiv} /> 
-                        </Grid>
-                    </DialogTitle>
-                </Dialog>
                 <Grid container justify="center">
                     <UpdateBar/> 
                     <Navbar/>
-                    {loading ? 
+                    {loadingUsersData || loadingTeamsData ? 
                     <>
                     <Grid item className={classes.table}>
                         <LoadingTable/>
@@ -207,14 +200,16 @@ home.propTypes = {
     getUsers: PropTypes.func.isRequired,
     getTeams: PropTypes.func.isRequired,
     users: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
+    loadingUsersData: PropTypes.bool.isRequired,
+    loadingTeamsData: PropTypes.bool.isRequired,
     teams: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    users: state.data.users,
-    teams: state.data.teams,
-    loading: state.data.loading,
+    users: state.users.users,
+    teams: state.teams.teams,
+    loadingUsersData: state.users.loadingUsersData,
+    loadingTeamsData: state.teams.loadingTeamsData,
     appName: state.account.appName,
     loadingPresence: state.UI.loading,
     loadingTeam: state.UI.loadingTeam

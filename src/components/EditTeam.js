@@ -19,7 +19,7 @@ import Grid from '@material-ui/core/Grid';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { updateTeam, deleteTeam } from '../redux/actions/dataActions';
+import { updateTeam, deleteTeam } from '../redux/actions/teamsActions';
 
 const styles = {
     closeButton: {

@@ -18,7 +18,7 @@ import SendIcon from '@material-ui/icons/Send';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser, updateStatus, deleteStatus } from '../redux/actions/dataActions';
+import { getUser, updateStatus, deleteStatus } from '../redux/actions/usersActions';
 
 const styles = {
     spinnerDiv: {
@@ -170,8 +170,8 @@ export class EditStatus extends Component {
 
 const mapStateToProps = (state) => ({
     UI: state.UI,
-    user: state.data.user,
-    users: state.data.users
+    user: state.users.user,
+    users: state.users.users
 });
 
 const mapActionsToProps = {
