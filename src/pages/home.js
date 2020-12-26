@@ -20,7 +20,7 @@ import { CircularProgress } from '@material-ui/core';
 // Redux stuff
 import { connect } from 'react-redux';
 import store from '../redux/store';
-import { getUsers, setLoading } from '../redux/actions/usersActions';
+import { getUsers } from '../redux/actions/usersActions';
 import { getTeams } from '../redux/actions/teamsActions';
 import { logoutUser, refreshToken } from '../redux/actions/accountActions';
 import { SET_AUTHENTICATED } from '../redux/types';
@@ -96,7 +96,6 @@ export class home extends Component {
                         window.location.href = '/login';
                     }, timeUntilExpiry);
                 };
-            // If token doesn't exist for some reason, logs user out
             } else {
                 /* store.dispatch(logoutUser());
                 window.location.href = '/login'; */
@@ -211,14 +210,12 @@ const mapStateToProps = (state) => ({
     loadingUsersData: state.users.loadingUsersData,
     loadingTeamsData: state.teams.loadingTeamsData,
     appName: state.account.appName,
-    loadingPresence: state.UI.loading,
     loadingTeam: state.UI.loadingTeam
 });
 
 const mapActionsToProps = {
     getUsers,
     getTeams,
-    setLoading,
     refreshToken
 }
 

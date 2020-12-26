@@ -96,8 +96,7 @@ export const refreshToken = () => (dispatch) => {
             })
         }
     })
-    
-}
+};
 
 // Logout
 export const logoutUser = () => (dispatch) => {

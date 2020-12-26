@@ -171,17 +171,16 @@ export class EditTeam extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.UI.loading
 });
 
 const mapActionsToProps = {
     updateTeam,
     deleteTeam
-}
+};
 
 EditTeam.propTypes = {
     teamName: PropTypes.string.isRequired,
     teamsFields: PropTypes.object.isRequired
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(EditTeam));
