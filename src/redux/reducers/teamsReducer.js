@@ -38,6 +38,9 @@ export default function(state = initialState, action) {
             state.teams[index_1].team = action.payload.team;
             state.teams[index_1].priority = action.payload.priority;
             state.teams[index_1].color = action.payload.color;
+            state.teams[index_1].col1 = action.payload.col1;
+            state.teams[index_1].col2 = action.payload.col2;
+            state.teams[index_1].col3 = action.payload.col3;
             return {
                 ...state,
                 teams: [
