@@ -97,9 +97,9 @@ export class TeamTable extends Component {
                 <Table size="small">
                     <TableHead> 
                         <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Present</TableCell>
-                            <TableCell>Status</TableCell>
+                            <TableCell><Box>{teamsFields.col1}</Box></TableCell>
+                            <TableCell><Box>{teamsFields.col2}</Box></TableCell>
+                            <TableCell><Box>{teamsFields.col3}</Box></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

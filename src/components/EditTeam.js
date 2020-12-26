@@ -38,7 +38,7 @@ const styles = {
         margin: '10px auto 0px 10px'
     },
     dialogContent: {
-        height: 250
+        height: 400
     },
     textField: {
         margin: '10px 20px auto 20px'
@@ -54,7 +54,10 @@ export class EditTeam extends Component {
         open: false,
         team: "",
         priority: "",
-        color: ""
+        color: "",
+        col1: "Name",
+        col2: "Present",
+        col3: "Status"
     };
     
     handleOpen = () => {
@@ -62,7 +65,10 @@ export class EditTeam extends Component {
             open: true,
             team: this.props.teamsFields.team,
             priority: this.props.teamsFields.priority.toString(10),
-            color: this.props.teamsFields.color
+            color: this.props.teamsFields.color,
+            col1: this.props.teamsFields.col1,
+            col2: this.props.teamsFields.col2,
+            col3: this.props.teamsFields.col3
         });
     };
 
@@ -76,7 +82,10 @@ export class EditTeam extends Component {
             prevTeam: this.props.teamsFields.team,
             team: this.state.team,
             priority: parseInt( this.state.priority ),
-            color: this.state.color
+            color: this.state.color,
+            col1: this.state.col1,
+            col2: this.state.col2,
+            col3: this.state.col3
         };
         this.props.updateTeam(this.props.teamId, teamData);
         this.handleClose();
@@ -137,6 +146,42 @@ export class EditTeam extends Component {
                     label="Priority"
                     placeholder={teamsFields.priority.toString(10)}
                     value={this.state.priority}
+                    onChange={this.handleChange}
+                    className={classes.textField}
+                    />
+                </Grid>
+                <Grid item>
+                <TextField 
+                    id="col1"
+                    name="col1"
+                    type="col1"
+                    label="Col 1 Header"
+                    placeholder={teamsFields.col1}
+                    value={this.state.col1}
+                    onChange={this.handleChange}
+                    className={classes.textField}
+                    />
+                </Grid>
+                <Grid item>
+                <TextField 
+                    id="col2"
+                    name="col2"
+                    type="col2"
+                    label="Col 2 Header"
+                    placeholder={teamsFields.col2}
+                    value={this.state.col2}
+                    onChange={this.handleChange}
+                    className={classes.textField}
+                    />
+                </Grid>
+                <Grid item>
+                <TextField 
+                    id="col3"
+                    name="col3"
+                    type="col3"
+                    label="Col 3 Header"
+                    placeholder={teamsFields.col3}
+                    value={this.state.col3}
                     onChange={this.handleChange}
                     className={classes.textField}
                     />

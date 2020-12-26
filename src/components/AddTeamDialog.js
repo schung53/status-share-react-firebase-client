@@ -31,7 +31,7 @@ const styles = {
     },
     dialogContent: {
         textAlign: 'center',
-        height: 250
+        height: 400
     },
     memo: {
         marginTop: 30
@@ -49,7 +49,10 @@ export class AddTeamDialog extends Component {
         open: false,
         team: "",
         priority: "",
-        color: "#1a237e"
+        color: "#1a237e",
+        col1: "Name",
+        col2: "Present",
+        col3: "Status"
     }
     
     handleOpen = () => {
@@ -65,7 +68,10 @@ export class AddTeamDialog extends Component {
         const newTeamData = {
             team: this.state.team.trim(),
             priority: parseInt( this.state.priority.trim() ),
-            color: this.state.color.trim()
+            color: this.state.color.trim(),
+            col1: this.state.col1.trim(),
+            col2: this.state.col2.trim(),
+            col3: this.state.col3.trim()
         };
         this.props.addTeam(newTeamData);
         this.handleClose();
@@ -73,7 +79,10 @@ export class AddTeamDialog extends Component {
             open: false,
             team: "",
             priority: "",
-            color: ""
+            color: "",
+            col1: "Name",
+            col2: "Present",
+            col3: "Status"
         });
     };
 
@@ -130,6 +139,36 @@ export class AddTeamDialog extends Component {
                             value={this.state.priority}
                             onChange={this.handleChange}
                             fullWidth
+                        />
+                        <TextField
+                            id="col1"
+                            name="col1"
+                            type="col1"
+                            label="Col 1 Header"
+                            value={this.state.col1}
+                            onChange={this.handleChange}
+                            fullWidth
+                            style={{ marginTop: '9px' }}
+                        />
+                        <TextField
+                            id="col2"
+                            name="col2"
+                            type="col2"
+                            label="Col 2 Header"
+                            value={this.state.col2}
+                            onChange={this.handleChange}
+                            fullWidth
+                            style={{ marginTop: '9px' }}
+                        />
+                        <TextField
+                            id="col3"
+                            name="col3"
+                            type="col3"
+                            label="Col 3 Header"
+                            value={this.state.col3}
+                            onChange={this.handleChange}
+                            fullWidth
+                            style={{ marginTop: '9px' }}
                         />
                     </DialogContent>
                     <DialogActions>

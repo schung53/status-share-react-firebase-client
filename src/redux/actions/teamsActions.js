@@ -23,7 +23,10 @@ export const getTeams = () => (dispatch) => {
                 team: doc.data().team,
                 priority: doc.data().priority,
                 color: doc.data().color,
-                teamId: doc.data().teamId
+                teamId: doc.data().teamId,
+                col1: doc.data().col1,
+                col2: doc.data().col2,
+                col3: doc.data().col3
             });
         });
         dispatch({
