@@ -95,7 +95,7 @@ export const refreshToken = () => (dispatch) => {
                 console.log(err);
             })
         }
-    })
+    });
 };
 
 // Logout
@@ -146,17 +146,17 @@ export const setAppName = (newAppName) => (dispatch) => {
 
 // Set shortened app name on navbar on mobile
 export const truncateAppName = () => (dispatch) => {
-    dispatch({ type: TRUNCATE_APP_NAME })
+    dispatch({ type: TRUNCATE_APP_NAME });
 };
 
 // Show full app name on navbar
 export const detruncateAppName = () => (dispatch) => {
-    dispatch({ type: DETRUNCATE_APP_NAME })
+    dispatch({ type: DETRUNCATE_APP_NAME });
 };
 
 // Set token in local storage
 const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
-            localStorage.setItem('FBIdToken', FBIdToken);
-            axios.defaults.headers.common['Authorization'] = FBIdToken;
+    localStorage.setItem('FBIdToken', FBIdToken);
+    axios.defaults.headers.common['Authorization'] = FBIdToken;
 };

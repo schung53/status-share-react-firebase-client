@@ -51,7 +51,7 @@ const styles = {
     checkbox: {
         margin: '30px 20px 30px 20px'
     }
-}
+};
 
 export class login extends Component {
     constructor(){
@@ -69,7 +69,7 @@ export class login extends Component {
         localStorage.setItem('admin', 0);
         localStorage.setItem('viewOnly', 0);
         this.props.getAppName();
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.UI.errors) {
@@ -92,25 +92,25 @@ export class login extends Component {
         } else {
             this.props.loginUser(userData, this.props.history);
             localStorage.setItem('rememberMe', 0);
-        };
-
+        }
     };
 
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
-    }
+    };
 
     handleCheck = (event) => {
         this.setState({
             [event.target.name]: event.target.checked
         });
-    }
+    };
 
     render() {
         const { classes, UI: { loading }, appName } = this.props;
         const { errors } = this.state;
+
         return (
             <div>
             <Helmet>
@@ -190,14 +190,14 @@ export class login extends Component {
             </Grid>
         </div>
         )
-    }
+    };
 }
 
 login.propTypes = {
     classes: PropTypes.object.isRequired,
     loginUser: PropTypes.func.isRequired,
     UI: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = (state) => ({
     UI: state.UI,
@@ -208,6 +208,6 @@ const mapActionsToProps = {
     loginUser,
     getAppName,
     persistentLogin
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(login));

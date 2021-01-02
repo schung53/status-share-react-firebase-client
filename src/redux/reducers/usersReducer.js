@@ -98,7 +98,7 @@ export default function(state = initialState, action) {
         case DELETE_USER:
             let index_5 = state.users.findIndex(
                 (user) => user.userId === action.payload
-            )
+            );
             var afterDelete = [
                 state.users.slice(0, index_5),
                 state.users.slice(index_5+1)

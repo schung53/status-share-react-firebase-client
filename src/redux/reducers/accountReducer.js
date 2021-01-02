@@ -9,14 +9,14 @@ import {
     TRUNCATE_APP_NAME,
     DETRUNCATE_APP_NAME } from '../types';
 
-const initialState ={
+const initialState = {
     authenticated: false,
     admin: false,
     rememberMe: false,
     appName: "",
     truncatedAppName: false,
     updateTime: new Date()
-}
+};
 
 export default function (state = initialState, action) {
     switch (action.type) {
@@ -46,7 +46,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 appName: action.payload.appName
-            }
+            };
         case SET_DEFAULT_NAME:
             return {
                 ...state,
@@ -56,18 +56,18 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 updateTime: new Date()
-            }
+            };
         case TRUNCATE_APP_NAME:
             return {
                 ...state,
                 truncatedAppName: true
-            }
+            };
         case DETRUNCATE_APP_NAME: 
             return {
                 ...state,
                 truncatedAppName: false
-            }
+            };
         default: 
             return state;
     }
-}
+};

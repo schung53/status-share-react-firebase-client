@@ -10,7 +10,7 @@ const initialState = {
     loading: false,
     loadingTeam: false,
     errors: null
-}
+};
 
 export default function (state = initialState, action) {
     switch (action.type) {
@@ -35,7 +35,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false
-            }
+            };
         case LOADING_TEAM:
             return {
                 ...state,
@@ -45,8 +45,8 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loadingTeam: false
-            }
+            };
         default:
             return state;
     }
-}
+};

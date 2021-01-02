@@ -52,10 +52,11 @@ export const addTeam = (newTeam) => (dispatch) => {
 // Update team
 export const updateTeam = (teamId, teamData) => (dispatch) => {
     dispatch({ type: LOADING_TEAM });
+
     axios
     .post(`/team/${teamId}`, teamData)
     .then((res) => {
-        dispatch({ type: STOP_LOADING_TEAM })
+        dispatch({ type: STOP_LOADING_TEAM });
         dispatch({
             type: UPDATE_TEAM,
             payload: res.data

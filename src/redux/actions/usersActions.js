@@ -19,6 +19,7 @@ import firebase from 'firebase';
 // Fetch one user
 export const getUser_beta = (userId) => (dispatch) => {
     dispatch({ type: LOADING_UI });
+
     axios
     .get(`/user/${userId}`)
     .then((res) => {
@@ -40,8 +41,8 @@ export const getUser_beta = (userId) => (dispatch) => {
 export function getUser(userId) {
     return (dispatch, getState) => {
         dispatch({ type: LOADING_UI });
-        const users = getState().users.users;
 
+        const users = getState().users.users;
         const user = users.find((element) => 
             element.userId === userId
         );

@@ -3,21 +3,21 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const UnAuthRoute = ({ component: Component, authenticated, ...rest }) => (
+const LoginRoute = ({ component: Component, authenticated, ...rest }) => (
     <Route
     {...rest}
     render={(props) => 
-        authenticated === false && localStorage.rememberMe != 1 ? <Redirect to="/login" /> : <Component {...props} />
+        authenticated === true ? <Redirect to="/" /> : <Component {...props} />
     }
     />
 );
 
 const mapStateToProps = (state) => ({
     authenticated: state.account.authenticated
-})
+});
 
-UnAuthRoute.propTypes = {
+LoginRoute.propTypes = {
     authenticated: PropTypes.bool.isRequired
-}
+};
 
-export default connect(mapStateToProps)(UnAuthRoute);
+export default connect(mapStateToProps)(LoginRoute);

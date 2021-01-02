@@ -49,7 +49,7 @@ const styles = {
 export class home extends Component {
     state = {
         teams: {}
-    }
+    };
 
     componentDidMount(){
         const token = localStorage.FBIdToken;
@@ -71,14 +71,14 @@ export class home extends Component {
                 // If token valid, set timer until expiry and then refresh token
                 } else {
                     this.countdownAndRefresh();
-                };
+                }
             // If token doesn't exist for some reason, retrieves new token
             } else {
                 store.dispatch(refreshToken());
                 setTimeout(() => {
                     this.countdownAndRefresh();
                 }, 4000)
-            };
+            }
         
         // If "Remember Me" not selected, logout user when token expires
         } else if (rememberMe == 0) {
@@ -95,13 +95,13 @@ export class home extends Component {
                         store.dispatch(logoutUser());
                         window.location.href = '/login';
                     }, timeUntilExpiry);
-                };
+                }
             } else {
                 /* store.dispatch(logoutUser());
                 window.location.href = '/login'; */
-            };
+            }
             
-        };
+        }
 
         this.props.getTeams();
         this.props.getUsers();
@@ -117,7 +117,7 @@ export class home extends Component {
                 this.countdownAndRefresh();
             }, 4000)
         }, currentTimeUntilExpiry);
-    }
+    };
 
     render() {
         const { users, teams, loadingUsersData, loadingTeamsData, appName, loadingTeam } = this.props;
@@ -125,10 +125,12 @@ export class home extends Component {
 
         const teamsObj = {};
         const teamsFields = {};
+
         this.props.teams.map((team) => {
             teamsObj[team.teamId] = [];
             teamsFields[team.teamId] = team;
         });
+
         this.props.teams.map((team) => {
             users.map((user) => {
                 if (user.teamId === team.teamId) {
@@ -202,7 +204,7 @@ home.propTypes = {
     loadingUsersData: PropTypes.bool.isRequired,
     loadingTeamsData: PropTypes.bool.isRequired,
     teams: PropTypes.array.isRequired
-}
+};
 
 const mapStateToProps = (state) => ({
     users: state.users.users,
@@ -217,6 +219,6 @@ const mapActionsToProps = {
     getUsers,
     getTeams,
     refreshToken
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(home));

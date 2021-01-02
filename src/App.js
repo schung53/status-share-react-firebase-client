@@ -6,8 +6,8 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import axios from 'axios';
 
 // Components
-import AuthRoute from './util/AuthRoute';
-import UnAuthRoute from './util/UnAuthRoute';
+import HomeRoute from './util/HomeRoute';
+import LoginRoute from './util/LoginRoute';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -62,8 +62,8 @@ function App() {
         <Router>
             <div className="container">
               <Switch>
-                <UnAuthRoute exact path="/" component={home} />
-                <AuthRoute exact path="/login" component={login} />
+                <HomeRoute exact path="/" component={home} />
+                <LoginRoute exact path="/login" component={login} />
               </Switch>
             </div>
         </Router>
