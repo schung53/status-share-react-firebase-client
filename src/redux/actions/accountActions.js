@@ -13,7 +13,6 @@ import axios from 'axios';
 import firebase from 'firebase';
 const { validateLoginData } = require("../../util/validators");
 
-
 // Login 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });

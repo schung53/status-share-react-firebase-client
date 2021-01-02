@@ -18,7 +18,7 @@ const styles = {
     }
 };
 
-export class Navbar extends Component {
+export class UpdateBar extends Component {
 
     render() {
         const { classes, updateTime } = this.props;
@@ -42,4 +42,4 @@ const mapStateToProps = (state) => ({
     updateTime: state.account.updateTime
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(Navbar));
+export default connect(mapStateToProps)(withStyles(styles)(UpdateBar));

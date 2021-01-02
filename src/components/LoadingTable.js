@@ -51,7 +51,7 @@ const styles = {
     }
 };
 
-export class TeamCTable extends Component {
+export class LoadingTable extends Component {
     render() {
         const { classes } = this.props;
         return (
@@ -115,4 +115,4 @@ export class TeamCTable extends Component {
     };
 }
 
-export default withStyles(styles)(TeamCTable);
+export default withStyles(styles)(LoadingTable);
