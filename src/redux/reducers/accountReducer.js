@@ -50,7 +50,7 @@ export default function (state = initialState, action) {
         case SET_DEFAULT_NAME:
             return {
                 ...state,
-                appName: "Status Share"
+                appName: "Medical Physics: Status Share"
             };
         case SET_UPDATE_TIME:
             return {
