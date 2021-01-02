@@ -16,7 +16,7 @@ const styles = {
         top: 42,
         height: 40
     }
-}
+};
 
 export class Navbar extends Component {
 
@@ -35,11 +35,11 @@ export class Navbar extends Component {
                 </Toolbar>
             </AppBar>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
     updateTime: state.account.updateTime
-})
+});
 
 export default connect(mapStateToProps)(withStyles(styles)(Navbar));

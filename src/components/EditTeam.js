@@ -49,7 +49,6 @@ const styles = {
 }
 
 export class EditTeam extends Component {
-
     state = {
         open: false,
         team: "",
@@ -98,19 +97,19 @@ export class EditTeam extends Component {
         };
         this.props.deleteTeam(this.props.teamId, this.props.teamName);
         this.handleClose();
-    }
+    };
 
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
-    }
+    };
 
     handleColorChange = (color) => {
         this.setState({
             color: color.hex
         })
-    }
+    };
 
     render() {
         const { classes, teamsFields } = this.props;
@@ -212,7 +211,7 @@ export class EditTeam extends Component {
                 </Dialog>
             </Fragment>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({

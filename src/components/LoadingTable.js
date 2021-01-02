@@ -49,7 +49,7 @@ const styles = {
     status: {
         maxWidth: 150
     }
-}
+};
 
 export class TeamCTable extends Component {
     render() {
@@ -112,7 +112,7 @@ export class TeamCTable extends Component {
                 </Paper>
             </div>
         )
-    }
+    };
 }
 
-export default withStyles(styles)(TeamCTable)
+export default withStyles(styles)(TeamCTable);

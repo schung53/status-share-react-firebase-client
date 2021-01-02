@@ -48,7 +48,7 @@ export class AddUserDialog extends Component {
         team: "",
         teamId: "",
         priority: ""
-    }
+    };
     
     handleOpen = () => {
         this.setState({ open: true, team: this.props.teamName, teamId: this.props.teamId });
@@ -153,19 +153,19 @@ export class AddUserDialog extends Component {
                 </Dialog>
             </Fragment>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
-})
+});
 
 const mapActionsToProps = {
     addUser
-}
+};
 
 AddUserDialog.propTypes = {
     addUser: PropTypes.func.isRequired,
     teamName: PropTypes.string.isRequired
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(AddUserDialog));

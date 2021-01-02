@@ -53,7 +53,7 @@ export class AddTeamDialog extends Component {
         col1: "Name",
         col2: "Present",
         col3: "Status"
-    }
+    };
     
     handleOpen = () => {
         this.setState({ open: true });
@@ -96,7 +96,7 @@ export class AddTeamDialog extends Component {
         this.setState({
             color: color.hex
         })
-    }
+    };
 
     render() {
         const { classes, teamName } = this.props;
@@ -180,20 +180,20 @@ export class AddTeamDialog extends Component {
                 </Dialog>
             </Fragment>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
-})
+});
 
 const mapActionsToProps = {
     addTeam
-}
+};
 
 AddTeamDialog.propTypes = {
     addUser: PropTypes.func.isRequired,
     teamName: PropTypes.string.isRequired,
     teamCode: PropTypes.string.isRequired
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(AddTeamDialog));

@@ -16,7 +16,7 @@ const styles = {
         width: 10,
         height: 10
     }
-}
+};
 
 export class PresenceButton extends Component {
 
@@ -48,7 +48,7 @@ export class PresenceButton extends Component {
         return (
             presenceButton
         )
-    }
+    };
 }
 
 PresenceButton.propTypes = {

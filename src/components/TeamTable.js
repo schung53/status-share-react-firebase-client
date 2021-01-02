@@ -27,7 +27,7 @@ import { connect } from 'react-redux';
 
 function createData(name, present, status, userId, memo, user) {
     return { name, present, status, userId, memo, user };
-}
+};
 
 const styles = {
     container: {
@@ -59,7 +59,7 @@ const styles = {
     status: {
         maxWidth: 150
     }
-}
+};
 
 export class TeamTable extends Component {
     constructor(){
@@ -73,7 +73,9 @@ export class TeamTable extends Component {
     render() {
         const rows = [];
         const { classes, teamsFields } = this.props;
-        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo, user))})
+
+        this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo, user))});
+
         return (
             <div>
                 <Paper elevation={3}>
@@ -136,12 +138,12 @@ export class TeamTable extends Component {
                 </Paper>
             </div>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
     users: state.users.users
-})
+});
 
 TeamTable.propTypes = {
     teamMembers: PropTypes.array.isRequired,
@@ -151,6 +153,6 @@ TeamTable.propTypes = {
 };
 
 const mapActionsToProps = {
-}
+};
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(TeamTable))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(TeamTable));

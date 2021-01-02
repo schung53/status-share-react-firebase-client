@@ -50,10 +50,9 @@ const styles = {
     icon: {
         margin: 'auto 5px auto auto'
     }
-}
+};
 
 export class EditStatus extends Component {
-
     state = {
         status: "",
         open: false
@@ -63,13 +62,13 @@ export class EditStatus extends Component {
         this.setState({
             status: this.checkUser(user)
         });
-    }
+    };
 
     checkUser = (user) => {
         if (this.props.userId === user.userId) {
             return user.status;
         }
-    }
+    };
     
     handleOpen = () => {
         this.setState({ open: true });
@@ -84,7 +83,7 @@ export class EditStatus extends Component {
     componentDidMount() {
         const { user } = this.props;
         this.mapUserDetailsToState(user);
-    }
+    };
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -102,13 +101,13 @@ export class EditStatus extends Component {
         };
         this.props.updateStatus(this.props.userId, statusData);
         this.handleClose();
-    }
+    };
 
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
-    }
+    };
 
     render() {
         const { classes, user: { name, status }, UI: { loading } } = this.props;
@@ -165,7 +164,7 @@ export class EditStatus extends Component {
                 </Dialog>
             </Fragment>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
@@ -178,11 +177,10 @@ const mapActionsToProps = {
     getUser,
     updateStatus,
     deleteStatus
-}
+};
 
 EditStatus.propTypes = {
     userId: PropTypes.string.isRequired,
-
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(EditStatus));

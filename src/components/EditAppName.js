@@ -43,10 +43,9 @@ const styles = {
     icon: {
         margin: 'auto 5px auto auto'
     }
-}
+};
 
 export class EditAppName extends Component {
-
     state = {
         appName: "",
         open: false
@@ -115,7 +114,7 @@ export class EditAppName extends Component {
                 </Dialog>
             </Fragment>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
@@ -124,10 +123,10 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
     setAppName
-}
+};
 
 EditAppName.propTypes = {
     appName: PropTypes.string.isRequired
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(EditAppName));

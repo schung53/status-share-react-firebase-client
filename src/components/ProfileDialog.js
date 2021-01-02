@@ -26,7 +26,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser, deleteUser, clearErrors } from '../redux/actions/usersActions'
+import { getUser, deleteUser, clearErrors } from '../redux/actions/usersActions';
 
 const styles = {
     spinnerDiv: {
@@ -55,7 +55,7 @@ const styles = {
     buttonIcon: {
         margin: 'auto 5px auto auto'
     }
-}
+};
 
 export class ProfileDialog extends Component {
     state = {
@@ -170,7 +170,7 @@ export class ProfileDialog extends Component {
                 </Dialog>
             </Fragment>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
@@ -182,15 +182,14 @@ const mapActionsToProps = {
     getUser,
     deleteUser,
     clearErrors
-}
+};
 
 ProfileDialog.propTypes = {
     userId: PropTypes.string.isRequired,
-
-}
+};
 
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(ProfileDialog))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(ProfileDialog));

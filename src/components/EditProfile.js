@@ -44,7 +44,7 @@ const styles = {
         marginRight: 15,
         width: 250
     }
-}
+};
 
 export class EditProfile extends Component {
     state = {
@@ -81,7 +81,7 @@ export class EditProfile extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-    }
+    };
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -95,7 +95,7 @@ export class EditProfile extends Component {
         };
         this.props.editProfile(this.props.user.userId, profileData);
         this.handleClose();
-    }
+    };
 
     render() {
         const { classes, user: { name, phone, email, team, memo, priority } } = this.props;
@@ -187,7 +187,7 @@ export class EditProfile extends Component {
                 </Dialog>
             </Fragment>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
@@ -196,11 +196,11 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
     editProfile
-}
+};
 
 EditProfile.propTypes = {
     editProfile: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(EditProfile));

@@ -19,22 +19,22 @@ import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { logoutUser, getAppName, truncateAppName, detruncateAppName } from '../redux/actions/accountActions';
 
-export class Navbar extends Component {
+export class NavBar extends Component {
 
     constructor(props) {
         super(props);
         this.updateTitle = this.updateTitle.bind(this);
-    } 
+    };
 
     componentDidMount() {
         this.props.getAppName();
         this.updateTitle();
         window.addEventListener("resize", this.updateTitle);
-    }
+    };
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateTitle);
-    }
+    };
 
     updateTitle = () => {
         if (window.innerWidth < 550 ) {
@@ -42,12 +42,12 @@ export class Navbar extends Component {
         } else {
             this.props.detruncateAppName();
         }
-    }
+    };
 
     handleLogout = () => {
         localStorage.removeItem('admin');
         this.props.logoutUser();
-    }
+    };
 
     render() {
         const { authenticated, appName, admin, truncatedAppName } = this.props;
@@ -89,10 +89,10 @@ export class Navbar extends Component {
                 </Toolbar>
             </AppBar>
         )
-    }
+    };
 }
 
-Navbar.propTypes = {
+NavBar.propTypes = {
     authenticated: PropTypes.bool.isRequired,
     logoutUser: PropTypes.func.isRequired,
     getAppName: PropTypes.func.isRequired,
@@ -112,6 +112,6 @@ const mapActionsToProps = {
     getAppName,
     truncateAppName,
     detruncateAppName
-}
+};
 
-export default connect(mapStateToProps, mapActionsToProps)(Navbar);
+export default connect(mapStateToProps, mapActionsToProps)(NavBar);

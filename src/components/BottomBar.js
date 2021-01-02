@@ -17,7 +17,7 @@ const styles = {
     }
 }
 
-export class Navbar extends Component {
+export class BottomBar extends Component {
 
     render() {
         const { classes, truncatedAppName } = this.props;
@@ -41,7 +41,7 @@ export class Navbar extends Component {
                 </Toolbar>
             </AppBar>
         )
-    }
+    };
 }
 
 const mapStateToProps = (state) => ({
@@ -49,6 +49,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionsToProps = {
-}
+};
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Navbar));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(BottomBar));
