@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import jwtDecode from 'jwt-decode';
 import { Helmet } from 'react-helmet'
-import Box from '@material-ui/core/Box';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 
 // Components
@@ -15,7 +10,14 @@ import NavBar from '../components/NavBar';
 import UpdateBar from '../components/UpdateBar';
 import TeamTable from '../components/TeamTable';
 import LoadingTable from '../components/LoadingTable';
-import { CircularProgress } from '@material-ui/core';
+
+// MUI Components
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -194,7 +196,7 @@ export class home extends Component {
                 </Grid>
             </div>
         )
-    }
+    };
 }
 
 home.propTypes = {

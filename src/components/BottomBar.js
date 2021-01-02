@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-//import './BottomBar.css';
 
 // MUI components
 import AppBar from '@material-ui/core/AppBar';
@@ -15,7 +14,7 @@ const styles = {
         top: "auto",
         bottom: 0
     }
-}
+};
 
 export class BottomBar extends Component {
 
