@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet'
 // Components
 import AppIcon from '../images/icon.png';
 import BottomBar from '../components/BottomBar';
-import Navbar from '../components/navbar';
+import NavBar from '../components/NavBar';
 
 // MUI components
 import Grid from '@material-ui/core/Grid';
@@ -117,7 +117,7 @@ export class login extends Component {
                 <title>{appName} | Login</title>
             </Helmet>
             <Grid container className={classes.form} justify="center">
-                <Navbar/>
+                <NavBar/>
                 <Grid item sm/>
                 <Grid item sm> 
                 <Paper elevation={3}>

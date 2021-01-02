@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 
 // Components
-import Navbar from '../components/navbar';
+import NavBar from '../components/NavBar';
 import UpdateBar from '../components/UpdateBar';
 import TeamTable from '../components/TeamTable';
 import LoadingTable from '../components/LoadingTable';
@@ -154,7 +154,7 @@ export class home extends Component {
                 </Dialog>
                 <Grid container justify="center">
                     <UpdateBar/> 
-                    <Navbar/>
+                    <NavBar/>
                     {loadingUsersData || loadingTeamsData ? 
                     <>
                     <Grid item className={classes.table}>
