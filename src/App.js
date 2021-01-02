@@ -45,18 +45,6 @@ const theme = createMuiTheme({
 axios.defaults.baseURL = 'https://us-central1-statusshare-c6dfe.cloudfunctions.net/api';
 
 const token = localStorage.FBIdToken;
-/* if (token) {
-  const decodedToken = jwtDecode(token);
-  // If token expired, redirect to login
-  if (decodedToken.exp * 1000 < Date.now()) {
-    store.dispatch(logoutUser())
-    window.location.href = '/login'
-  // If token valid, set header with token
-  } else {
-    store.dispatch({ type: SET_AUTHENTICATED });
-    axios.defaults.headers.common['Authorization'] = token;
-  };
-}; */
 
 // Auth state listener – checks whether current user is logged in
 firebase.auth().onAuthStateChanged((user) => {

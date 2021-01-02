@@ -17,7 +17,7 @@ import axios from 'axios';
 import firebase from 'firebase';
 
 // Fetch one user
-export const getUser = (userId) => (dispatch) => {
+export const getUser_beta = (userId) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     axios
     .get(`/user/${userId}`)
@@ -34,6 +34,32 @@ export const getUser = (userId) => (dispatch) => {
             payload: null
         });
     });
+};
+
+// New fetch one user
+export function getUser(userId) {
+    return (dispatch, getState) => {
+        dispatch({ type: LOADING_UI });
+        const users = getState().users.users;
+
+        const user = users.find((element) => 
+            element.userId === userId
+        );
+
+        if (user) {
+            dispatch({
+                type: SET_USER,
+                payload: user
+            });
+            dispatch({ type: STOP_LOADING_UI });
+        } else {
+            dispatch({
+                type: SET_USER,
+                payload: null
+            });
+            dispatch({ type: STOP_LOADING_UI });
+        }
+    };
 };
 
 // Fetch all users
