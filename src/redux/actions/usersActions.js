@@ -16,27 +16,6 @@ import {
 import axios from 'axios';
 import firebase from 'firebase';
 
-// Fetch one user
-export const getUser_beta = (userId) => (dispatch) => {
-    dispatch({ type: LOADING_UI });
-
-    axios
-    .get(`/user/${userId}`)
-    .then((res) => {
-        dispatch({
-            type: SET_USER,
-            payload: res.data
-        });
-        dispatch({ type: STOP_LOADING_UI });
-    })
-    .catch(() => {
-        dispatch({
-            type: SET_USER,
-            payload: null
-        });
-    });
-};
-
 // New fetch one user
 export function getUser(userId) {
     return (dispatch, getState) => {
