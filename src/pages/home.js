@@ -199,15 +199,6 @@ export class home extends Component {
     };
 }
 
-home.propTypes = {
-    getUsers: PropTypes.func.isRequired,
-    getTeams: PropTypes.func.isRequired,
-    users: PropTypes.array.isRequired,
-    loadingUsersData: PropTypes.bool.isRequired,
-    loadingTeamsData: PropTypes.bool.isRequired,
-    teams: PropTypes.array.isRequired
-};
-
 const mapStateToProps = (state) => ({
     users: state.users.users,
     teams: state.teams.teams,
@@ -221,6 +212,16 @@ const mapActionsToProps = {
     getUsers,
     getTeams,
     refreshToken
+};
+
+home.propTypes = {
+    getTeams: PropTypes.func.isRequired,
+    getUsers: PropTypes.func.isRequired,
+    loadingTeam: PropTypes.bool.isRequired,
+    loadingTeamsData: PropTypes.bool.isRequired,
+    loadingUsersData: PropTypes.bool.isRequired,
+    teams: PropTypes.array.isRequired,
+    users: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(home));

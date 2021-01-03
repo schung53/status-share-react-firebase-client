@@ -21,7 +21,7 @@ const styles = {
 export class PresenceButton extends Component {
 
     render() {
-        const { classes, user: { userId, present }} = this.props;
+        const { user: { userId, present }} = this.props;
 
         const uncheckButton = () => {
             if (!Boolean(parseInt(localStorage.viewOnly))) {
@@ -51,12 +51,6 @@ export class PresenceButton extends Component {
     };
 }
 
-PresenceButton.propTypes = {
-    user: PropTypes.object.isRequired,
-    markPresent: PropTypes.func.isRequired,
-    markNotPresent: PropTypes.func.isRequired
-};
-
 const mapStateToProps = (state) => ({
     users: state.users.users
 });
@@ -64,6 +58,13 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
     markNotPresent,
     markPresent
+};
+
+PresenceButton.propTypes = {
+    markNotPresent: PropTypes.func.isRequired,
+    markPresent: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    users: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(PresenceButton));

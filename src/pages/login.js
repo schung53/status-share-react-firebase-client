@@ -193,12 +193,6 @@ export class login extends Component {
     };
 }
 
-login.propTypes = {
-    classes: PropTypes.object.isRequired,
-    loginUser: PropTypes.func.isRequired,
-    UI: PropTypes.object.isRequired
-};
-
 const mapStateToProps = (state) => ({
     UI: state.UI,
     appName: state.account.appName
@@ -208,6 +202,14 @@ const mapActionsToProps = {
     loginUser,
     getAppName,
     persistentLogin
+};
+
+login.propTypes = {
+    appName: PropTypes.string.isRequired,
+    getAppName: PropTypes.func.isRequired,
+    loginUser: PropTypes.func.isRequired,
+    persistentLogin: PropTypes.func.isRequired,
+    UI: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(login));

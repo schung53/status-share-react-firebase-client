@@ -98,7 +98,7 @@ export class EditProfile extends Component {
     };
 
     render() {
-        const { classes, user: { name, phone, email, team, memo, priority } } = this.props;
+        const { classes, user: { name, phone, email, memo, priority } } = this.props;
         return (
             <Fragment>
                 <Button onClick={this.handleOpen} variant="outlined" color="secondary">

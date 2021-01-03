@@ -39,9 +39,6 @@ const styles = {
     },
     textField: {
         marginTop: 10
-    },
-    icon: {
-        margin: 'auto 5px auto auto'
     }
 };
 
@@ -126,7 +123,8 @@ const mapActionsToProps = {
 };
 
 EditAppName.propTypes = {
-    appName: PropTypes.string.isRequired
+    appName: PropTypes.string.isRequired,
+    setAppName: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(EditAppName));

@@ -91,14 +91,6 @@ export class NavBar extends Component {
         )
     };
 }
-
-NavBar.propTypes = {
-    authenticated: PropTypes.bool.isRequired,
-    logoutUser: PropTypes.func.isRequired,
-    getAppName: PropTypes.func.isRequired,
-    appName: PropTypes.string.isRequired,
-    admin: PropTypes.bool.isRequired
-};
   
 const mapStateToProps = (state) => ({
     authenticated: state.account.authenticated,
@@ -112,6 +104,17 @@ const mapActionsToProps = {
     getAppName,
     truncateAppName,
     detruncateAppName
+};
+
+NavBar.propTypes = {
+    admin: PropTypes.bool.isRequired,
+    appName: PropTypes.string.isRequired,
+    authenticated: PropTypes.bool.isRequired,
+    detruncateAppName: PropTypes.func.isRequired,
+    getAppName: PropTypes.func.isRequired,
+    logoutUser: PropTypes.func.isRequired,
+    truncateAppName: PropTypes.func.isRequired,
+    truncatedAppName: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(NavBar);

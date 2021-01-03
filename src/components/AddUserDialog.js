@@ -156,16 +156,14 @@ export class AddUserDialog extends Component {
     };
 }
 
-const mapStateToProps = (state) => ({
-});
-
 const mapActionsToProps = {
     addUser
 };
 
 AddUserDialog.propTypes = {
     addUser: PropTypes.func.isRequired,
+    teamId: PropTypes.string.isRequired,
     teamName: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(AddUserDialog));
+export default connect(null, mapActionsToProps)(withStyles(styles)(AddUserDialog));

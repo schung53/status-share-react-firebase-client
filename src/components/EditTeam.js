@@ -42,11 +42,8 @@ const styles = {
     },
     textField: {
         margin: '10px 20px auto 20px'
-    },
-    icon: {
-        margin: 'auto 5px auto auto'
     }
-}
+};
 
 export class EditTeam extends Component {
     state = {
@@ -86,16 +83,13 @@ export class EditTeam extends Component {
             col2: this.state.col2,
             col3: this.state.col3
         };
-        this.props.updateTeam(this.props.teamId, teamData);
+        this.props.updateTeam(this.props.teamsFields.teamId, teamData);
         this.handleClose();
     };
     
     handleDelete = (event) => {
         event.preventDefault();
-        const teamToDelete = {
-            team: this.props.teamName
-        };
-        this.props.deleteTeam(this.props.teamId, this.props.teamName);
+        this.props.deleteTeam(this.props.teamsFields.teamId, this.props.teamsFields.team);
         this.handleClose();
     };
 
@@ -214,17 +208,15 @@ export class EditTeam extends Component {
     };
 }
 
-const mapStateToProps = (state) => ({
-});
-
 const mapActionsToProps = {
     updateTeam,
     deleteTeam
 };
 
 EditTeam.propTypes = {
-    teamName: PropTypes.string.isRequired,
-    teamsFields: PropTypes.object.isRequired
+    deleteTeam: PropTypes.func.isRequired,
+    teamsFields: PropTypes.object.isRequired,
+    updateTeam: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(EditTeam));
+export default connect(null, mapActionsToProps)(withStyles(styles)(EditTeam));

@@ -113,7 +113,7 @@ export const logoutUser = () => (dispatch) => {
     dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-// Fetch name of App
+// Fetch name of app
 export const getAppName = () => (dispatch) => {
     firebase.firestore()
     .doc('/appName/name')

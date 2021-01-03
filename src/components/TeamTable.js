@@ -90,7 +90,7 @@ export class TeamTable extends Component {
                         </Grid>
                         <Grid item>
                             {Boolean(parseInt(localStorage.admin)) && (<>
-                                <EditTeam teamsFields={teamsFields} teamId={teamsFields.teamId} teamName={teamsFields.team}/>
+                                <EditTeam teamsFields={teamsFields} />
                                 <AddUserDialog teamName={teamsFields.team} teamId={teamsFields.teamId}/></>)}
                         </Grid>
                     </Grid>
@@ -152,7 +152,4 @@ TeamTable.propTypes = {
 
 };
 
-const mapActionsToProps = {
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(TeamTable));
+export default connect(mapStateToProps, null)(withStyles(styles)(TeamTable));

@@ -51,14 +51,11 @@ export default function(state = initialState, action) {
             let index_2 = state.teams.findIndex(
                 (team) => team.teamId === action.payload
             );
-            var afterDelete = [
-                state.teams.slice(0, index_2),
-                state.teams.slice(index_2 + 1)
-            ];
             return {
                 ...state,
                 teams: [
-                    ...state.teams
+                    ...state.teams.slice(0, index_2),
+                    ...state.teams.slice(index_2 + 1)
                 ]
             };
         default:

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import dayjs from 'dayjs';
+import PropTypes from 'prop-types';
 
 // MUI components
 import AppBar from '@material-ui/core/AppBar';
@@ -41,5 +42,9 @@ export class UpdateBar extends Component {
 const mapStateToProps = (state) => ({
     updateTime: state.account.updateTime
 });
+
+UpdateBar.propTypes = {
+    updateTime: PropTypes.instanceOf(Date)
+}
 
 export default connect(mapStateToProps)(withStyles(styles)(UpdateBar));

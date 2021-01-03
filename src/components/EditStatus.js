@@ -46,9 +46,6 @@ const styles = {
     },
     textField: {
         marginTop: 10
-    },
-    icon: {
-        margin: 'auto 5px auto auto'
     }
 };
 
@@ -180,7 +177,12 @@ const mapActionsToProps = {
 };
 
 EditStatus.propTypes = {
+    deleteStatus: PropTypes.func.isRequired,
+    getUser: PropTypes.func.isRequired,
+    updateStatus: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
     userId: PropTypes.string.isRequired,
+    users: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(EditStatus));

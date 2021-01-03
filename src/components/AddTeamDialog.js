@@ -99,7 +99,7 @@ export class AddTeamDialog extends Component {
     };
 
     render() {
-        const { classes, teamName } = this.props;
+        const { classes } = this.props;
         return (
             <Fragment>
                 <IconButton onClick={this.handleOpen} size="small" style={{ color: '#ffffff' }}>
@@ -183,17 +183,12 @@ export class AddTeamDialog extends Component {
     };
 }
 
-const mapStateToProps = (state) => ({
-});
-
 const mapActionsToProps = {
     addTeam
 };
 
 AddTeamDialog.propTypes = {
-    addUser: PropTypes.func.isRequired,
-    teamName: PropTypes.string.isRequired,
-    teamCode: PropTypes.string.isRequired
+    addTeam: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(AddTeamDialog));
+export default connect(null, mapActionsToProps)(withStyles(styles)(AddTeamDialog));

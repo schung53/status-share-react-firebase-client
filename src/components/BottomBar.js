@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
 
 // MUI components
 import AppBar from '@material-ui/core/AppBar';
@@ -47,7 +48,8 @@ const mapStateToProps = (state) => ({
     truncatedAppName: state.account.truncatedAppName
 });
 
-const mapActionsToProps = {
-};
+BottomBar.propTypes = {
+    truncatedAppName: PropTypes.string.isRequired
+}
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(BottomBar));
+export default connect(mapStateToProps, null)(withStyles(styles)(BottomBar));

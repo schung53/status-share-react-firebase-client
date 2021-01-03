@@ -57,6 +57,10 @@ const styles = {
     }
 };
 
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 export class ProfileDialog extends Component {
     state = {
         open: false
@@ -185,11 +189,12 @@ const mapActionsToProps = {
 };
 
 ProfileDialog.propTypes = {
+    deleteUser: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
+    getUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
     userId: PropTypes.string.isRequired,
-};
-
-function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    userMemo: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(ProfileDialog));

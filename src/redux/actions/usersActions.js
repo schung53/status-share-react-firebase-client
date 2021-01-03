@@ -16,7 +16,7 @@ import {
 import axios from 'axios';
 import firebase from 'firebase';
 
-// New fetch one user
+// Fetch one user
 export function getUser(userId) {
     return (dispatch, getState) => {
         dispatch({ type: LOADING_UI });
