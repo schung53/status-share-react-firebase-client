@@ -45,6 +45,6 @@ const mapStateToProps = (state) => ({
 
 UpdateBar.propTypes = {
     updateTime: PropTypes.instanceOf(Date)
-}
+};
 
 export default connect(mapStateToProps)(withStyles(styles)(UpdateBar));

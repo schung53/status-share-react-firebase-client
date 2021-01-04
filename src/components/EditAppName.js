@@ -28,12 +28,6 @@ const styles = {
     icon: {
         margin: '5px 8px auto 15px'
     },
-    statusText: {
-        margin: '20px auto 0px 10px'
-    },
-    text2: {
-        margin: '10px auto 0px 10px'
-    },
     dialogContent: {
         height: 80
     },

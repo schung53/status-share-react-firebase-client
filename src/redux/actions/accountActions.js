@@ -50,7 +50,7 @@ export const persistentLogin = (userData, history) => (dispatch) => {
     if (!valid) dispatch({
         type: SET_ERRORS,
         payload: errors
-    })
+    });
 
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(() => {
@@ -109,7 +109,8 @@ export const logoutUser = () => (dispatch) => {
     })
     .catch((err) => {
         console.log(err)
-    })
+    });
+
     dispatch({ type: SET_UNAUTHENTICATED });
 };
 
