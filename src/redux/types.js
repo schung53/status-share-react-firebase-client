@@ -35,3 +35,11 @@ export const SET_TEAMS = 'SET_TEAMS';
 export const ADD_TEAM = 'ADD_TEAM';
 export const UPDATE_TEAM = 'UPDATE_TEAM';
 export const DELETE_TEAM = 'DELETE_TEAM';
+
+// Mailbox reducer types
+export const LOADING_MAILBOX_DATA = 'LOADING_MAILBOX_DATA';
+export const SET_MAILBOX = 'SET_MAILBOX';
+export const SET_MESSAGE = 'SET_MESSAGE';
+export const MARK_MESSAGE_READ = 'MARK_MESSAGE_READ';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
+export const ADD_MESSAGE = 'ADD_MESSAGE';

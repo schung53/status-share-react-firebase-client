@@ -5,6 +5,7 @@ import accountReducer from './reducers/accountReducer';
 import teamsReducer from './reducers/teamsReducer';
 import uiReducer from './reducers/uiReducer';
 import usersReducer from './reducers/usersReducer';
+import mailboxReducer from './reducers/mailboxReducer';
 
 const initialState = {};
 
@@ -14,6 +15,7 @@ const reducers = combineReducers({
     account: accountReducer,
     teams: teamsReducer,
     users: usersReducer,
+    mailbox: mailboxReducer,
     UI: uiReducer
 });
 
