@@ -72,7 +72,10 @@ export default function(state = initialState, action) {
                 state.user.statusTime = action.payload.statusTime;
             };
             return {
-                ...state
+                ...state,
+                users: [
+                    ...state.users
+                ]
             };
         case EDIT_USER:
             let index_4 = state.users.findIndex(

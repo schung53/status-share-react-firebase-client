@@ -87,6 +87,7 @@ export class EditStatus extends Component {
         event.preventDefault();
         const statusData = {
             status: this.state.status,
+            statusTime: new Date().toString(),
             userId: this.state.userId
         };
         this.props.updateStatus(this.props.userId, statusData);
@@ -97,6 +98,7 @@ export class EditStatus extends Component {
         event.preventDefault();
         const statusData = {
             status: "",
+            statusTime: new Date().toString(),
             userId: this.state.userId
         };
         this.props.updateStatus(this.props.userId, statusData);
