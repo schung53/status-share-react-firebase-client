@@ -73,7 +73,8 @@ export class EditProfile extends Component {
             email: this.props.user.email,
             team: this.props.user.team,
             memo: this.props.user.memo,
-            priority: this.props.user.priority
+            priority: this.props.user.priority,
+            userId: this.props.user.userId
         });
     };
 
@@ -91,6 +92,7 @@ export class EditProfile extends Component {
             email: this.state.email,
             team: this.state.team.trim(),
             memo: this.state.memo,
+            userId: this.state.userId,
             priority: parseInt(this.state.priority)
         };
         this.props.editProfile(this.props.user.userId, profileData);

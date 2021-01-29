@@ -18,7 +18,7 @@ import SendIcon from '@material-ui/icons/Send';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { getUser, updateStatus, deleteStatus } from '../redux/actions/usersActions';
+import { getUser, updateStatus } from '../redux/actions/usersActions';
 
 const styles = {
     spinnerDiv: {
@@ -57,7 +57,8 @@ export class EditStatus extends Component {
 
     mapUserDetailsToState = (user) => {
         this.setState({
-            status: this.checkUser(user)
+            status: this.checkUser(user),
+            userId: this.props.userId
         });
     };
 
@@ -85,7 +86,8 @@ export class EditStatus extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const statusData = {
-            status: this.state.status
+            status: this.state.status,
+            userId: this.state.userId
         };
         this.props.updateStatus(this.props.userId, statusData);
         this.handleClose();
@@ -94,7 +96,8 @@ export class EditStatus extends Component {
     handleDelete = (event) => {
         event.preventDefault();
         const statusData = {
-            status: ""
+            status: "",
+            userId: this.state.userId
         };
         this.props.updateStatus(this.props.userId, statusData);
         this.handleClose();
@@ -172,12 +175,10 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
     getUser,
-    updateStatus,
-    deleteStatus
+    updateStatus
 };
 
 EditStatus.propTypes = {
-    deleteStatus: PropTypes.func.isRequired,
     getUser: PropTypes.func.isRequired,
     updateStatus: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,

@@ -76,32 +76,14 @@ export const getUsers = () => (dispatch) => {
 
 // Update user status
 export const updateStatus = (userId, statusData) => (dispatch) => {
+    dispatch({
+        type: UPDATE_STATUS,
+        payload: statusData
+    });
+
     axios
     .post(`/user/status/${userId}`, statusData)
-    .then((res) => {
-        dispatch({
-            type: UPDATE_STATUS,
-            payload: res.data
-        });
-    })
-    .catch((err) => {
-        dispatch({
-            type: SET_ERRORS,
-            payload: err.response.data
-        });
-    });
-};
-
-// Delete user status
-export const deleteStatus = (userId) => (dispatch) => {
-    axios
-    .post(`/user/status/${userId}`, { status: "" })
-    .then((res) => {
-        dispatch({
-            type: UPDATE_STATUS,
-            payload: res.data
-        });
-    })
+    .then((res) => {})
     .catch((err) => {
         dispatch({
             type: SET_ERRORS,
@@ -152,14 +134,14 @@ export const markNotPresent = (userId) => (dispatch) => {
 
 // Edit a user's profile (including memo)
 export const editProfile = (userId, profileData) => (dispatch) => {
+    dispatch({
+        type: EDIT_USER,
+        payload: profileData
+    });
+
     axios
     .post(`/user/${userId}`, profileData)
-    .then((res) => {
-        dispatch({
-            type: EDIT_USER,
-            payload: res.data
-        });
-    })
+    .then((res) => {})
     .catch((err) => console.log(err));
 };
 

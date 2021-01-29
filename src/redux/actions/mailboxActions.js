@@ -5,6 +5,7 @@ import {
     MARK_MESSAGE_READ,
     DELETE_MESSAGE,
     ADD_MESSAGE,
+    EDIT_MESSAGE,
     SET_UPDATE_TIME } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
@@ -68,6 +69,19 @@ export const addMessage = (newMessageData, userId) => (dispatch) => {
         dispatch({
             type: ADD_MESSAGE,
             payload: res.data
+        });
+    })
+    .catch((err) => console.log(err));
+};
+
+// Update a message
+export const editMessage = (messageId, userId, messageData) => (dispatch) => {
+    axios
+    .post(`/mailbox/update/${userId}/${messageId}`, messageData)
+    .then((res) => {
+        dispatch({
+            type: EDIT_MESSAGE,
+            payload: messageData
         });
     })
     .catch((err) => console.log(err));

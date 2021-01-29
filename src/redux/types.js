@@ -43,3 +43,4 @@ export const SET_MESSAGE = 'SET_MESSAGE';
 export const MARK_MESSAGE_READ = 'MARK_MESSAGE_READ';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const EDIT_MESSAGE = 'EDIT_MESSAGE';
