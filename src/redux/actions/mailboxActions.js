@@ -8,7 +8,6 @@ import {
     SET_UPDATE_TIME } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
-const { convertDateToInteger } = require("../../util/timestamp");
 
 // Fetch mailbox for one user
 export const getMailbox = (userId) => (dispatch) => {
@@ -33,14 +32,29 @@ export const getMailbox = (userId) => (dispatch) => {
     });
 };
 
+// Mark a message as read
+export const markMessageRead = (messageId, userId) => (dispatch) => {
+    dispatch({
+        type: MARK_MESSAGE_READ,
+        payload: messageId
+    });
+
+    axios
+    .post(`/mailbox/read/${userId}/${messageId}`, { readStatus: true })
+    .then((res) => {})
+    .catch((err) => {
+        console.log(err)
+    });
+};
+
 // Delete a message
 export const deleteMessage = (messageId, userId) => (dispatch) => {
     axios
-    .delete(`/mailbox/${userId}/messages/${messageId}`)
+    .delete(`/mailbox/${userId}/${messageId}`)
     .then(() => {
         dispatch({
             type: DELETE_MESSAGE,
-            payload: res.data
+            payload: messageId
         });
     })
     .catch((err) => console.log(err));
@@ -49,7 +63,7 @@ export const deleteMessage = (messageId, userId) => (dispatch) => {
 // Create a new message
 export const addMessage = (newMessageData, userId) => (dispatch) => {
     axios
-    .post(`/mailbox/${userId}/messages`, newMessageData)
+    .post(`/mailbox/${userId}`, newMessageData)
     .then((res) => {
         dispatch({
             type: ADD_MESSAGE,
@@ -57,6 +71,14 @@ export const addMessage = (newMessageData, userId) => (dispatch) => {
         });
     })
     .catch((err) => console.log(err));
+};
+
+// Set selected message
+export const setMessage = (messageId) => (dispatch) => {
+    dispatch({
+        type: SET_MESSAGE,
+        payload: messageId
+    })
 };
 
 // Set state to loading

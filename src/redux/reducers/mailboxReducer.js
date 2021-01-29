@@ -25,16 +25,19 @@ export default function(state = initialState, action) {
                 mailbox: action.payload,
                 loadingMailbox: false
             };
-        case SET_MESSAGE: 
-            return {
-                ...state,
-                message: action.payload
-            };
-        case MARK_MESSAGE_READ:
+        case SET_MESSAGE:
             let index_1 = state.mailbox.findIndex(
                 (message) => message.messageId === action.payload
             );
-            state.mailbox[index_1].readStatus = true;
+            return {
+                ...state,
+                message: mailbox[index_1]
+            };
+        case MARK_MESSAGE_READ:
+            let index_2 = state.mailbox.findIndex(
+                (message) => message.messageId === action.payload
+            );
+            state.mailbox[index_2].readStatus = true;
             if (state.message.messageId === action.payload) {
                 state.message.readStatus = true;
             };
@@ -45,21 +48,20 @@ export default function(state = initialState, action) {
                 ]
             };
         case DELETE_MESSAGE:
-            let index_2 = state.mailbox.findIndex(
+            let index_3 = state.mailbox.findIndex(
                 (message) => message.messageId === action.payload
             );
             return {
                 ...state,
                 mailbox: [
-                    ...state.mailbox.slice(0, index_2),
-                    ...state.mailbox.slice(index_2 + 1)
+                    ...state.mailbox.slice(0, index_3),
+                    ...state.mailbox.slice(index_3 + 1)
                 ]
             };
         case ADD_MESSAGE:
             return {
                 ...state,
                 mailbox: [
-                    action.payload,
                     ...state.mailbox
                 ]
             };
