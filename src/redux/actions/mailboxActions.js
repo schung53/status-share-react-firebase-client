@@ -76,6 +76,11 @@ export const addMessage = (newMessageData, userId) => (dispatch) => {
 
 // Update a message
 export const editMessage = (messageId, userId, messageData) => (dispatch) => {
+    dispatch({
+        type: EDIT_MESSAGE,
+        payload: messageData
+    });
+    
     axios
     .post(`/mailbox/update/${userId}/${messageId}`, messageData)
     .then((res) => {

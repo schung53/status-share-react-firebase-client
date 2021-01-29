@@ -82,7 +82,9 @@ export default function(state = initialState, action) {
             };
             return {
                 ...state,
-                mailbox: state.mailbox,
+                mailbox: [
+                    ...state.mailbox
+                ],
                 message: state.message
             };
         default:

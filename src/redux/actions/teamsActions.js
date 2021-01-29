@@ -38,9 +38,12 @@ export const getTeams = () => (dispatch) => {
 
 // Create new team
 export const addTeam = (newTeam) => (dispatch) => {
+    dispatch({ type: LOADING_TEAM });
+
     axios
     .post('/team', newTeam)
     .then((res) => {
+        dispatch({ type: STOP_LOADING_TEAM });
         dispatch({
             type: ADD_TEAM,
             payload: res.data
@@ -67,13 +70,13 @@ export const updateTeam = (teamId, teamData) => (dispatch) => {
 
 // Delete team
 export const deleteTeam = (teamId, teamToDelete) => (dispatch) => {
+    dispatch({
+        type: DELETE_TEAM,
+        payload: teamId
+    });
+
     axios
     .post(`/team/delete/${teamId}`, { team: teamToDelete })
-    .then(() => {
-        dispatch({
-            type: DELETE_TEAM,
-            payload: teamId
-        });
-    })
+    .then(() => {})
     .catch((err) => console.log(err));
 };

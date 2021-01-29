@@ -149,7 +149,7 @@ export class home extends Component {
                 <Dialog open={loadingTeam}>
                     <DialogTitle>
                         <Grid className={classes.dialog}>
-                        <Typography variant="overline" className={classes.spinnertext}>Updating team...</Typography>
+                        <Typography variant="overline" className={classes.spinnertext}>Updating teams...</Typography>
                         <CircularProgress size={20} className={classes.spinnerdiv} /> 
                         </Grid>
                     </DialogTitle>

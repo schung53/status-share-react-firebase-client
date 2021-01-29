@@ -147,14 +147,14 @@ export const editProfile = (userId, profileData) => (dispatch) => {
 
 // Delete a user
 export const deleteUser = (userId) => (dispatch) => {
+    dispatch({
+        type: DELETE_USER,
+        payload: userId
+    });
+
     axios
     .delete(`/user/${userId}`)
-    .then(() => {
-        dispatch({
-            type: DELETE_USER,
-            payload: userId
-        });
-    })
+    .then(() => {})
     .catch((err) => console.log(err));
 };
 

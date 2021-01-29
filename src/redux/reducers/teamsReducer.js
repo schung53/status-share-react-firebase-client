@@ -29,7 +29,8 @@ export default function(state = initialState, action) {
                 teams: [
                     action.payload,
                     ...state.teams
-                ]
+                ],
+                loadingTeamsData: false
             };
         case UPDATE_TEAM:
             let index_1 = state.teams.findIndex(

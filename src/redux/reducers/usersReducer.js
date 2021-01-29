@@ -95,7 +95,9 @@ export default function(state = initialState, action) {
             };
             return {
                 ...state,
-                users: state.users,
+                users: [
+                    ...state.users
+                ],
                 user: state.user
             };
         case DELETE_USER:
