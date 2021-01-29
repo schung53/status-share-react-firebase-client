@@ -17,7 +17,7 @@ export const getMailbox = (userId) => (dispatch) => {
     .collection('mailbox')
     .doc(userId.trim())
     .collection('messages')
-    .orderBy('timestamp')
+    .orderBy('timestamp', 'desc')
     .limit(25)
     .onSnapshot((snapshot) => {
         let mailbox = [];
