@@ -48,7 +48,7 @@ export class AddTeamDialog extends Component {
     state = {
         open: false,
         team: "",
-        priority: "",
+        priority: "1",
         color: "#1a237e",
         col1: "Name",
         col2: "Present",
@@ -115,6 +115,7 @@ export class AddTeamDialog extends Component {
                     <form>
                     <DialogContent className={classes.dialogContent}>
                         <TextField
+                            required
                             id="team"
                             name="team"
                             type="team"
@@ -132,10 +133,11 @@ export class AddTeamDialog extends Component {
                         </Grid>
                         </Grid>
                         <TextField
+                            required
                             id="priority"
                             name="priority"
                             type="priority"
-                            label="Priority (e.g. 1)"
+                            label="Priority"
                             value={this.state.priority}
                             onChange={this.handleChange}
                             fullWidth

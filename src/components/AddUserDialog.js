@@ -47,7 +47,7 @@ export class AddUserDialog extends Component {
         phone: "",
         team: "",
         teamId: "",
-        priority: ""
+        priority: "1"
     };
     
     handleOpen = () => {
@@ -104,6 +104,7 @@ export class AddUserDialog extends Component {
                     <form>
                     <DialogContent className={classes.dialogContent}>
                         <TextField
+                            required
                             id="name"
                             name="name"
                             type="name"
@@ -134,10 +135,11 @@ export class AddUserDialog extends Component {
                             fullWidth
                         />
                          <TextField
+                            required
                             id="priority"
                             name="priority"
                             type="priority"
-                            label="Priority (e.g. 1)"
+                            label="Priority"
                             value={this.state.priority}
                             onChange={this.handleChange}
                             className={classes.otherText}

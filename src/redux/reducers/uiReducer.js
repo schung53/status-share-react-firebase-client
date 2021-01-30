@@ -4,11 +4,14 @@ import {
     LOADING_UI, 
     STOP_LOADING_UI,
     LOADING_TEAM,
-    STOP_LOADING_TEAM } from '../types';
+    STOP_LOADING_TEAM,
+    LOADING_USER,
+    STOP_LOADING_USER } from '../types';
 
 const initialState = {
     loading: false,
     loadingTeam: false,
+    loadingUser: false,
     errors: null
 };
 
@@ -45,6 +48,16 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loadingTeam: false
+            };
+        case LOADING_USER:
+            return {
+                ...state,
+                loadingUser: true
+            };
+        case STOP_LOADING_USER:
+            return {
+                ...state,
+                loadingUser: false
             };
         default:
             return state;

@@ -12,7 +12,9 @@ import {
     EDIT_USER,
     DELETE_USER,
     ADD_USER,
-    SET_UPDATE_TIME } from '../types';
+    SET_UPDATE_TIME,
+    LOADING_USER,
+    STOP_LOADING_USER } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
@@ -160,9 +162,12 @@ export const deleteUser = (userId) => (dispatch) => {
 
 // Create a new user
 export const addUser = (newUserData) => (dispatch) => {
+    dispatch({ type: LOADING_USER });
+    
     axios
     .post('/user', newUserData)
     .then((res) => {
+        dispatch({ type: STOP_LOADING_USER });
         dispatch({
             type: ADD_USER,
             payload: res.data

@@ -122,7 +122,7 @@ export class home extends Component {
     };
 
     render() {
-        const { users, teams, loadingUsersData, loadingTeamsData, appName, loadingTeam } = this.props;
+        const { users, teams, loadingUsersData, loadingTeamsData, appName, loadingTeam, loadingUser } = this.props;
         const { classes } = this.props;
 
         const teamsObj = {};
@@ -150,6 +150,14 @@ export class home extends Component {
                     <DialogTitle>
                         <Grid className={classes.dialog}>
                         <Typography variant="overline" className={classes.spinnertext}>Updating teams...</Typography>
+                        <CircularProgress size={20} className={classes.spinnerdiv} /> 
+                        </Grid>
+                    </DialogTitle>
+                </Dialog>
+                <Dialog open={loadingUser}>
+                    <DialogTitle>
+                        <Grid className={classes.dialog}>
+                        <Typography variant="overline" className={classes.spinnertext}>Adding user...</Typography>
                         <CircularProgress size={20} className={classes.spinnerdiv} /> 
                         </Grid>
                     </DialogTitle>
@@ -205,7 +213,8 @@ const mapStateToProps = (state) => ({
     loadingUsersData: state.users.loadingUsersData,
     loadingTeamsData: state.teams.loadingTeamsData,
     appName: state.account.appName,
-    loadingTeam: state.UI.loadingTeam
+    loadingTeam: state.UI.loadingTeam,
+    loadingUser: state.UI.loadingUser
 });
 
 const mapActionsToProps = {

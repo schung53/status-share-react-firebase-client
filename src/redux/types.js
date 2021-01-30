@@ -16,7 +16,9 @@ export const LOADING_UI = 'LOADING_UI';
 export const STOP_LOADING_UI = 'STOP_LOADING_UI'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const LOADING_TEAM = 'LOADING_TEAM';
-export const STOP_LOADING_TEAM = 'STOP_LOADING_TEAM'
+export const STOP_LOADING_TEAM = 'STOP_LOADING_TEAM';
+export const LOADING_USER = 'LOADING_USER';
+export const STOP_LOADING_USER = 'STOP_LOADING_USER';
 
 // Users reducer types
 export const LOADING_USERS_DATA = 'LOADING_USERS_DATA';
