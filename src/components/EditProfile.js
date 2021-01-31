@@ -23,7 +23,7 @@ const styles = {
     closeButton: {
         textAlign: 'center',
         position: 'absolute',
-        left: '90%',
+        left: '92%',
         marginTop: 7
     },
     icon: {
@@ -115,7 +115,7 @@ export class EditProfile extends Component {
                     </DialogTitle>
                     <form>
                     <DialogContent className={classes.dialogContent}>
-                        <Grid container /* justify='space-between' */>
+                        <Grid container>
                         <Grid item>
                         <TextField
                             id="phone"

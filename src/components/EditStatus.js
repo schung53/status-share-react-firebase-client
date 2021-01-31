@@ -29,7 +29,7 @@ const styles = {
     closeButton: {
         textAlign: 'center',
         position: 'absolute',
-        left: '90%',
+        left: '92%',
         marginTop: 7
     },
     icon: {
