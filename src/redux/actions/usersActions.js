@@ -65,7 +65,8 @@ export const getUsers = () => (dispatch) => {
                 statusTime: doc.data().statusTime,
                 present: doc.data().present,
                 memo: doc.data().memo,
-                priority: doc.data().priority
+                priority: doc.data().priority,
+                unreadMessages: doc.data().unreadMessages
             });
         });
         dispatch({

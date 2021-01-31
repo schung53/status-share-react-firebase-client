@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import ProfileButton from './ProfileButton';
 import EditProfile from './EditProfile';
 import SendMessageDialog from './SendMessageDialog';
+import InboxDialog from './InboxDialog';
 
 // MUI components
 import Dialog from '@material-ui/core/Dialog';
@@ -24,7 +25,6 @@ import Typography from '@material-ui/core/Typography';
 import GroupIcon from '@material-ui/icons/Group';
 import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AllInboxIcon from '@material-ui/icons/AllInbox';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -83,7 +83,7 @@ export class ProfileDialog extends Component {
     };
 
     render() {
-        const { classes, user: { name, status, statusTime, phone, email, team, memo }, UI: { loading } } = this.props;
+        const { classes, user: { name, status, statusTime, phone, email, team, memo }, UI: { loading }, userId } = this.props;
 
         const dialogMarkup = loading ? (
             <div>
@@ -160,10 +160,8 @@ export class ProfileDialog extends Component {
                 <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
                     <DeleteIcon className={classes.buttonIcon}/>delete
                 </Button>)}
-                <Button style={{ color: '#388e3c' }} variant="outlined">
-                    <AllInboxIcon className={classes.buttonIcon} /> inbox
-                </Button>
-                <SendMessageDialog/>
+                <InboxDialog userId={userId} />
+                <SendMessageDialog userId={userId} />
             {!Boolean(parseInt(localStorage.viewOnly)) && (<EditProfile/>)}
         </DialogActions>
         </div>

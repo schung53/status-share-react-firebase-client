@@ -12,7 +12,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 
@@ -70,7 +70,7 @@ export class SendMessageDialog extends Component {
             subject: this.state.subject.trim(),
             message: this.state.message.trim()
         };
-        this.props.addMessage(newMessageData);
+        this.props.addMessage(newMessageData, this.props.userId);
         this.handleClose();
         this.setState({
             open: false,
@@ -115,7 +115,7 @@ export class SendMessageDialog extends Component {
                             InputProps={{
                                 startAdornment: (
                                   <InputAdornment position="start">
-                                    <AccountCircle />
+                                    <AccountBoxIcon />
                                   </InputAdornment>
                                 ),
                             }}
