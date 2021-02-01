@@ -160,7 +160,7 @@ export class ProfileDialog extends Component {
                 <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
                     <DeleteIcon className={classes.buttonIcon}/>delete
                 </Button>)}
-            {!Boolean(parseInt(localStorage.viewOnly)) && (<InboxDialog userId={userId} />)}
+            {!Boolean(parseInt(localStorage.viewOnly)) && (<InboxDialog userId={userId} onClose={this.handleClose}/>)}
             <SendMessageDialog userId={userId} />
             {!Boolean(parseInt(localStorage.viewOnly)) && (<EditProfile />)}
         </DialogActions>

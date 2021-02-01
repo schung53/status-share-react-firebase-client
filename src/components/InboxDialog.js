@@ -51,6 +51,7 @@ export class InboxDialog extends Component {
 
     handleClose = () => {
         this.setState({ open: false });
+        this.props.onClose();
     };
 
     render() {
@@ -101,6 +102,7 @@ const mapActionsToProps = {
 
 InboxDialog.propTypes = {
     getMailbox: PropTypes.func.isRequired,
+    handleClose: PropTypes.func.isRequired,
     mailbox: PropTypes.array.isRequired,
     loadingMailbox: PropTypes.bool.isRequired,
     userId: PropTypes.string.isRequired,
