@@ -27,12 +27,9 @@ export default function(state = initialState, action) {
                 loadingMailbox: false
             };
         case SET_MESSAGE:
-            let index_1 = state.mailbox.findIndex(
-                (message) => message.messageId === action.payload
-            );
             return {
                 ...state,
-                message: state.mailbox[index_1]
+                message: action.payload
             };
         case MARK_MESSAGE_READ:
             let index_2 = state.mailbox.findIndex(

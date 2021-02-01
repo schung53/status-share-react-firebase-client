@@ -6,9 +6,37 @@ import {
     DELETE_MESSAGE,
     ADD_MESSAGE,
     EDIT_MESSAGE,
-    SET_UPDATE_TIME } from '../types';
+    SET_UPDATE_TIME,
+    LOADING_UI,
+    STOP_LOADING_UI } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
+
+// Fetch one message
+export function getMessage(messageId) {
+    return (dispatch, getState) => {
+        dispatch({ type: LOADING_UI });
+
+        const mailbox = getState().mailbox.mailbox;
+        const message = mailbox.find((element) => 
+            element.messageId === messageId
+        );
+
+        if (message) {
+            dispatch({
+                type: SET_MESSAGE,
+                payload: message
+            });
+            dispatch({ type: STOP_LOADING_UI });
+        } else {
+            dispatch({
+                type: SET_MESSAGE,
+                payload: null
+            });
+            dispatch({ type: STOP_LOADING_UI });
+        }
+    };
+};
 
 // Fetch mailbox for one user
 export const getMailbox = (userId) => (dispatch) => {
@@ -50,14 +78,14 @@ export const markMessageRead = (messageId, userId) => (dispatch) => {
 
 // Delete a message
 export const deleteMessage = (messageId, userId) => (dispatch) => {
+    dispatch({
+        type: DELETE_MESSAGE,
+        payload: messageId
+    });
+
     axios
     .delete(`/mailbox/${userId}/${messageId}`)
-    .then(() => {
-        dispatch({
-            type: DELETE_MESSAGE,
-            payload: messageId
-        });
-    })
+    .then(() => {})
     .catch((err) => console.log(err));
 };
 

@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import dayjs from 'dayjs';
 
 // Components
-
+import InboxTable from './InboxTable';
 
 // MUI components
 import Dialog from '@material-ui/core/Dialog';
@@ -27,6 +26,7 @@ import AllInboxIcon from '@material-ui/icons/AllInbox';
 // Redux stuff
 import { connect } from 'react-redux';
 import { getMailbox } from '../redux/actions/mailboxActions';
+import { TableContainer } from '@material-ui/core';
 
 const styles = {
     spinnerDiv: {
@@ -87,7 +87,7 @@ export class InboxDialog extends Component {
             <div>
             <DialogTitle>Inbox: {name}</DialogTitle>
             <DialogContent className={classes.dialogContent}>
-                <div>{JSON.stringify(mailbox)}</div>
+                <InboxTable />
             </DialogContent>
             <DialogActions>
             
