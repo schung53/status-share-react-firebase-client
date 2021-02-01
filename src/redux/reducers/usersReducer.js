@@ -7,7 +7,8 @@ import {
     UPDATE_STATUS,
     EDIT_USER,
     DELETE_USER,
-    ADD_USER } from '../types';
+    ADD_USER,
+    DECREMENT_UNREAD_MESSAGES } from '../types';
 
 const initialState = {
     users: [],
@@ -40,7 +41,7 @@ export default function(state = initialState, action) {
             state.users[index_1].present = true;
             if (state.user.userId === action.payload) {
                 state.user.present = true;
-            };
+            }
             return {
                 ...state,
                 users: [
@@ -54,7 +55,7 @@ export default function(state = initialState, action) {
             state.users[index_2].present = false;
             if (state.user.userId === action.payload.userId) {
                 state.user.present = false;
-            };
+            }
             return {
                 ...state,
                 users: [
@@ -70,7 +71,7 @@ export default function(state = initialState, action) {
             if (state.user.userId === action.payload.userId) {
                 state.user.status = action.payload.status;
                 state.user.statusTime = action.payload.statusTime;
-            };
+            }
             return {
                 ...state,
                 users: [
@@ -92,7 +93,7 @@ export default function(state = initialState, action) {
                 state.user.phone = action.payload.phone;
                 state.user.team = action.payload.team;
                 state.user.memo = action.payload.memo;
-            };
+            }
             return {
                 ...state,
                 users: [
@@ -117,6 +118,21 @@ export default function(state = initialState, action) {
                 users: [
                     ...state.users
                 ]
+            };
+        case DECREMENT_UNREAD_MESSAGES:
+            let index_6 = state.users.findIndex(
+                (user) => user.userId === action.payload
+            );
+            state.users[index_6].unreadMessages = state.users[index_6].unreadMessages - 1;
+            if (state.user.userId === action.payload) {
+                state.user.unreadMessages = state.user.unreadMessages - 1;
+            }
+            return {
+                ...state,
+                users: [
+                    ...state.users
+                ],
+                user: state.user
             };
         default:
             return state;

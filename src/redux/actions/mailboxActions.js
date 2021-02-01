@@ -8,7 +8,8 @@ import {
     EDIT_MESSAGE,
     SET_UPDATE_TIME,
     LOADING_UI,
-    STOP_LOADING_UI } from '../types';
+    STOP_LOADING_UI,
+    DECREMENT_UNREAD_MESSAGES } from '../types';
 import axios from 'axios';
 import firebase from 'firebase';
 
@@ -67,6 +68,10 @@ export const markMessageRead = (messageId, userId) => (dispatch) => {
         type: MARK_MESSAGE_READ,
         payload: messageId
     });
+    dispatch({
+        type: DECREMENT_UNREAD_MESSAGES,
+        payload: userId
+    })
 
     axios
     .post(`/mailbox/read/${userId}/${messageId}`, { readStatus: true })
