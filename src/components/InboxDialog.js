@@ -89,9 +89,6 @@ export class InboxDialog extends Component {
             <DialogContent className={classes.dialogContent}>
                 <InboxTable />
             </DialogContent>
-            <DialogActions>
-            
-            </DialogActions>
             </div>
         )
 

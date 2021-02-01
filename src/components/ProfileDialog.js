@@ -151,7 +151,7 @@ export class ProfileDialog extends Component {
                     </Typography>
                 </Grid>
                 <Grid item>
-        <Typography className={classes.text2}>{memo}</Typography>
+                    <Typography className={classes.text2}>{memo}</Typography>
                 </Grid>
             </Grid>
         </DialogContent>

@@ -115,7 +115,7 @@ export class SendMessageDialog extends Component {
                             InputProps={{
                                 startAdornment: (
                                   <InputAdornment position="start">
-                                    <AccountBoxIcon />
+                                    <AccountBoxIcon style={{ color: '#388e3c' }} />
                                   </InputAdornment>
                                 ),
                             }}
@@ -132,7 +132,7 @@ export class SendMessageDialog extends Component {
                             InputProps={{
                                 startAdornment: (
                                   <InputAdornment position="start">
-                                    <AlternateEmailIcon />
+                                    <AlternateEmailIcon style={{ color: '#388e3c' }} />
                                   </InputAdornment>
                                 ),
                             }}

@@ -55,6 +55,12 @@ const styles = {
     text2: {
         margin: '10px auto 0px 10px'
     },
+    icon1: {
+        margin: '20px auto 0px 10px'
+    },
+    icon2: {
+        maring: '10px auto 0px 10px'
+    },
     dialogContent: {
         height: 350
     },
@@ -95,14 +101,14 @@ export class MessageDialog extends Component {
 
         if (readStatus) {
             return (
-                <IconButton onClick={this.handleOpen} size="small">
-                    <DraftsOutlinedIcon color="secondary"/>
+                <IconButton onClick={this.handleOpen} style={{ color: '#388e3c' }} size="small">
+                    <DraftsOutlinedIcon/>
                 </IconButton>
             )
         } else {
             return (
-                <IconButton onClick={this.handleOpen} size="small">
-                    <MailIcon color="secondary"/>
+                <IconButton onClick={this.handleOpen} style={{ color: '#388e3c' }} size="small">
+                    <MailIcon/>
                 </IconButton>
             )
         }
@@ -126,15 +132,13 @@ export class MessageDialog extends Component {
             <DialogContent className={classes.dialogContent}>
                 <Grid container>
                     <Grid item>
-                        <AccountBoxIcon />
+                        <AccountBoxIcon style={{ color: '#388e3c' }} className={classes.icon1}/>
                     </Grid>
                     <Grid item>
                         <Typography className={classes.statusText} noWrap>{message.senderName}</Typography>
                     </Grid>
-                </Grid>
-                <Grid container>
                     <Grid item>
-                        <AlternateEmailIcon />
+                        <AlternateEmailIcon style={{ color: '#388e3c' }} className={classes.icon1}/>
                     </Grid>
                     <Grid item>
                         <Typography className={classes.statusText} noWrap>{message.senderContact}</Typography>
@@ -142,17 +146,29 @@ export class MessageDialog extends Component {
                 </Grid>
                 <Grid container>
                     <Grid item>
-                        <Typography className={classes.text2}>
+                        <Typography className={classes.statusText}>
                             <Box fontWeight="fontWeightBold" m={1}>Sent at: </Box>
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Typography className={classes.text2}>{dayjs(message.timestamp).format('h:mm a, MMMM DD YYYY')}</Typography>
+                        <Typography className={classes.statusText}>{dayjs(message.timestamp).format('h:mm a, MMMM DD YYYY')}</Typography>
+                    </Grid>
+                </Grid>
+                <Grid container>
+                    <Grid item>
+                        <Typography className={classes.text2}>
+                            <Box fontWeight="fontWeightBold" m={1}>Message: </Box>
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography className={classes.text2}>{message.message}</Typography>
                     </Grid>
                 </Grid>
             </DialogContent>
             <DialogActions>
-            
+                <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
+                    <DeleteIcon className={classes.buttonIcon}/>delete
+                </Button>
             </DialogActions>
             </div>)
 
