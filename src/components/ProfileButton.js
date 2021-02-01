@@ -10,7 +10,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 export class ProfileButton extends Component {
 
     render() {
-        const { onClick, tip, unreadMessages } = this.props;
+        const { onClick, unreadMessages } = this.props;
         const tooltipString = "Unread messages: " + unreadMessages;
 
         if (unreadMessages > 0) {

@@ -7,26 +7,17 @@ import InboxTable from './InboxTable';
 
 // MUI components
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Grid from '@material-ui/core/Grid';
-import PhoneIcon from '@material-ui/icons/Phone';
-import EmailIcon from '@material-ui/icons/Email';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import GroupIcon from '@material-ui/icons/Group';
-import Box from '@material-ui/core/Box';
-import DeleteIcon from '@material-ui/icons/Delete';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 
 // Redux stuff
 import { connect } from 'react-redux';
 import { getMailbox } from '../redux/actions/mailboxActions';
-import { TableContainer } from '@material-ui/core';
 
 const styles = {
     spinnerDiv: {
@@ -39,15 +30,6 @@ const styles = {
         position: 'absolute',
         left: '92%',
         marginTop: 7
-    },
-    icon: {
-        margin: '5px 8px auto 15px'
-    },
-    statusText: {
-        margin: '20px auto 0px 10px'
-    },
-    text2: {
-        margin: '10px auto 0px 10px'
     },
     dialogContent: {
         height: 450
@@ -72,7 +54,7 @@ export class InboxDialog extends Component {
     };
 
     render() {
-        const { classes, mailbox, user: { name }, loading } = this.props;
+        const { classes, user: { name }, loading } = this.props;
 
         const dialogMarkup = loading ? (
             <div>
@@ -109,7 +91,6 @@ export class InboxDialog extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    mailbox: state.mailbox.mailbox,
     loading: state.mailbox.loadingMailbox,
     user: state.users.user
 });

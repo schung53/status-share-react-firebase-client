@@ -37,20 +37,14 @@ const styles = {
         left: '92%',
         marginTop: 7
     },
-    icon: {
-        margin: '5px 8px auto 15px'
-    },
-    statusText: {
+    text1: {
         margin: '20px auto 0px 10px'
     },
     text2: {
         margin: '10px auto 0px 10px'
     },
-    icon1: {
+    icon: {
         margin: '20px auto 0px 10px'
-    },
-    icon2: {
-        maring: '10px auto 0px 10px'
     },
     dialogContent: {
         height: 350
@@ -123,26 +117,26 @@ export class MessageDialog extends Component {
             <DialogContent className={classes.dialogContent}>
                 <Grid container>
                     <Grid item>
-                        <AccountBoxIcon style={{ color: '#388e3c' }} className={classes.icon1}/>
+                        <AccountBoxIcon style={{ color: '#388e3c' }} className={classes.icon}/>
                     </Grid>
                     <Grid item>
-                        <Typography className={classes.statusText} noWrap>{message.senderName}</Typography>
+                        <Typography className={classes.text1} noWrap>{message.senderName}</Typography>
                     </Grid>
                     <Grid item>
-                        <AlternateEmailIcon style={{ color: '#388e3c' }} className={classes.icon1}/>
+                        <AlternateEmailIcon style={{ color: '#388e3c' }} className={classes.icon}/>
                     </Grid>
                     <Grid item>
-                        <Typography className={classes.statusText} noWrap>{message.senderContact}</Typography>
+                        <Typography className={classes.text1} noWrap>{message.senderContact}</Typography>
                     </Grid>
                 </Grid>
                 <Grid container>
                     <Grid item>
-                        <Typography className={classes.statusText}>
+                        <Typography className={classes.text1}>
                             <Box fontWeight="fontWeightBold" m={1}>Sent at: </Box>
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Typography className={classes.statusText}>{dayjs(message.timestamp).format('h:mm a, MMMM DD YYYY')}</Typography>
+                        <Typography className={classes.text1}>{dayjs(message.timestamp).format('h:mm a, MMMM DD YYYY')}</Typography>
                     </Grid>
                 </Grid>
                 <Grid container>
