@@ -33,7 +33,7 @@ const styles = {
         marginTop: 7
     },
     icon: {
-        margin: '5px 8px auto 15px'
+        margin: '1px 8px auto 8px'
     },
     statusText: {
         margin: '20px auto 0px 10px'

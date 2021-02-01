@@ -28,7 +28,7 @@ const styles = {
         marginTop: 7
     },
     icon: {
-        margin: '5px 8px auto 15px'
+        margin: '1px 8px auto 8px'
     },
     dialogContent: {
         height: 350

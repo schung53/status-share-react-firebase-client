@@ -50,7 +50,7 @@ const styles = {
         margin: '10px auto 0px 10px'
     },
     dialogContent: {
-        height: 350
+        height: 450
     },
     buttonIcon: {
         margin: 'auto 5px auto auto'

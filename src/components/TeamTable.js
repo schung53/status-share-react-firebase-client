@@ -110,7 +110,7 @@ export class TeamTable extends Component {
                                 <TableCell className={classes.tableCell}>
                                     <Grid container alignItems="center" spacing={1}>
                                         <Grid item >
-                                            <ProfileDialog userId={row.userId} userMemo={row.memo}/>
+                                            <ProfileDialog userId={row.userId} userMemo={row.memo} unreadMessages={row.user.unreadMessages}/>
                                         </Grid>
                                         <Grid item className={classes.box}>
                                             {row.name}

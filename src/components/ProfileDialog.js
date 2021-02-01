@@ -160,16 +160,16 @@ export class ProfileDialog extends Component {
                 <Button onClick={this.handleDelete} style={{ color: '#ef5350' }} variant="outlined">
                     <DeleteIcon className={classes.buttonIcon}/>delete
                 </Button>)}
-                <InboxDialog userId={userId} />
-                <SendMessageDialog userId={userId} />
-            {!Boolean(parseInt(localStorage.viewOnly)) && (<EditProfile/>)}
+            {!Boolean(parseInt(localStorage.viewOnly)) && (<InboxDialog userId={userId} />)}
+            <SendMessageDialog userId={userId} />
+            {!Boolean(parseInt(localStorage.viewOnly)) && (<EditProfile />)}
         </DialogActions>
         </div>
         )
 
         return (
             <Fragment>
-                <ProfileButton onClick={this.handleOpen} tip={this.props.userMemo} />
+                <ProfileButton onClick={this.handleOpen} unreadMessages={this.props.unreadMessages} />
                 <Dialog open={this.state.open} onClose={this.handleClose} fullWidth maxWidth="sm">
                     <IconButton onClick={this.handleClose} className={classes.closeButton} size="small">
                         <CloseIcon />
@@ -198,7 +198,8 @@ ProfileDialog.propTypes = {
     getUser: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     userId: PropTypes.string.isRequired,
-    userMemo: PropTypes.string.isRequired
+    userMemo: PropTypes.string.isRequired,
+    unreadMessages: PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(ProfileDialog));
