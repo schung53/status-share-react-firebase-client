@@ -60,6 +60,7 @@ export class SendMessageDialog extends Component {
             subject: "",
             message: ""
         });
+        this.props.onClose();
     };
 
     handleSubmit = (event) => {
@@ -72,13 +73,6 @@ export class SendMessageDialog extends Component {
         };
         this.props.addMessage(newMessageData, this.props.userId);
         this.handleClose();
-        this.setState({
-            open: false,
-            senderName: "",
-            senderContact: "",
-            subject: "",
-            message: ""
-        });
     };
 
     handleChange = (event) => {
@@ -186,6 +180,7 @@ const mapActionsToProps = {
 
 SendMessageDialog.propTypes = {
     addMessage: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     userId: PropTypes.string.isRequired
 };

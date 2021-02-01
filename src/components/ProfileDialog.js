@@ -161,7 +161,7 @@ export class ProfileDialog extends Component {
                     <DeleteIcon className={classes.buttonIcon}/>delete
                 </Button>)}
             {!Boolean(parseInt(localStorage.viewOnly)) && (<InboxDialog userId={userId} onClose={this.handleClose}/>)}
-            <SendMessageDialog userId={userId} />
+            <SendMessageDialog userId={userId} onClose={this.handleClose}/>
             {!Boolean(parseInt(localStorage.viewOnly)) && (<EditProfile />)}
         </DialogActions>
         </div>
