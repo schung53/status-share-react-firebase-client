@@ -122,7 +122,13 @@ export class home extends Component {
     };
 
     render() {
-        const { users, teams, loadingUsersData, loadingTeamsData, appName, loadingTeam, loadingUser } = this.props;
+        const { users, 
+                teams, 
+                loadingUsersData, 
+                loadingTeamsData, 
+                appName, 
+                loadingTeam, 
+                loadingUser } = this.props;
         const { classes } = this.props;
 
         const teamsObj = {};

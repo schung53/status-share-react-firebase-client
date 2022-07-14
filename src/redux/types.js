@@ -19,6 +19,7 @@ export const LOADING_TEAM = 'LOADING_TEAM';
 export const STOP_LOADING_TEAM = 'STOP_LOADING_TEAM';
 export const LOADING_USER = 'LOADING_USER';
 export const STOP_LOADING_USER = 'STOP_LOADING_USER';
+export const SET_DARKMODE = 'SET_DARKMODE';
 
 // Users reducer types
 export const LOADING_USERS_DATA = 'LOADING_USERS_DATA';

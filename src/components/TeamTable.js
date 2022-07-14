@@ -96,7 +96,7 @@ export class TeamTable extends Component {
                 <Toolbar>
                     <Grid justify="space-between" container>
                         <Grid item>
-                            <Typography>
+                            <Typography component={'span'}>
                                 <Box fontWeight="fontWeightBold" m={1} color={teamsFields.color}>
                                     {teamsFields.team} 
                                 </Box>
