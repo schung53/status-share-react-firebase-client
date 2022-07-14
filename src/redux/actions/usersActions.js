@@ -7,6 +7,9 @@ import {
     LOADING_USERS_DATA,
     MARK_PRESENT,
     MARK_NOT_PRESENT,
+    SET_AM,
+    SET_PM,
+    SET_NO_PERIOD,
     SET_ERRORS,
     UPDATE_STATUS,
     EDIT_USER,
@@ -64,6 +67,7 @@ export const getUsers = () => (dispatch) => {
                 status: doc.data().status,
                 statusTime: doc.data().statusTime,
                 present: doc.data().present,
+                checkinPeriod: doc.data().checkinPeriod,
                 memo: doc.data().memo,
                 priority: doc.data().priority,
                 unreadMessages: doc.data().unreadMessages
@@ -134,6 +138,90 @@ export const markNotPresent = (userId) => (dispatch) => {
         console.log(err);
     });
 };
+
+// Set a user's checkin period to AM
+export const setAM = (userId, checkinPeriod) => (dispatch) => {
+    dispatch({
+        type: SET_AM,
+        payload: userId
+    });
+
+    axios
+    .post(`/user/checkinperiod/${userId}`, {checkinPeriod: "AM"})
+    .then((res) => {})
+    .catch((err) => {
+        // Revert checkin period change if error
+        if (checkinPeriod === "PM") {
+            dispatch({
+                type: SET_PM,
+                payload: userId
+            });
+        }
+        if (checkinPeriod === "None") {
+            dispatch({
+                type: SET_NO_PERIOD,
+                payload: userId
+            });
+        }
+        console.log(err);
+    })
+}
+
+// Set a user's checkin period to PM
+export const setPM = (userId, checkinPeriod) => (dispatch) => {
+    dispatch({
+        type: SET_PM,
+        payload: userId
+    });
+
+    axios
+    .post(`/user/checkinperiod/${userId}`, {checkinPeriod: "PM"})
+    .then((res) => {})
+    .catch((err) => {
+        // Revert checkin period change if error
+        if (checkinPeriod === "AM") {
+            dispatch({
+                type: SET_PM,
+                payload: userId
+            });
+        }
+        if (checkinPeriod === "None") {
+            dispatch({
+                type: SET_NO_PERIOD,
+                payload: userId
+            });
+        }
+        console.log(err);
+    })
+}
+
+// Set a user's checkin period to empty
+export const setNoPeriod = (userId, checkinPeriod) => (dispatch) => {
+    dispatch({
+        type: SET_NO_PERIOD,
+        payload: userId
+    });
+
+    axios
+    .post(`/user/checkinperiod/${userId}`, {checkinPeriod: "None"})
+    .then((res) => {})
+    .catch((err) => {
+        // Revert checkin period change if error
+        if (checkinPeriod === "AM") {
+            dispatch({
+                type: SET_AM,
+                payload: userId
+            });
+        }
+        if (checkinPeriod === "PM") {
+            dispatch({
+                type: SET_PM,
+                payload: userId
+            });
+        }
+        console.log(err);
+    })
+}
 
 // Edit a user's profile (including memo)
 export const editProfile = (userId, profileData) => (dispatch) => {
