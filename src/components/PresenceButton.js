@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Redux stuff
 import { connect } from 'react-redux';
@@ -21,7 +22,7 @@ const styles = {
 export class PresenceButton extends Component {
 
     render() {
-        const { user: { userId, present }, darkMode} = this.props;
+        const { user: { userId, present }, darkMode, loading} = this.props;
 
         const uncheckButton = () => {
             if (!Boolean(parseInt(localStorage.viewOnly))) {
@@ -37,12 +38,20 @@ export class PresenceButton extends Component {
 
         const presenceButton = present ? (
             <IconButton size="small" onClick={uncheckButton}>
-                <CheckCircleIcon color={darkMode ? "action" : "secondary"}/>
+                {loading ? (
+                    <CircularProgress color="inherit" size={30} sx={styles.progress}/>
+                ) : (
+                    <CheckCircleIcon color={darkMode ? "action" : "secondary"}/>
+                )}
                 
             </IconButton>
         ) : (
             <IconButton size="small" onClick={checkButton}>
-                <RadioButtonUncheckedIcon color={darkMode ? "action" : "secondary"}/>
+                {loading ? (
+                    <CircularProgress color="inherit" size={30} sx={styles.progress}/>
+                ) : (
+                    <RadioButtonUncheckedIcon color={darkMode ? "action" : "secondary"}/>
+                )}
             </IconButton>
         )
 
@@ -54,7 +63,8 @@ export class PresenceButton extends Component {
 
 const mapStateToProps = (state) => ({
     users: state.users.users,
-    darkMode: state.UI.darkMode
+    darkMode: state.UI.darkMode,
+    loading: state.UI.loading
 });
 
 const mapActionsToProps = {

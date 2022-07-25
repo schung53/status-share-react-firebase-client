@@ -56,10 +56,9 @@ export class home extends Component {
     componentDidMount(){
         const token = localStorage.FBIdToken;
         const rememberMe = localStorage.rememberMe;
-
         // If "Remember Me" is selected
         // Token refresher – ensures token is always valid while logged in
-        if (rememberMe === 1) {
+        if (rememberMe == 1) {
             store.dispatch({ type: SET_AUTHENTICATED });
             axios.defaults.headers.common['Authorization'] = token;
             if (token) {
@@ -83,7 +82,7 @@ export class home extends Component {
             }
         
         // If "Remember Me" not selected, logout user when token expires
-        } else if (rememberMe === 0) {
+        } else if (rememberMe == 0) {
             store.dispatch({ type: SET_AUTHENTICATED });
             axios.defaults.headers.common['Authorization'] = token;
             if (token) {
