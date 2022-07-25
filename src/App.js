@@ -4,7 +4,6 @@ import './App.css';
 
 // MUI
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import axios from 'axios';
 
@@ -63,7 +62,7 @@ function App() {
         dark: '#26418f',
         contrastText: '#ffffff'
       },
-      darkModeButton: {
+      action: {
         main: '#fff',
         contrastText: '#ffffff'
       }
@@ -76,7 +75,6 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
-        {/* <Paper> */}
           <Router>
               <div className="container">
                 <Switch>
@@ -85,7 +83,6 @@ function App() {
                 </Switch>
               </div>
           </Router>
-        {/* </Paper> */}
       </Provider>
     </MuiThemeProvider>
   );

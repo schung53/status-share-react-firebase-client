@@ -37,12 +37,12 @@ export class PresenceButton extends Component {
 
         const presenceButton = present ? (
             <IconButton size="small" onClick={uncheckButton}>
-                <CheckCircleIcon color={darkMode ? "darkModeButton" : "secondary"}/>
+                <CheckCircleIcon color={darkMode ? "action" : "secondary"}/>
                 
             </IconButton>
         ) : (
             <IconButton size="small" onClick={checkButton}>
-                <RadioButtonUncheckedIcon color={darkMode ? "darkModeButton" : "secondary"}/>
+                <RadioButtonUncheckedIcon color={darkMode ? "action" : "secondary"}/>
             </IconButton>
         )
 
