@@ -62,6 +62,10 @@ function App() {
         main: '#5c6bc0',
         dark: '#26418f',
         contrastText: '#ffffff'
+      },
+      darkModeButton: {
+        main: '#fff',
+        contrastText: '#ffffff'
       }
     },
     typography: {
@@ -72,7 +76,7 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
-        <Paper>
+        {/* <Paper> */}
           <Router>
               <div className="container">
                 <Switch>
@@ -81,7 +85,7 @@ function App() {
                 </Switch>
               </div>
           </Router>
-        </Paper>
+        {/* </Paper> */}
       </Provider>
     </MuiThemeProvider>
   );

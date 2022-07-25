@@ -41,7 +41,7 @@ export class NavBar extends Component {
     };
 
     updateTitle = () => {
-        if (window.innerWidth < 550 ) {
+        if (window.innerWidth < 550) {
             this.props.truncateAppName();
         } else {
             this.props.detruncateAppName();
@@ -55,6 +55,13 @@ export class NavBar extends Component {
 
     setDarkMode = (event) => {
         this.props.setDarkMode(event.target.checked);
+        if (event.target.checked === true) {
+            const element = document.querySelector('body');
+            element.style.backgroundColor = 'grey';
+        } else {
+            const element = document.querySelector('body');
+            element.style.backgroundColor = 'white';
+        }
     };
 
     render() {

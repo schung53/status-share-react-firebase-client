@@ -21,7 +21,7 @@ const styles = {
 export class PresenceButton extends Component {
 
     render() {
-        const { user: { userId, present }} = this.props;
+        const { user: { userId, present }, darkMode} = this.props;
 
         const uncheckButton = () => {
             if (!Boolean(parseInt(localStorage.viewOnly))) {
@@ -37,11 +37,12 @@ export class PresenceButton extends Component {
 
         const presenceButton = present ? (
             <IconButton size="small" onClick={uncheckButton}>
-                <CheckCircleIcon color="secondary"/>
+                <CheckCircleIcon color={darkMode ? "darkModeButton" : "secondary"}/>
+                
             </IconButton>
         ) : (
             <IconButton size="small" onClick={checkButton}>
-                <RadioButtonUncheckedIcon color="secondary"/>
+                <RadioButtonUncheckedIcon color={darkMode ? "darkModeButton" : "secondary"}/>
             </IconButton>
         )
 
@@ -52,7 +53,8 @@ export class PresenceButton extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    users: state.users.users
+    users: state.users.users,
+    darkMode: state.UI.darkMode
 });
 
 const mapActionsToProps = {
