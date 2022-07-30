@@ -58,7 +58,7 @@ export class LoadingTable extends Component {
             <div>
                 <Paper elevation={3}>
                 <Toolbar>
-                    <Typography>
+                    <Typography component={'span'}>
                         <Box fontWeight="fontWeightBold" m={1}>
                             Loading Team
                         </Box>

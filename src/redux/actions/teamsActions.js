@@ -26,7 +26,8 @@ export const getTeams = () => (dispatch) => {
                 teamId: doc.data().teamId,
                 col1: doc.data().col1,
                 col2: doc.data().col2,
-                col3: doc.data().col3
+                col3: doc.data().col3,
+                col4: doc.data().col4
             });
         });
         dispatch({

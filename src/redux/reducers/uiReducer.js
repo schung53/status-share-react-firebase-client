@@ -6,9 +6,11 @@ import {
     LOADING_TEAM,
     STOP_LOADING_TEAM,
     LOADING_USER,
-    STOP_LOADING_USER } from '../types';
+    STOP_LOADING_USER,
+    SET_DARKMODE } from '../types';
 
 const initialState = {
+    darkMode: false,
     loading: false,
     loadingTeam: false,
     loadingUser: false,
@@ -59,6 +61,11 @@ export default function (state = initialState, action) {
                 ...state,
                 loadingUser: false
             };
+        case SET_DARKMODE:
+            return {
+                ...state,
+                darkMode: action.payload
+            }
         default:
             return state;
     }

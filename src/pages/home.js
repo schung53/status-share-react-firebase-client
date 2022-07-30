@@ -56,7 +56,6 @@ export class home extends Component {
     componentDidMount(){
         const token = localStorage.FBIdToken;
         const rememberMe = localStorage.rememberMe;
-
         // If "Remember Me" is selected
         // Token refresher – ensures token is always valid while logged in
         if (rememberMe == 1) {
@@ -122,7 +121,13 @@ export class home extends Component {
     };
 
     render() {
-        const { users, teams, loadingUsersData, loadingTeamsData, appName, loadingTeam, loadingUser } = this.props;
+        const { users, 
+                teams, 
+                loadingUsersData, 
+                loadingTeamsData, 
+                appName, 
+                loadingTeam, 
+                loadingUser } = this.props;
         const { classes } = this.props;
 
         const teamsObj = {};

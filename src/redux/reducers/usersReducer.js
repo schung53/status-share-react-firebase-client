@@ -3,7 +3,10 @@ import {
     SET_USERS, 
     LOADING_USERS_DATA, 
     MARK_PRESENT, 
-    MARK_NOT_PRESENT, 
+    MARK_NOT_PRESENT,
+    SET_AM,
+    SET_PM,
+    SET_NO_PERIOD, 
     UPDATE_STATUS,
     EDIT_USER,
     DELETE_USER,
@@ -61,7 +64,49 @@ export default function(state = initialState, action) {
                 users: [
                     ...state.users
                 ]
-            }; 
+            };
+        case SET_AM:
+            let index_7 = state.users.findIndex(
+                (user) => user.userId === action.payload
+            );
+            state.users[index_7].checkinPeriod = "AM";
+            if (state.user.userId === action.payload.userId) {
+                state.user.checkinPeriod = "AM";
+            }
+            return {
+                ...state,
+                users: [
+                    ...state.users
+                ]
+            }
+        case SET_PM:
+            let index_8 = state.users.findIndex(
+                (user) => user.userId === action.payload
+            );
+            state.users[index_8].checkinPeriod = "PM";
+            if (state.user.userId === action.payload.userId) {
+                state.user.checkinPeriod = "PM";
+            }
+            return {
+                ...state,
+                users: [
+                    ...state.users
+                ]
+            }
+        case SET_NO_PERIOD:
+            let index_9 = state.users.findIndex(
+                (user) => user.userId === action.payload
+            );
+            state.users[index_9].checkinPeriod = "";
+            if (state.user.userId === action.payload.userId) {
+                state.user.checkinPeriod = "";
+            }
+            return {
+                ...state,
+                users: [
+                    ...state.users
+                ]
+            }
         case UPDATE_STATUS:
             let index_3 = state.users.findIndex(
                 (user) => user.userId === action.payload.userId

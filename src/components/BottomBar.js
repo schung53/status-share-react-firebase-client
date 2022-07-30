@@ -49,7 +49,7 @@ const mapStateToProps = (state) => ({
 });
 
 BottomBar.propTypes = {
-    truncatedAppName: PropTypes.string.isRequired
+    truncatedAppName: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, null)(withStyles(styles)(BottomBar));

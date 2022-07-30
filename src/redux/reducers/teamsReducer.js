@@ -42,6 +42,7 @@ export default function(state = initialState, action) {
             state.teams[index_1].col1 = action.payload.col1;
             state.teams[index_1].col2 = action.payload.col2;
             state.teams[index_1].col3 = action.payload.col3;
+            state.teams[index_1].col4 = action.payload.col4;
             return {
                 ...state,
                 teams: [

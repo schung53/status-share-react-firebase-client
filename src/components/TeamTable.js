@@ -8,6 +8,7 @@ import PresenceButton from './PresenceButton';
 import EditStatus from './EditStatus';
 import AddUserDialog from './AddUserDialog';
 import EditTeam from './EditTeam';
+import CheckinPeriodList from './CheckinPeriodList';
 
 // MUI components
 import Table from '@material-ui/core/Table';
@@ -76,13 +77,26 @@ export class TeamTable extends Component {
 
         this.props.teamMembers.map((user) => {rows.push(createData(user.name, user.present, user.status, user.userId, user.memo, user))});
 
+        // hide checkin period column if the team is "LINACs"
+        const renderPeriodColumn = (team) => {
+            if (team !== "LINACs (http://sprtqavc001/qatrack)") {
+                return <TableCell><Box>{teamsFields.col4}</Box></TableCell>
+            }
+        }
+
+        const renderPeriodRow = (team, user) => {
+            if (team !== "LINACs (http://sprtqavc001/qatrack)") {
+                return  <TableCell align="center"><CheckinPeriodList user={user}/></TableCell>
+            }
+        }
+
         return (
             <div>
                 <Paper elevation={3}>
                 <Toolbar>
                     <Grid justify="space-between" container>
                         <Grid item>
-                            <Typography>
+                            <Typography component={'span'}>
                                 <Box fontWeight="fontWeightBold" m={1} color={teamsFields.color}>
                                     {teamsFields.team} 
                                 </Box>
@@ -101,6 +115,7 @@ export class TeamTable extends Component {
                         <TableRow>
                             <TableCell><Box>{teamsFields.col1}</Box></TableCell>
                             <TableCell><Box>{teamsFields.col2}</Box></TableCell>
+                            {renderPeriodColumn(teamsFields.team)}
                             <TableCell><Box>{teamsFields.col3}</Box></TableCell>
                         </TableRow>
                     </TableHead>
@@ -120,6 +135,7 @@ export class TeamTable extends Component {
                                 <TableCell align="center">
                                     <PresenceButton user={row.user}/>
                                 </TableCell>
+                                {renderPeriodRow(teamsFields.team, row.user)}
                                 <TableCell className={classes.statusCell}>
                                     <Grid container alignItems="center" justify="space-between" spacing={1}>
                                         <Grid item className={classes.status}>
